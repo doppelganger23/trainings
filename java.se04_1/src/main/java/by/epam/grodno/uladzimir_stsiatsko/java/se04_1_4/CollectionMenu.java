@@ -2,68 +2,75 @@ package by.epam.grodno.uladzimir_stsiatsko.java.se04_1_4;
 
 import java.util.Scanner;
 
-//КУДА МОЖНО ВЫНЕСТИ try with resources?
 public class CollectionMenu {
 
+	private Scanner scan;
 	private FilmCollectionHandler handler = new FilmCollectionHandler();
 
 	private String options = "Press:\n - 'L' to Load existing film collection\n - 'S' to Save collection\n - 'O' to Show current collection\n - 'D' to Delete films from the collection\n - 'A' to Add film to the collection\n - 'E' to Edit film credits\n - 'Q' to Quit program";
-	private String symbol;//ответ пользователя
-	private boolean isQuitting;//флаг
+	private String symbol;// ответ пользователя
+	private boolean isQuitting;// флаг
 
-	//точка входа
+	// точка входа
 	public static void main(String[] args) {
-		CollectionMenu menu = new CollectionMenu();
-		System.out.println("Working with new collection by default.");
-		menu.showOptionScreen();
+		try (Scanner scanner = new Scanner(System.in)) {
+			CollectionMenu menu = new CollectionMenu();
+			menu.setScanner(scanner);
+			System.out.println("Working with new collection by default.");
+			menu.showOptionScreen();
+		}
 	}
 
-	//загрузка главного меню
+	// задаем сканер
+	public void setScanner(Scanner s){
+		this.scan = s;
+	}
+	
+	// загрузка главного меню
+	//с переходами к остальным
 	private void showOptionScreen() {
 		System.out.println("------------------------------------------------------------------------");
-		try (Scanner scan = new Scanner(System.in)) {
 
-			System.out.println(options);
+		System.out.println(options);
+		symbol = scan.nextLine().toUpperCase();
+
+		// проверка на допустимые символы
+		while (!(symbol.equals("L") || symbol.equals("S") || symbol.equals("O") || symbol.equals("D")
+				|| symbol.equals("A") || symbol.equals("E") || symbol.equals("Q"))) {
 			symbol = scan.nextLine().toUpperCase();
+		}
 
-			// проверка на допустимые символы
-			while (!(symbol.equals("L") || symbol.equals("S") || symbol.equals("O")
-					|| symbol.equals("D") || symbol.equals("A") || symbol.equals("E") || symbol.equals("Q"))) {
-				symbol = scan.nextLine();
-			}
-
-			// разбор команд
-			switch (symbol) {
-			case "L":
-				this.toLoadScreen();
-				break;
-			case "S":
-				this.toSaveScreen();
-				break;
-			case "O":
-				handler.showCollection();
-				this.showOptionScreen();
-				break;
-			case "D":
-				this.toDeleteFilmScreen();
-				break;
-			case "A":
-				this.toAddFilmScreen();
-				break;
-			case "E":
-				this.toEditScreen();
-				break;
-			default:
-				this.quit();
-				break;
-			}
-
+		// разбор команд
+		switch (symbol) {
+		case "L":
+			this.toLoadScreen();
+			break;
+		case "S":
+			this.toSaveScreen();
+			break;
+		case "O":
+			handler.showCollection();
+			this.showOptionScreen();
+			break;
+		case "D":
+			this.toDeleteFilmScreen();
+			break;
+		case "A":
+			this.toAddFilmScreen();
+			break;
+		case "E":
+			this.toEditScreen();
+			break;
+		default:
+			this.quit();
+			break;
 		}
 
 	}
 
+	//к загрузке коллекции
 	private void toLoadScreen() {
-		try (Scanner scan = new Scanner(System.in)) {
+		try {
 
 			System.out.println("Input absolute path with the file name");
 			handler.load(scan.nextLine());
@@ -76,8 +83,9 @@ public class CollectionMenu {
 		}
 	}
 
+	//к сохранению коллекции
 	private void toSaveScreen() {
-		try (Scanner scan = new Scanner(System.in)) {
+		try {
 
 			System.out.println("Input absolute path with the file name");
 			handler.save(scan.nextLine());
@@ -102,80 +110,77 @@ public class CollectionMenu {
 		}
 	}
 
-	private void toDeleteFilmScreen() {
-		try (Scanner scan = new Scanner(System.in)) {
+	//к добавлению фильма
+	private void toAddFilmScreen() {
+
+		System.out.println("Input title of the film you want to add");
+		handler.addFilm(scan.nextLine());
+		this.showOptionScreen();
+	}
+
+	//к удалению фильма
+		private void toDeleteFilmScreen() {
+
 			System.out.println("Input title of the film you want to delete");
 			handler.delFilm(scan.nextLine());
 			this.showOptionScreen();
 		}
+
+	//к редактированию фильма
+	private void toEditScreen() {
+
+		System.out.println("Input title of the film you want to edit");
+		String thatFilm = scan.nextLine();
+		System.out.println("Starring:");
+		handler.showCredits(thatFilm);
+
+		System.out.println("Press 'D' to Delete actor, A to add, Q for Quit");
+		symbol = scan.nextLine().toUpperCase();
+
+		while (!(symbol.equals("D") || symbol.equals("A") || symbol.equals("Q"))) {
+			symbol = scan.nextLine().toUpperCase();
+		}
+
+		if (symbol.equals("D")) {
+			this.DeleteActorScreen(thatFilm);
+		} else if (symbol.equals("A")) {
+			this.AddActorScreen(thatFilm);
+		} else
+			this.quit();
 	}
 
-	private void toAddFilmScreen(){
-		try (Scanner scan = new Scanner(System.in)) {
-			System.out.println("Input title of the film you want to add");
-			handler.addFilm(scan.nextLine());
-			this.showOptionScreen();
-		}
-	}
-	
-	private void AddActorScreen(String thatFilm) {
-		try (Scanner scan = new Scanner(System.in)) {
+	//к добавлению актера
+		private void AddActorScreen(String thatFilm) {
+
 			System.out.println("Input Name of Actor you want to add to the film credits");
 			String actorName = scan.nextLine();
 
 			handler.addActor(thatFilm, actorName);
 			this.showOptionScreen();
 		}
-	}
-
-	private void toEditScreen() {
-		try (Scanner scan = new Scanner(System.in)) {
-			System.out.println("Input title of the film you want to edit");
-			String thatFilm = scan.nextLine();
-			System.out.println("Starring:");
-			handler.showCredits(thatFilm);
-
-			System.out.println("Press 'D' to Delete actor, A to add, Q for Quit");
-			symbol = scan.nextLine().toUpperCase();
-			
-			while (!(symbol.equals("D") || symbol.equals("A") || symbol.equals("Q"))) {
-				symbol = scan.nextLine();
-			}
-			
-			if(symbol.equals("D")){
-				this.DeleteActorScreen(thatFilm);
-			} else if (symbol.equals("A")){
-				this.AddActorScreen(thatFilm);
-			} else this.quit();
-		}
-	}
-
+	
+	//к удалению актера
 	private void DeleteActorScreen(String thatFilm) {
-		try (Scanner scan = new Scanner(System.in)) {
-			System.out.println("Input Name of Actor you want to delete from the film credits");
-			String actorName = scan.nextLine();
+		System.out.println("Input Name of Actor you want to delete from the film credits");
+		String actorName = scan.nextLine();
 
-			handler.remActor(thatFilm, actorName);
-			this.showOptionScreen();
-		}
+		handler.remActor(thatFilm, actorName);
+		this.showOptionScreen();
 	}
 
+	//процедура выхода через сохранение
 	private void quit() {
 
-		try (Scanner scan = new Scanner(System.in)) {
+		System.out.println("Save changes in the collection before quit? (Y/N)");
+		symbol = scan.nextLine().toUpperCase();
 
-			System.out.println("Save changes in the collection before quit? (Y/N)");
+		while (!(symbol.equals("Y") || symbol.equals("N"))) {
 			symbol = scan.nextLine().toUpperCase();
+		}
 
-			while (!(symbol.equals("Y") || symbol.equals("N"))) {
-				symbol = scan.nextLine();
-			}
-
-			if (symbol.equals("Y")) {
-				this.isQuitting = true;
-				this.toSaveScreen();
-			}
-
+		if (symbol.equals("Y")) {
+			this.isQuitting = true;
+			this.toSaveScreen();
 		}
 
 	}
