@@ -1,0 +1,1055 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.3.10
+-- Dumped by pg_dump version 9.3.10
+-- Started on 2015-11-15 22:08:02 MSK
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- TOC entry 192 (class 3079 OID 11789)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 2114 (class 0 OID 0)
+-- Dependencies: 192
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 190 (class 1259 OID 16518)
+-- Name: Administrators; Type: TABLE; Schema: public; Owner: h23; Tablespace: 
+--
+
+CREATE TABLE "Administrators" (
+    id integer NOT NULL,
+    "Login" character varying(50) NOT NULL,
+    "Password" character varying(50),
+    "Access_Level" integer NOT NULL,
+    "Last_Name" character varying(50),
+    "First_Name" character varying(50)
+);
+
+
+ALTER TABLE public."Administrators" OWNER TO h23;
+
+--
+-- TOC entry 191 (class 1259 OID 16521)
+-- Name: Administrators_id_seq; Type: SEQUENCE; Schema: public; Owner: h23
+--
+
+CREATE SEQUENCE "Administrators_id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."Administrators_id_seq" OWNER TO h23;
+
+--
+-- TOC entry 2115 (class 0 OID 0)
+-- Dependencies: 191
+-- Name: Administrators_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: h23
+--
+
+ALTER SEQUENCE "Administrators_id_seq" OWNED BY "Administrators".id;
+
+
+--
+-- TOC entry 188 (class 1259 OID 16507)
+-- Name: Bills; Type: TABLE; Schema: public; Owner: h23; Tablespace: 
+--
+
+CREATE TABLE "Bills" (
+    id integer NOT NULL,
+    "Passenger_id" integer NOT NULL,
+    "Trip_List_id" integer NOT NULL,
+    "Payment_Value" money NOT NULL,
+    "Billing_Number" character varying(10) NOT NULL,
+    "Is_Paid" boolean NOT NULL
+);
+
+
+ALTER TABLE public."Bills" OWNER TO h23;
+
+--
+-- TOC entry 189 (class 1259 OID 16510)
+-- Name: Bills_id_seq; Type: SEQUENCE; Schema: public; Owner: h23
+--
+
+CREATE SEQUENCE "Bills_id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."Bills_id_seq" OWNER TO h23;
+
+--
+-- TOC entry 2116 (class 0 OID 0)
+-- Dependencies: 189
+-- Name: Bills_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: h23
+--
+
+ALTER SEQUENCE "Bills_id_seq" OWNED BY "Bills".id;
+
+
+--
+-- TOC entry 170 (class 1259 OID 16401)
+-- Name: Passangers; Type: TABLE; Schema: public; Owner: h23; Tablespace: 
+--
+
+CREATE TABLE "Passangers" (
+    id integer NOT NULL,
+    "Last_Name" character varying(50),
+    "First_Name" character varying(50),
+    "Passport_Number" character varying(50)
+);
+
+
+ALTER TABLE public."Passangers" OWNER TO h23;
+
+--
+-- TOC entry 171 (class 1259 OID 16404)
+-- Name: Passangers_id_seq; Type: SEQUENCE; Schema: public; Owner: h23
+--
+
+CREATE SEQUENCE "Passangers_id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."Passangers_id_seq" OWNER TO h23;
+
+--
+-- TOC entry 2117 (class 0 OID 0)
+-- Dependencies: 171
+-- Name: Passangers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: h23
+--
+
+ALTER SEQUENCE "Passangers_id_seq" OWNED BY "Passangers".id;
+
+
+--
+-- TOC entry 186 (class 1259 OID 16496)
+-- Name: Places_In_Wagons; Type: TABLE; Schema: public; Owner: h23; Tablespace: 
+--
+
+CREATE TABLE "Places_In_Wagons" (
+    id integer NOT NULL,
+    "Wagon_id" integer NOT NULL,
+    "Place_Number" integer NOT NULL,
+    "Is_Lower" boolean NOT NULL,
+    "Is_Reserved" boolean NOT NULL
+);
+
+
+ALTER TABLE public."Places_In_Wagons" OWNER TO h23;
+
+--
+-- TOC entry 187 (class 1259 OID 16499)
+-- Name: Places_In_Wagons_id_seq; Type: SEQUENCE; Schema: public; Owner: h23
+--
+
+CREATE SEQUENCE "Places_In_Wagons_id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."Places_In_Wagons_id_seq" OWNER TO h23;
+
+--
+-- TOC entry 2118 (class 0 OID 0)
+-- Dependencies: 187
+-- Name: Places_In_Wagons_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: h23
+--
+
+ALTER SEQUENCE "Places_In_Wagons_id_seq" OWNED BY "Places_In_Wagons".id;
+
+
+--
+-- TOC entry 172 (class 1259 OID 16418)
+-- Name: Requests; Type: TABLE; Schema: public; Owner: h23; Tablespace: 
+--
+
+CREATE TABLE "Requests" (
+    id integer NOT NULL,
+    "Departure_Station" character varying(50),
+    "Destination_Station" character varying(50),
+    "Departure_Date" date,
+    "Arrival_Date" date
+);
+
+
+ALTER TABLE public."Requests" OWNER TO h23;
+
+--
+-- TOC entry 173 (class 1259 OID 16421)
+-- Name: Requests_id_seq; Type: SEQUENCE; Schema: public; Owner: h23
+--
+
+CREATE SEQUENCE "Requests_id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."Requests_id_seq" OWNER TO h23;
+
+--
+-- TOC entry 2119 (class 0 OID 0)
+-- Dependencies: 173
+-- Name: Requests_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: h23
+--
+
+ALTER SEQUENCE "Requests_id_seq" OWNED BY "Requests".id;
+
+
+--
+-- TOC entry 176 (class 1259 OID 16438)
+-- Name: Routes; Type: TABLE; Schema: public; Owner: h23; Tablespace: 
+--
+
+CREATE TABLE "Routes" (
+    id integer NOT NULL,
+    "Route_Name" character varying(150) NOT NULL,
+    "Route_Type" character varying(10),
+    "Price_Multiplier" double precision NOT NULL
+);
+
+
+ALTER TABLE public."Routes" OWNER TO h23;
+
+--
+-- TOC entry 178 (class 1259 OID 16451)
+-- Name: Routes_Map; Type: TABLE; Schema: public; Owner: h23; Tablespace: 
+--
+
+CREATE TABLE "Routes_Map" (
+    id integer NOT NULL,
+    "Route_id" integer NOT NULL,
+    "StS_Block_id" integer NOT NULL,
+    "Block_Number_In_Route" integer NOT NULL,
+    "Stand_Time_In_Minutes" integer NOT NULL
+);
+
+
+ALTER TABLE public."Routes_Map" OWNER TO h23;
+
+--
+-- TOC entry 179 (class 1259 OID 16454)
+-- Name: Routes_Map_id_seq; Type: SEQUENCE; Schema: public; Owner: h23
+--
+
+CREATE SEQUENCE "Routes_Map_id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."Routes_Map_id_seq" OWNER TO h23;
+
+--
+-- TOC entry 2120 (class 0 OID 0)
+-- Dependencies: 179
+-- Name: Routes_Map_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: h23
+--
+
+ALTER SEQUENCE "Routes_Map_id_seq" OWNED BY "Routes_Map".id;
+
+
+--
+-- TOC entry 177 (class 1259 OID 16443)
+-- Name: Routes_id_seq; Type: SEQUENCE; Schema: public; Owner: h23
+--
+
+CREATE SEQUENCE "Routes_id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."Routes_id_seq" OWNER TO h23;
+
+--
+-- TOC entry 2121 (class 0 OID 0)
+-- Dependencies: 177
+-- Name: Routes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: h23
+--
+
+ALTER SEQUENCE "Routes_id_seq" OWNED BY "Routes".id;
+
+
+--
+-- TOC entry 180 (class 1259 OID 16463)
+-- Name: Station_to_Station_Blocks; Type: TABLE; Schema: public; Owner: h23; Tablespace: 
+--
+
+CREATE TABLE "Station_to_Station_Blocks" (
+    id integer NOT NULL,
+    "Departure_Station" character varying(50) NOT NULL,
+    "Destination_Station" character varying(50) NOT NULL,
+    "Distance_In_Kilometres" double precision NOT NULL
+);
+
+
+ALTER TABLE public."Station_to_Station_Blocks" OWNER TO h23;
+
+--
+-- TOC entry 181 (class 1259 OID 16466)
+-- Name: Station_to_Station_Blocks_id_seq; Type: SEQUENCE; Schema: public; Owner: h23
+--
+
+CREATE SEQUENCE "Station_to_Station_Blocks_id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."Station_to_Station_Blocks_id_seq" OWNER TO h23;
+
+--
+-- TOC entry 2122 (class 0 OID 0)
+-- Dependencies: 181
+-- Name: Station_to_Station_Blocks_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: h23
+--
+
+ALTER SEQUENCE "Station_to_Station_Blocks_id_seq" OWNED BY "Station_to_Station_Blocks".id;
+
+
+--
+-- TOC entry 182 (class 1259 OID 16474)
+-- Name: Trains; Type: TABLE; Schema: public; Owner: h23; Tablespace: 
+--
+
+CREATE TABLE "Trains" (
+    id integer NOT NULL,
+    "Train_Number" character varying(10) NOT NULL,
+    "Average_Path_Speed_In_KM" double precision NOT NULL,
+    "Price_Multiplier" double precision NOT NULL
+);
+
+
+ALTER TABLE public."Trains" OWNER TO h23;
+
+--
+-- TOC entry 183 (class 1259 OID 16477)
+-- Name: Trains_id_seq; Type: SEQUENCE; Schema: public; Owner: h23
+--
+
+CREATE SEQUENCE "Trains_id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."Trains_id_seq" OWNER TO h23;
+
+--
+-- TOC entry 2123 (class 0 OID 0)
+-- Dependencies: 183
+-- Name: Trains_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: h23
+--
+
+ALTER SEQUENCE "Trains_id_seq" OWNED BY "Trains".id;
+
+
+--
+-- TOC entry 174 (class 1259 OID 16429)
+-- Name: Trip_Lists; Type: TABLE; Schema: public; Owner: h23; Tablespace: 
+--
+
+CREATE TABLE "Trip_Lists" (
+    id integer NOT NULL,
+    "Train_id" integer NOT NULL,
+    "Wagon_id" integer NOT NULL,
+    "Route_id" integer NOT NULL,
+    "Assigned_Wagon_Number" character varying(10) NOT NULL,
+    "Departure_Date" date NOT NULL,
+    "Departure_Time" time(6) with time zone NOT NULL
+);
+
+
+ALTER TABLE public."Trip_Lists" OWNER TO h23;
+
+--
+-- TOC entry 175 (class 1259 OID 16432)
+-- Name: Trip_Lists_id_seq; Type: SEQUENCE; Schema: public; Owner: h23
+--
+
+CREATE SEQUENCE "Trip_Lists_id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."Trip_Lists_id_seq" OWNER TO h23;
+
+--
+-- TOC entry 2124 (class 0 OID 0)
+-- Dependencies: 175
+-- Name: Trip_Lists_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: h23
+--
+
+ALTER SEQUENCE "Trip_Lists_id_seq" OWNED BY "Trip_Lists".id;
+
+
+--
+-- TOC entry 184 (class 1259 OID 16485)
+-- Name: Wagons; Type: TABLE; Schema: public; Owner: h23; Tablespace: 
+--
+
+CREATE TABLE "Wagons" (
+    id integer NOT NULL,
+    "Wagon_Type" character varying(10) NOT NULL,
+    "Price_Multiplier" double precision NOT NULL
+);
+
+
+ALTER TABLE public."Wagons" OWNER TO h23;
+
+--
+-- TOC entry 185 (class 1259 OID 16488)
+-- Name: Wagons_id_seq; Type: SEQUENCE; Schema: public; Owner: h23
+--
+
+CREATE SEQUENCE "Wagons_id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."Wagons_id_seq" OWNER TO h23;
+
+--
+-- TOC entry 2125 (class 0 OID 0)
+-- Dependencies: 185
+-- Name: Wagons_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: h23
+--
+
+ALTER SEQUENCE "Wagons_id_seq" OWNED BY "Wagons".id;
+
+
+--
+-- TOC entry 1931 (class 2604 OID 16523)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: h23
+--
+
+ALTER TABLE ONLY "Administrators" ALTER COLUMN id SET DEFAULT nextval('"Administrators_id_seq"'::regclass);
+
+
+--
+-- TOC entry 1930 (class 2604 OID 16512)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: h23
+--
+
+ALTER TABLE ONLY "Bills" ALTER COLUMN id SET DEFAULT nextval('"Bills_id_seq"'::regclass);
+
+
+--
+-- TOC entry 1921 (class 2604 OID 16406)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: h23
+--
+
+ALTER TABLE ONLY "Passangers" ALTER COLUMN id SET DEFAULT nextval('"Passangers_id_seq"'::regclass);
+
+
+--
+-- TOC entry 1929 (class 2604 OID 16501)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: h23
+--
+
+ALTER TABLE ONLY "Places_In_Wagons" ALTER COLUMN id SET DEFAULT nextval('"Places_In_Wagons_id_seq"'::regclass);
+
+
+--
+-- TOC entry 1922 (class 2604 OID 16423)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: h23
+--
+
+ALTER TABLE ONLY "Requests" ALTER COLUMN id SET DEFAULT nextval('"Requests_id_seq"'::regclass);
+
+
+--
+-- TOC entry 1924 (class 2604 OID 16445)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: h23
+--
+
+ALTER TABLE ONLY "Routes" ALTER COLUMN id SET DEFAULT nextval('"Routes_id_seq"'::regclass);
+
+
+--
+-- TOC entry 1925 (class 2604 OID 16456)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: h23
+--
+
+ALTER TABLE ONLY "Routes_Map" ALTER COLUMN id SET DEFAULT nextval('"Routes_Map_id_seq"'::regclass);
+
+
+--
+-- TOC entry 1926 (class 2604 OID 16468)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: h23
+--
+
+ALTER TABLE ONLY "Station_to_Station_Blocks" ALTER COLUMN id SET DEFAULT nextval('"Station_to_Station_Blocks_id_seq"'::regclass);
+
+
+--
+-- TOC entry 1927 (class 2604 OID 16479)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: h23
+--
+
+ALTER TABLE ONLY "Trains" ALTER COLUMN id SET DEFAULT nextval('"Trains_id_seq"'::regclass);
+
+
+--
+-- TOC entry 1923 (class 2604 OID 16434)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: h23
+--
+
+ALTER TABLE ONLY "Trip_Lists" ALTER COLUMN id SET DEFAULT nextval('"Trip_Lists_id_seq"'::regclass);
+
+
+--
+-- TOC entry 1928 (class 2604 OID 16490)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: h23
+--
+
+ALTER TABLE ONLY "Wagons" ALTER COLUMN id SET DEFAULT nextval('"Wagons_id_seq"'::regclass);
+
+
+--
+-- TOC entry 2105 (class 0 OID 16518)
+-- Dependencies: 190
+-- Data for Name: Administrators; Type: TABLE DATA; Schema: public; Owner: h23
+--
+
+COPY "Administrators" (id, "Login", "Password", "Access_Level", "Last_Name", "First_Name") FROM stdin;
+\.
+
+
+--
+-- TOC entry 2126 (class 0 OID 0)
+-- Dependencies: 191
+-- Name: Administrators_id_seq; Type: SEQUENCE SET; Schema: public; Owner: h23
+--
+
+SELECT pg_catalog.setval('"Administrators_id_seq"', 1, false);
+
+
+--
+-- TOC entry 2103 (class 0 OID 16507)
+-- Dependencies: 188
+-- Data for Name: Bills; Type: TABLE DATA; Schema: public; Owner: h23
+--
+
+COPY "Bills" (id, "Passenger_id", "Trip_List_id", "Payment_Value", "Billing_Number", "Is_Paid") FROM stdin;
+\.
+
+
+--
+-- TOC entry 2127 (class 0 OID 0)
+-- Dependencies: 189
+-- Name: Bills_id_seq; Type: SEQUENCE SET; Schema: public; Owner: h23
+--
+
+SELECT pg_catalog.setval('"Bills_id_seq"', 1, false);
+
+
+--
+-- TOC entry 2085 (class 0 OID 16401)
+-- Dependencies: 170
+-- Data for Name: Passangers; Type: TABLE DATA; Schema: public; Owner: h23
+--
+
+COPY "Passangers" (id, "Last_Name", "First_Name", "Passport_Number") FROM stdin;
+\.
+
+
+--
+-- TOC entry 2128 (class 0 OID 0)
+-- Dependencies: 171
+-- Name: Passangers_id_seq; Type: SEQUENCE SET; Schema: public; Owner: h23
+--
+
+SELECT pg_catalog.setval('"Passangers_id_seq"', 1, false);
+
+
+--
+-- TOC entry 2101 (class 0 OID 16496)
+-- Dependencies: 186
+-- Data for Name: Places_In_Wagons; Type: TABLE DATA; Schema: public; Owner: h23
+--
+
+COPY "Places_In_Wagons" (id, "Wagon_id", "Place_Number", "Is_Lower", "Is_Reserved") FROM stdin;
+\.
+
+
+--
+-- TOC entry 2129 (class 0 OID 0)
+-- Dependencies: 187
+-- Name: Places_In_Wagons_id_seq; Type: SEQUENCE SET; Schema: public; Owner: h23
+--
+
+SELECT pg_catalog.setval('"Places_In_Wagons_id_seq"', 1, false);
+
+
+--
+-- TOC entry 2087 (class 0 OID 16418)
+-- Dependencies: 172
+-- Data for Name: Requests; Type: TABLE DATA; Schema: public; Owner: h23
+--
+
+COPY "Requests" (id, "Departure_Station", "Destination_Station", "Departure_Date", "Arrival_Date") FROM stdin;
+\.
+
+
+--
+-- TOC entry 2130 (class 0 OID 0)
+-- Dependencies: 173
+-- Name: Requests_id_seq; Type: SEQUENCE SET; Schema: public; Owner: h23
+--
+
+SELECT pg_catalog.setval('"Requests_id_seq"', 1, false);
+
+
+--
+-- TOC entry 2091 (class 0 OID 16438)
+-- Dependencies: 176
+-- Data for Name: Routes; Type: TABLE DATA; Schema: public; Owner: h23
+--
+
+COPY "Routes" (id, "Route_Name", "Route_Type", "Price_Multiplier") FROM stdin;
+\.
+
+
+--
+-- TOC entry 2093 (class 0 OID 16451)
+-- Dependencies: 178
+-- Data for Name: Routes_Map; Type: TABLE DATA; Schema: public; Owner: h23
+--
+
+COPY "Routes_Map" (id, "Route_id", "StS_Block_id", "Block_Number_In_Route", "Stand_Time_In_Minutes") FROM stdin;
+\.
+
+
+--
+-- TOC entry 2131 (class 0 OID 0)
+-- Dependencies: 179
+-- Name: Routes_Map_id_seq; Type: SEQUENCE SET; Schema: public; Owner: h23
+--
+
+SELECT pg_catalog.setval('"Routes_Map_id_seq"', 1, false);
+
+
+--
+-- TOC entry 2132 (class 0 OID 0)
+-- Dependencies: 177
+-- Name: Routes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: h23
+--
+
+SELECT pg_catalog.setval('"Routes_id_seq"', 1, false);
+
+
+--
+-- TOC entry 2095 (class 0 OID 16463)
+-- Dependencies: 180
+-- Data for Name: Station_to_Station_Blocks; Type: TABLE DATA; Schema: public; Owner: h23
+--
+
+COPY "Station_to_Station_Blocks" (id, "Departure_Station", "Destination_Station", "Distance_In_Kilometres") FROM stdin;
+\.
+
+
+--
+-- TOC entry 2133 (class 0 OID 0)
+-- Dependencies: 181
+-- Name: Station_to_Station_Blocks_id_seq; Type: SEQUENCE SET; Schema: public; Owner: h23
+--
+
+SELECT pg_catalog.setval('"Station_to_Station_Blocks_id_seq"', 1, false);
+
+
+--
+-- TOC entry 2097 (class 0 OID 16474)
+-- Dependencies: 182
+-- Data for Name: Trains; Type: TABLE DATA; Schema: public; Owner: h23
+--
+
+COPY "Trains" (id, "Train_Number", "Average_Path_Speed_In_KM", "Price_Multiplier") FROM stdin;
+\.
+
+
+--
+-- TOC entry 2134 (class 0 OID 0)
+-- Dependencies: 183
+-- Name: Trains_id_seq; Type: SEQUENCE SET; Schema: public; Owner: h23
+--
+
+SELECT pg_catalog.setval('"Trains_id_seq"', 1, false);
+
+
+--
+-- TOC entry 2089 (class 0 OID 16429)
+-- Dependencies: 174
+-- Data for Name: Trip_Lists; Type: TABLE DATA; Schema: public; Owner: h23
+--
+
+COPY "Trip_Lists" (id, "Train_id", "Wagon_id", "Route_id", "Assigned_Wagon_Number", "Departure_Date", "Departure_Time") FROM stdin;
+\.
+
+
+--
+-- TOC entry 2135 (class 0 OID 0)
+-- Dependencies: 175
+-- Name: Trip_Lists_id_seq; Type: SEQUENCE SET; Schema: public; Owner: h23
+--
+
+SELECT pg_catalog.setval('"Trip_Lists_id_seq"', 1, false);
+
+
+--
+-- TOC entry 2099 (class 0 OID 16485)
+-- Dependencies: 184
+-- Data for Name: Wagons; Type: TABLE DATA; Schema: public; Owner: h23
+--
+
+COPY "Wagons" (id, "Wagon_Type", "Price_Multiplier") FROM stdin;
+\.
+
+
+--
+-- TOC entry 2136 (class 0 OID 0)
+-- Dependencies: 185
+-- Name: Wagons_id_seq; Type: SEQUENCE SET; Schema: public; Owner: h23
+--
+
+SELECT pg_catalog.setval('"Wagons_id_seq"', 1, false);
+
+
+--
+-- TOC entry 1967 (class 2606 OID 16538)
+-- Name: Administrators_Login_key; Type: CONSTRAINT; Schema: public; Owner: h23; Tablespace: 
+--
+
+ALTER TABLE ONLY "Administrators"
+    ADD CONSTRAINT "Administrators_Login_key" UNIQUE ("Login");
+
+
+--
+-- TOC entry 1969 (class 2606 OID 16528)
+-- Name: Administrators_pkey; Type: CONSTRAINT; Schema: public; Owner: h23; Tablespace: 
+--
+
+ALTER TABLE ONLY "Administrators"
+    ADD CONSTRAINT "Administrators_pkey" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1961 (class 2606 OID 16536)
+-- Name: Bills_Billing_Number_key; Type: CONSTRAINT; Schema: public; Owner: h23; Tablespace: 
+--
+
+ALTER TABLE ONLY "Bills"
+    ADD CONSTRAINT "Bills_Billing_Number_key" UNIQUE ("Billing_Number");
+
+
+--
+-- TOC entry 1965 (class 2606 OID 16517)
+-- Name: Bills_pkey; Type: CONSTRAINT; Schema: public; Owner: h23; Tablespace: 
+--
+
+ALTER TABLE ONLY "Bills"
+    ADD CONSTRAINT "Bills_pkey" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1933 (class 2606 OID 16417)
+-- Name: Passangers_pkey; Type: CONSTRAINT; Schema: public; Owner: h23; Tablespace: 
+--
+
+ALTER TABLE ONLY "Passangers"
+    ADD CONSTRAINT "Passangers_pkey" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1957 (class 2606 OID 16534)
+-- Name: Places_In_Wagons_Wagon_id_Place_Number_key; Type: CONSTRAINT; Schema: public; Owner: h23; Tablespace: 
+--
+
+ALTER TABLE ONLY "Places_In_Wagons"
+    ADD CONSTRAINT "Places_In_Wagons_Wagon_id_Place_Number_key" UNIQUE ("Wagon_id", "Place_Number");
+
+
+--
+-- TOC entry 1959 (class 2606 OID 16506)
+-- Name: Places_In_Wagons_pkey; Type: CONSTRAINT; Schema: public; Owner: h23; Tablespace: 
+--
+
+ALTER TABLE ONLY "Places_In_Wagons"
+    ADD CONSTRAINT "Places_In_Wagons_pkey" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1935 (class 2606 OID 16428)
+-- Name: Requests_pkey; Type: CONSTRAINT; Schema: public; Owner: h23; Tablespace: 
+--
+
+ALTER TABLE ONLY "Requests"
+    ADD CONSTRAINT "Requests_pkey" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1945 (class 2606 OID 16530)
+-- Name: Routes_Map_Route_id_Block_Number_In_Route_key; Type: CONSTRAINT; Schema: public; Owner: h23; Tablespace: 
+--
+
+ALTER TABLE ONLY "Routes_Map"
+    ADD CONSTRAINT "Routes_Map_Route_id_Block_Number_In_Route_key" UNIQUE ("Route_id", "Block_Number_In_Route");
+
+
+--
+-- TOC entry 1947 (class 2606 OID 16461)
+-- Name: Routes_Map_pkey; Type: CONSTRAINT; Schema: public; Owner: h23; Tablespace: 
+--
+
+ALTER TABLE ONLY "Routes_Map"
+    ADD CONSTRAINT "Routes_Map_pkey" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1942 (class 2606 OID 16450)
+-- Name: Routes_pkey; Type: CONSTRAINT; Schema: public; Owner: h23; Tablespace: 
+--
+
+ALTER TABLE ONLY "Routes"
+    ADD CONSTRAINT "Routes_pkey" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1949 (class 2606 OID 16473)
+-- Name: Station_to_Station_Blocks_pkey; Type: CONSTRAINT; Schema: public; Owner: h23; Tablespace: 
+--
+
+ALTER TABLE ONLY "Station_to_Station_Blocks"
+    ADD CONSTRAINT "Station_to_Station_Blocks_pkey" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1951 (class 2606 OID 16532)
+-- Name: Trains_Train_Number_key; Type: CONSTRAINT; Schema: public; Owner: h23; Tablespace: 
+--
+
+ALTER TABLE ONLY "Trains"
+    ADD CONSTRAINT "Trains_Train_Number_key" UNIQUE ("Train_Number");
+
+
+--
+-- TOC entry 1953 (class 2606 OID 16484)
+-- Name: Trains_pkey; Type: CONSTRAINT; Schema: public; Owner: h23; Tablespace: 
+--
+
+ALTER TABLE ONLY "Trains"
+    ADD CONSTRAINT "Trains_pkey" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1939 (class 2606 OID 16442)
+-- Name: Trip_Lists_pkey; Type: CONSTRAINT; Schema: public; Owner: h23; Tablespace: 
+--
+
+ALTER TABLE ONLY "Trip_Lists"
+    ADD CONSTRAINT "Trip_Lists_pkey" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1955 (class 2606 OID 16495)
+-- Name: Wagons_pkey; Type: CONSTRAINT; Schema: public; Owner: h23; Tablespace: 
+--
+
+ALTER TABLE ONLY "Wagons"
+    ADD CONSTRAINT "Wagons_pkey" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1962 (class 1259 OID 16545)
+-- Name: Bills_FK_Passenger_id; Type: INDEX; Schema: public; Owner: h23; Tablespace: 
+--
+
+CREATE INDEX "Bills_FK_Passenger_id" ON "Bills" USING btree ("Passenger_id");
+
+
+--
+-- TOC entry 1963 (class 1259 OID 16551)
+-- Name: Bills_FK_Trip_List_id; Type: INDEX; Schema: public; Owner: h23; Tablespace: 
+--
+
+CREATE INDEX "Bills_FK_Trip_List_id" ON "Bills" USING btree ("Trip_List_id");
+
+
+--
+-- TOC entry 1943 (class 1259 OID 16567)
+-- Name: Routes_Map_FK_StS_Block_id; Type: INDEX; Schema: public; Owner: h23; Tablespace: 
+--
+
+CREATE INDEX "Routes_Map_FK_StS_Block_id" ON "Routes_Map" USING btree ("StS_Block_id");
+
+
+--
+-- TOC entry 1936 (class 1259 OID 16585)
+-- Name: Trip_Lists_FK_Route_id; Type: INDEX; Schema: public; Owner: h23; Tablespace: 
+--
+
+CREATE INDEX "Trip_Lists_FK_Route_id" ON "Trip_Lists" USING btree ("Route_id");
+
+
+--
+-- TOC entry 1937 (class 1259 OID 16579)
+-- Name: Trip_Lists_FK_Wagon_id; Type: INDEX; Schema: public; Owner: h23; Tablespace: 
+--
+
+CREATE INDEX "Trip_Lists_FK_Wagon_id" ON "Trip_Lists" USING btree ("Wagon_id");
+
+
+--
+-- TOC entry 1940 (class 1259 OID 16573)
+-- Name: Trip_Losts_FK_Trains_id; Type: INDEX; Schema: public; Owner: h23; Tablespace: 
+--
+
+CREATE INDEX "Trip_Losts_FK_Trains_id" ON "Trip_Lists" USING btree ("Train_id");
+
+
+--
+-- TOC entry 1976 (class 2606 OID 16540)
+-- Name: Bills_Passenger_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: h23
+--
+
+ALTER TABLE ONLY "Bills"
+    ADD CONSTRAINT "Bills_Passenger_id_fkey" FOREIGN KEY ("Passenger_id") REFERENCES "Passangers"(id);
+
+
+--
+-- TOC entry 1977 (class 2606 OID 16546)
+-- Name: Bills_Trip_List_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: h23
+--
+
+ALTER TABLE ONLY "Bills"
+    ADD CONSTRAINT "Bills_Trip_List_id_fkey" FOREIGN KEY ("Trip_List_id") REFERENCES "Trip_Lists"(id);
+
+
+--
+-- TOC entry 1975 (class 2606 OID 16552)
+-- Name: Places_In_Wagons_Wagon_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: h23
+--
+
+ALTER TABLE ONLY "Places_In_Wagons"
+    ADD CONSTRAINT "Places_In_Wagons_Wagon_id_fkey" FOREIGN KEY ("Wagon_id") REFERENCES "Wagons"(id);
+
+
+--
+-- TOC entry 1973 (class 2606 OID 16557)
+-- Name: Routes_Map_Route_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: h23
+--
+
+ALTER TABLE ONLY "Routes_Map"
+    ADD CONSTRAINT "Routes_Map_Route_id_fkey" FOREIGN KEY ("Route_id") REFERENCES "Routes"(id);
+
+
+--
+-- TOC entry 1974 (class 2606 OID 16562)
+-- Name: Routes_Map_StS_Block_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: h23
+--
+
+ALTER TABLE ONLY "Routes_Map"
+    ADD CONSTRAINT "Routes_Map_StS_Block_id_fkey" FOREIGN KEY ("StS_Block_id") REFERENCES "Station_to_Station_Blocks"(id);
+
+
+--
+-- TOC entry 1972 (class 2606 OID 16580)
+-- Name: Trip_Lists_Route_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: h23
+--
+
+ALTER TABLE ONLY "Trip_Lists"
+    ADD CONSTRAINT "Trip_Lists_Route_id_fkey" FOREIGN KEY ("Route_id") REFERENCES "Routes"(id);
+
+
+--
+-- TOC entry 1970 (class 2606 OID 16568)
+-- Name: Trip_Lists_Train_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: h23
+--
+
+ALTER TABLE ONLY "Trip_Lists"
+    ADD CONSTRAINT "Trip_Lists_Train_id_fkey" FOREIGN KEY ("Train_id") REFERENCES "Trains"(id);
+
+
+--
+-- TOC entry 1971 (class 2606 OID 16574)
+-- Name: Trip_Lists_Wagon_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: h23
+--
+
+ALTER TABLE ONLY "Trip_Lists"
+    ADD CONSTRAINT "Trip_Lists_Wagon_id_fkey" FOREIGN KEY ("Wagon_id") REFERENCES "Wagons"(id);
+
+
+--
+-- TOC entry 2113 (class 0 OID 0)
+-- Dependencies: 5
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+-- Completed on 2015-11-15 22:08:03 MSK
+
+--
+-- PostgreSQL database dump complete
+--
+
