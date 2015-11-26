@@ -3,11 +3,13 @@ package by.epam.grodno.uladzimir_stsiatsko.my_service.impl;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import by.epam.grodno.uladzimir_stsiatsko.my_dao.dao.AdministratorDao;
 import by.epam.grodno.uladzimir_stsiatsko.my_dao.model.Administrator;
 import by.epam.grodno.uladzimir_stsiatsko.my_service.AdministratorService;
 
+@Service
 public class AdministratorServiceImpl implements AdministratorService {
 
 	@Autowired

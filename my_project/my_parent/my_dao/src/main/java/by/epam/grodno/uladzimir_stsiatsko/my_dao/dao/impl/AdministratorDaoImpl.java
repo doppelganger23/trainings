@@ -1,36 +1,38 @@
 package by.epam.grodno.uladzimir_stsiatsko.my_dao.dao.impl;
 
-import java.util.HashMap;
-import java.util.Map;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import by.epam.grodno.uladzimir_stsiatsko.my_dao.dao.AdministratorDao;
+import by.epam.grodno.uladzimir_stsiatsko.my_dao.dao.mapper.AdministratorMapper;
 import by.epam.grodno.uladzimir_stsiatsko.my_dao.model.Administrator;
 
+@Repository
 public class AdministratorDaoImpl implements AdministratorDao {
-	
-	private static int ID_GEN;
-	
-	private static Map<Integer, Administrator> TABLE_ADMIN = new HashMap<>();
-	
+
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
 
 	@Override
 	public Administrator getById(int id) {
-		return TABLE_ADMIN.get(id);
+		return jdbcTemplate.queryForObject("select * from administrator where id = ?", new Object[] { 1 },
+				new AdministratorMapper());
 	}
 
 	@Override
 	public void insert(Administrator admin) {
-		admin.setId(ID_GEN++);
-		TABLE_ADMIN.put(admin.getId(), admin);
+		jdbcTemplate.update("INSERT INTO administrator (login, password, last_name, first_name) VALUES (?,?,?,?)",
+				admin.getLogin(), admin.getPassword(), admin.getLastName(), admin.getFirstName());
 	}
 
 	@Override
 	public void update(Administrator admin) {
-		Administrator existingAdmin = TABLE_ADMIN.get(admin.getId());
-		existingAdmin.setFirstName(admin.getFirstName());
-		existingAdmin.setLastName(admin.getLastName());
-		existingAdmin.setLogin(admin.getLogin());
-		existingAdmin.setPassword(admin.getPassword());
+//		Administrator existingAdmin = TABLE_ADMIN.get(admin.getId());
+//		existingAdmin.setFirstName(admin.getFirstName());
+//		existingAdmin.setLastName(admin.getLastName());
+//		existingAdmin.setLogin(admin.getLogin());
+//		existingAdmin.setPassword(admin.getPassword());
 	}
 
 }
