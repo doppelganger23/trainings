@@ -1,0 +1,30 @@
+
+DROP VIEW a CASCADE;
+DROP VIEW b CASCADE;
+
+CREATE VIEW a AS
+SELECT route_id, block_number_in_route 
+FROM route_map rm
+WHERE rm.station_to_station_block_id IN (
+	SELECT id FROM station_to_station_block sts WHERE sts.departure_station_id IN (
+		SELECT id FROM station s WHERE s.name = 'ЛИДА'
+	)
+); 
+
+CREATE VIEW b AS
+SELECT route_id, block_number_in_route 
+FROM route_map rm
+WHERE rm.station_to_station_block_id IN (
+	SELECT id FROM station_to_station_block sts WHERE sts.destination_station_id IN (
+		SELECT id FROM station s WHERE s.name = 'МИНСК'
+	)
+); 
+
+
+SELECT * FROM trip_list tl WHERE tl.route_id IN( 
+	SELECT route_id FROM (
+		SELECT a.route_id, a.block_number_in_route number_a, b.block_number_in_route number_b
+		FROM a JOIN b ON a.route_id = b.route_id
+	) l
+	WHERE number_a < number_b
+);

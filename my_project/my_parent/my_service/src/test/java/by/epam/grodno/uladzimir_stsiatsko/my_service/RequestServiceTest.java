@@ -1,6 +1,8 @@
 package by.epam.grodno.uladzimir_stsiatsko.my_service;
 
 import java.sql.Timestamp;
+import java.util.List;
+import java.util.function.Consumer;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -10,26 +12,59 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import by.epam.grodno.uladzimir_stsiatsko.my_dao.model.Request;
+import by.epam.grodno.uladzimir_stsiatsko.my_dao.model.TripList;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:spring-db-context.xml")
 public class RequestServiceTest {
+	
+	int cnt;
 
 	@Autowired
 	private RequestService service;
 
 	@Test
-	public void setQuieryTest(){
+	public void setQuieryTest() {
 		Request request = new Request();
 		request.setDepartureStation("Grodno");
-		request.setDestinationStation("St.Petersburg");
+		request.setDestinationStation("Kukuevo");
 		request.setDepartureDate(new Timestamp(99999));
 		request.setArrivalDate(new Timestamp(99999));
 		service.find(request);
 	}
-	
+
 	@Test
-	public void getRequestTest(){
+	public void executeQuieryTest() {
+		Request request = new Request();
+		request.setDepartureStation("ГРОДНО");
+		request.setDestinationStation("МИНСК");
+		request.setDepartureDate(new Timestamp(99999));
+		request.setArrivalDate(new Timestamp(99999));
+		List<TripList> resList = service.executeQuiery(request);
+		
+		Assert.assertFalse(resList.isEmpty());
+
+		resList.forEach(new Consumer<TripList>() {
+			@Override
+			public void accept(TripList tl) {
+			Assert.assertNotNull(tl.getId());
+			System.out.println("Id рейса: " + tl.getId());
+			Assert.assertNotNull(tl.getRouteId());
+			System.out.println("Id маршрута: " + tl.getRouteId());
+			Assert.assertNotNull(tl.getTrainId());
+			System.out.println("Id поезда: " + tl.getTrainId());
+			System.out.println("Дата отправления: " + tl.getDepartureDate());
+			System.out.println("Продано билетов: " + tl.getTicketsSold());
+			System.out.println("---------------------");
+			cnt++;
+			}
+		});
+		
+		System.out.println("Рейсов в выдаче: " + cnt);
+	}
+
+	@Test
+	public void getRequestTest() {
 		Assert.assertNotNull(service.getRequest(1));
 	}
 

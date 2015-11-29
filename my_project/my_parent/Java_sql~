@@ -1,0 +1,17 @@
+SELECT * FROM
+(SELECT trip_id, route_name, route_type, train, from_station, block from_block, enter_at
+FROM search_view v1 WHERE v1.from_station = 'МОСТЫ') s1 
+JOIN 
+(SELECT to_station, block to_block, leave_at, departure_date, places, sold, km_price, km, trip_id
+FROM search_view v2 WHERE v2.to_station = 'ОСИПОВИЧИ') s2 
+ON s1.trip_id = s2.trip_id
+WHERE from_block <= to_block
+AND sold <= places
+
+AND (departure_date + enter_at) >= '2015-12-01'
+AND (departure_date + leave_at) <= '2015-12-03'
+;
+
+ЗАПРОС ДЛЯ ПОДСЧЕТА СТОИМОСТИ
+
+SELECT km_price*km summ FROM search_view v WHERE trip_id = 19 AND block BETWEEN 2 AND 5;

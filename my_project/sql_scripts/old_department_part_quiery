@@ -1,0 +1,8 @@
+SELECT tl.id, s.name depature_station_name, rm.block_number_in_route block, r.route_name, r.route_type, r.price_for_kilometer,
+tl.departure_date, rm.block_enter_time_shift, t.train_number, tl.tickets_sold, t.passengers_capacity max_capacity
+FROM ((((station s JOIN station_to_station_block sts ON s.id = sts.departure_station_id) 
+JOIN route_map rm ON sts.id = rm.station_to_station_block_id)
+JOIN route r ON rm.route_id = r.id)
+JOIN trip_list tl ON r.id = tl.route_id)
+JOIN train t ON tl.train_id = t.id
+;

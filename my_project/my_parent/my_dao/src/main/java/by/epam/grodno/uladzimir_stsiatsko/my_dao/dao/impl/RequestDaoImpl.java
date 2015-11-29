@@ -14,13 +14,16 @@ public class RequestDaoImpl implements RequestDao {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
+	//ВОЗМОЖНО, НЕ НУЖЕН (НЕ ХРАНИТЬ РЕКВЕСТЫ В БАЗЕ)
 	@Override
 	public void setQuiery(Request request) {
-		System.out.println("Подключаюсь к базе данных");
-		jdbcTemplate.update("INSERT INTO request (departure_station, destination_station, departure_date, arrival_date) VALUES (?,?,?,?)", request.getDepartureStation(),
-				request.getDestinationStation(), request.getDepartureDate(), request.getArrivalDate());
+		jdbcTemplate.update(
+				"INSERT INTO request (departure_station, destination_station, departure_date, arrival_date) VALUES (?,?,?,?)",
+				request.getDepartureStation(), request.getDestinationStation(), request.getDepartureDate(),
+				request.getArrivalDate());
 	}
 
+	//СООТВЕТСТВЕННО, ТОЖЕ ОТПАДАЕТ
 	@Override
 	public Request getById(int id) {
 		return jdbcTemplate.queryForObject("select * from request where id = ?", new Object[] { id },

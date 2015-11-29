@@ -1,0 +1,59 @@
+2015-11-30 01:32:43,369 INFO  context.support.GenericApplicationContext:513 [] -> Refreshing org.springframework.context.support.GenericApplicationContext@588df31b: startup date [Mon Nov 30 01:32:43 MSK 2015]; root of context hierarchy
+2015-11-30 01:32:43,372 DEBUG context.support.GenericApplicationContext:543 [] -> Bean factory for org.springframework.context.support.GenericApplicationContext@588df31b: org.springframework.beans.factory.support.DefaultListableBeanFactory@7cc0cdad: defining beans [searchResultServiceImpl,requestServiceImpl,administratorServiceImpl,searchResultMapper,tripListMapper,requestMapper,tripListDaoImpl,administratorDaoImpl,requestDaoImpl,searchResultDaoImpl,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,transactionManager,jdbcTemplate,dataSource,org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#0]; root of factory hierarchy
+2015-11-30 01:32:44,169 DEBUG context.support.GenericApplicationContext:649 [] -> Unable to locate MessageSource with name 'messageSource': using default [org.springframework.context.support.DelegatingMessageSource@4e7912d8]
+2015-11-30 01:32:44,178 DEBUG context.support.GenericApplicationContext:673 [] -> Unable to locate ApplicationEventMulticaster with name 'applicationEventMulticaster': using default [org.springframework.context.event.SimpleApplicationEventMulticaster@732c2a62]
+2015-11-30 01:32:45,097 DEBUG context.support.GenericApplicationContext:700 [] -> Unable to locate LifecycleProcessor with name 'lifecycleProcessor': using default [org.springframework.context.support.DefaultLifecycleProcessor@742ff096]
+2015-11-30 01:38:11,250 INFO  test.context.TestContextManager:234 [] -> Could not instantiate TestExecutionListener class [org.springframework.test.context.web.ServletTestExecutionListener]. Specify custom listener classes or make the default listener classes (and their dependencies) available.
+2015-11-30 01:38:12,433 INFO  factory.xml.XmlBeanDefinitionReader:316 [] -> Loading XML bean definitions from class path resource [spring-db-context.xml]
+2015-11-30 01:38:14,053 INFO  context.support.GenericApplicationContext:513 [] -> Refreshing org.springframework.context.support.GenericApplicationContext@40f08448: startup date [Mon Nov 30 01:38:14 MSK 2015]; root of context hierarchy
+2015-11-30 01:38:14,678 INFO  factory.config.PropertyPlaceholderConfigurer:172 [] -> Loading properties file from class path resource [app.properties]
+2015-11-30 01:38:16,553 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:79 [] -> Id рейса: 19
+2015-11-30 01:38:16,559 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:81 [] -> Название маршрута: ГРОДНО-МОГИЛЕВ
+2015-11-30 01:38:16,566 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:83 [] -> Номер поезда: 432
+2015-11-30 01:38:16,568 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:84 [] -> Дата отправления: 2015-12-02T06:39:00.000+0300
+2015-11-30 01:38:16,570 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:85 [] -> Продано билетов: 62
+2015-11-30 01:38:16,573 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:86 [] -> ---------------------
+2015-11-30 01:38:16,575 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:79 [] -> Id рейса: 28
+2015-11-30 01:38:16,576 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:81 [] -> Название маршрута: ГРОДНО-МОГИЛЕВ
+2015-11-30 01:38:16,581 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:83 [] -> Номер поезда: 601Б
+2015-11-30 01:38:16,585 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:84 [] -> Дата отправления: 2015-12-06T23:10:00.000+0300
+2015-11-30 01:38:16,589 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:85 [] -> Продано билетов: 257
+2015-11-30 01:38:16,591 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:86 [] -> ---------------------
+2015-11-30 01:38:16,593 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:79 [] -> Id рейса: 50
+2015-11-30 01:38:16,594 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:81 [] -> Название маршрута: ГРОДНО-МОГИЛЕВ
+2015-11-30 01:38:16,607 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:83 [] -> Номер поезда: 432
+2015-11-30 01:38:16,608 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:84 [] -> Дата отправления: 2015-12-30T23:45:00.000+0300
+2015-11-30 01:38:16,613 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:85 [] -> Продано билетов: 11
+2015-11-30 01:38:16,614 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:86 [] -> ---------------------
+2015-11-30 01:38:16,615 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:79 [] -> Id рейса: 11
+2015-11-30 01:38:16,616 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:81 [] -> Название маршрута: ГРОДНО-ГОМЕЛЬ
+2015-11-30 01:38:16,617 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:83 [] -> Номер поезда: 158
+2015-11-30 01:38:16,619 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:84 [] -> Дата отправления: 2015-12-03T08:35:00.000+0300
+2015-11-30 01:38:16,627 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:85 [] -> Продано билетов: 76
+2015-11-30 01:38:16,628 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:86 [] -> ---------------------
+2015-11-30 01:38:16,630 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:79 [] -> Id рейса: 21
+2015-11-30 01:38:16,638 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:81 [] -> Название маршрута: ГРОДНО-МОГИЛЕВ
+2015-11-30 01:38:16,641 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:83 [] -> Номер поезда: 159
+2015-11-30 01:38:16,643 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:84 [] -> Дата отправления: 2015-12-03T23:18:00.000+0300
+2015-11-30 01:38:16,653 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:85 [] -> Продано билетов: 190
+2015-11-30 01:38:16,655 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:86 [] -> ---------------------
+2015-11-30 01:38:16,658 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:79 [] -> Id рейса: 36
+2015-11-30 01:38:16,659 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:81 [] -> Название маршрута: ГРОДНО-ГОМЕЛЬ
+2015-11-30 01:38:16,661 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:83 [] -> Номер поезда: 153А
+2015-11-30 01:38:16,670 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:84 [] -> Дата отправления: 2015-12-09T00:55:00.000+0300
+2015-11-30 01:38:16,672 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:85 [] -> Продано билетов: 76
+2015-11-30 01:38:16,674 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:86 [] -> ---------------------
+2015-11-30 01:38:16,675 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:79 [] -> Id рейса: 26
+2015-11-30 01:38:16,677 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:81 [] -> Название маршрута: ГРОДНО-МОГИЛЕВ
+2015-11-30 01:38:16,678 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:83 [] -> Номер поезда: 451Т
+2015-11-30 01:38:16,680 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:84 [] -> Дата отправления: 2015-12-10T13:25:00.000+0300
+2015-11-30 01:38:16,682 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:85 [] -> Продано билетов: 15
+2015-11-30 01:38:16,684 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:86 [] -> ---------------------
+2015-11-30 01:38:16,685 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:79 [] -> Id рейса: 49
+2015-11-30 01:38:16,688 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:81 [] -> Название маршрута: ГРОДНО-МОГИЛЕВ
+2015-11-30 01:38:16,689 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:83 [] -> Номер поезда: 159
+2015-11-30 01:38:16,691 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:84 [] -> Дата отправления: 2015-12-14T00:55:00.000+0300
+2015-11-30 01:38:16,693 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:85 [] -> Продано билетов: 26
+2015-11-30 01:38:16,694 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:86 [] -> ---------------------
+2015-11-30 01:38:16,696 INFO  uladzimir_stsiatsko.my_service.SearchResultServiceTest:90 [] -> Рейсов в выдаче: 8
+2015-11-30 01:38:16,710 INFO  context.support.GenericApplicationContext:873 [] -> Closing org.springframework.context.support.GenericApplicationContext@40f08448: startup date [Mon Nov 30 01:38:14 MSK 2015]; root of context hierarchy

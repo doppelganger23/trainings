@@ -1,0 +1,20 @@
+DROP VIEW search_view; --development stub
+CREATE VIEW search_view AS
+
+SELECT tl.id trip_id, r.route_name, t.train_number train, s.name from_station, s2.name to_station,
+ r.route_type, tl.departure_date, rm.block_number_in_route block, rm.block_enter_time enter_at, 
+ rm.block_leave_time leave_at, t.passengers_capacity places, tl.tickets_sold sold,
+ r.price_for_kilometer km_price, sts.distance_in_kilometres km
+
+FROM station_to_station_block sts 
+JOIN station s ON sts.departure_station_id = s.id
+JOIN station s2 ON sts.destination_station_id = s2.id
+JOIN route_map rm ON rm.station_to_station_block_id = sts.id
+JOIN route r ON rm.route_id = r.id
+JOIN trip_list tl ON tl.route_id = r.id
+JOIN train t ON tl.train_id = t.id
+
+ORDER BY from_station, to_station, route_type, departure_date
+;
+
+SELECT * FROM search_view ; --development stub
