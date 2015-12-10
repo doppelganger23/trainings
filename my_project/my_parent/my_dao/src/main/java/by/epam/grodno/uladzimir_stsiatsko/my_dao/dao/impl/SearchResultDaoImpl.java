@@ -24,109 +24,57 @@ public class SearchResultDaoImpl implements SearchResultDao {
 	@Autowired
 	private SearchResultMapper srMapper;
 	
+	private final String BASE_SCRIPT = ""
+			+ "SELECT * FROM "
+			+ "(SELECT trip_id, route_name, route_type, train, from_station, block from_block, (departure_date + enter_at) departure_date "
+			+ "FROM search_view v1 WHERE v1.from_station = ?) s1 "
+			+ "JOIN "
+			+ "(SELECT to_station, block to_block, (departure_date + leave_at) arrival_date, places, sold, km_price, km, trip_id "
+			+ "FROM search_view v2 WHERE v2.to_station = ?) s2 "
+			+ "ON s1.trip_id = s2.trip_id "
+			+ "WHERE from_block <= to_block "
+			+ "AND sold <= places ";
+	
 	@Override
 	public List<SearchResult> getResultsNoDateSpecified(Request request) {
 		Object[] args = {request.getDepartureStation(), request.getDestinationStation()};
 		LOGGER.debug("2 request properties extracted. Sending request to database via Spring jdbcTemplate.");
-		return jdbcTemplate.query(""
-				+ "SELECT * FROM "
-				+ "(SELECT trip_id, route_name, route_type, train, from_station, block from_block, (departure_date + enter_at) departure_date "
-				+ "FROM search_view v1 WHERE v1.from_station = ?) s1 "
-				+ "JOIN "
-				+ "(SELECT to_station, block to_block, (departure_date + leave_at) arrival_date, places, sold, km_price, km, trip_id "
-				+ "FROM search_view v2 WHERE v2.to_station = ?) s2 "
-				+ "ON s1.trip_id = s2.trip_id "
-				+ "WHERE from_block <= to_block "
-				+ "AND sold <= places "
-				+ "; ", args, srMapper);	
+		return jdbcTemplate.query(BASE_SCRIPT + "; ", args, srMapper);	
 	}
 	
 	@Override
 	public List<SearchResult> getResultsArrivalBefore(Request request){
 		Object[] args = {request.getDepartureStation(), request.getDestinationStation(), request.getArrivalDate()};
 		LOGGER.debug("3 request properties extracted. Sending request to database via Spring jdbcTemplate.");
-		return jdbcTemplate.query(""
-				+ "SELECT * FROM "
-				+ "(SELECT trip_id, route_name, route_type, train, from_station, block from_block, (departure_date + enter_at) departure_date "
-				+ "FROM search_view v1 WHERE v1.from_station = ?) s1 "
-				+ "JOIN "
-				+ "(SELECT to_station, block to_block, (departure_date + leave_at) arrival_date, places, sold, km_price, km, trip_id "
-				+ "FROM search_view v2 WHERE v2.to_station = ?) s2 "
-				+ "ON s1.trip_id = s2.trip_id "
-				+ "WHERE from_block <= to_block "
-				+ "AND sold <= places "
-				+ "AND arrival_date <= ? "
-				+ "; ", args, srMapper);
+		return jdbcTemplate.query(BASE_SCRIPT + "AND arrival_date <= ? ;", args, srMapper);
 	}
 	
 	@Override
 	public List<SearchResult> getResultsArrivalAfter(Request request){
 		Object[] args = {request.getDepartureStation(), request.getDestinationStation(), request.getArrivalDate()};
 		LOGGER.debug("3 request properties extracted. Sending request to database via Spring jdbcTemplate.");
-		return jdbcTemplate.query(""
-				+ "SELECT * FROM "
-				+ "(SELECT trip_id, route_name, route_type, train, from_station, block from_block, (departure_date + enter_at) departure_date "
-				+ "FROM search_view v1 WHERE v1.from_station = ?) s1 "
-				+ "JOIN "
-				+ "(SELECT to_station, block to_block, (departure_date + leave_at) arrival_date, places, sold, km_price, km, trip_id "
-				+ "FROM search_view v2 WHERE v2.to_station = ?) s2 "
-				+ "ON s1.trip_id = s2.trip_id "
-				+ "WHERE from_block <= to_block "
-				+ "AND sold <= places "
-				+ "AND arrival_date >= ? "
-				+ "; ", args, srMapper);
+		return jdbcTemplate.query(BASE_SCRIPT + "AND arrival_date >= ? ;", args, srMapper);
 	}
 	
 	@Override
 	public List<SearchResult> getResultsDepartureBefore(Request request){
 		Object[] args = {request.getDepartureStation(), request.getDestinationStation(), request.getDepartureDate()};
 		LOGGER.debug("3 request properties extracted. Sending request to database via Spring jdbcTemplate.");
-		return jdbcTemplate.query(""
-				+ "SELECT * FROM "
-				+ "(SELECT trip_id, route_name, route_type, train, from_station, block from_block, (departure_date + enter_at) departure_date "
-				+ "FROM search_view v1 WHERE v1.from_station = ?) s1 "
-				+ "JOIN "
-				+ "(SELECT to_station, block to_block, (departure_date + leave_at) arrival_date, places, sold, km_price, km, trip_id "
-				+ "FROM search_view v2 WHERE v2.to_station = ?) s2 "
-				+ "ON s1.trip_id = s2.trip_id "
-				+ "WHERE from_block <= to_block "
-				+ "AND sold <= places "
-				+ "AND departure_date <= ? "
-				+ "; ", args, srMapper);
+		return jdbcTemplate.query(BASE_SCRIPT + "AND departure_date <= ? ;", args, srMapper);
 	}
 	
 	@Override
 	public List<SearchResult> getResultsDepartureAfter(Request request){
 		Object[] args = {request.getDepartureStation(), request.getDestinationStation(), request.getDepartureDate()};
 		LOGGER.debug("3 request properties extracted. Sending request to database via Spring jdbcTemplate.");
-		return jdbcTemplate.query(""
-				+ "SELECT * FROM "
-				+ "(SELECT trip_id, route_name, route_type, train, from_station, block from_block, (departure_date + enter_at) departure_date "
-				+ "FROM search_view v1 WHERE v1.from_station = ?) s1 "
-				+ "JOIN "
-				+ "(SELECT to_station, block to_block, (departure_date + leave_at) arrival_date, places, sold, km_price, km, trip_id "
-				+ "FROM search_view v2 WHERE v2.to_station = ?) s2 "
-				+ "ON s1.trip_id = s2.trip_id "
-				+ "WHERE from_block <= to_block "
-				+ "AND sold <= places "
-				+ "AND departure_date >= ? "
-				+ "; ", args, srMapper);
+		return jdbcTemplate.query(BASE_SCRIPT + "AND departure_date >= ? ;", args, srMapper);
 	}
 		
 	@Override
 	public List<SearchResult> getResultsBetweenDates(Request request) {
 		Object[] args = {request.getDepartureStation(), request.getDestinationStation(), request.getDepartureDate(), request.getArrivalDate()};
 		LOGGER.debug("4 request properties extracted. Sending request to database via Spring jdbcTemplate.");
-		return jdbcTemplate.query(""
-				+ "SELECT * FROM "
-				+ "(SELECT trip_id, route_name, route_type, train, from_station, block from_block, (departure_date + enter_at) departure_date "
-				+ "FROM search_view v1 WHERE v1.from_station = ?) s1 "
-				+ "JOIN "
-				+ "(SELECT to_station, block to_block, (departure_date + leave_at) arrival_date, places, sold, km_price, km, trip_id "
-				+ "FROM search_view v2 WHERE v2.to_station = ?) s2 "
-				+ "ON s1.trip_id = s2.trip_id "
-				+ "WHERE from_block <= to_block "
-				+ "AND sold <= places "
+		return jdbcTemplate.query(BASE_SCRIPT 
 				+ "AND departure_date >= ? "
 				+ "AND arrival_date <= ? "
 				+ "; ", args, srMapper);	
@@ -135,16 +83,7 @@ public class SearchResultDaoImpl implements SearchResultDao {
 	public List<SearchResult> getResultsBeforeDates(Request request) {
 		Object[] args = {request.getDepartureStation(), request.getDestinationStation(), request.getDepartureDate(), request.getArrivalDate()};
 		LOGGER.debug("4 request properties extracted. Sending request to database via Spring jdbcTemplate.");
-		return jdbcTemplate.query(""
-				+ "SELECT * FROM "
-				+ "(SELECT trip_id, route_name, route_type, train, from_station, block from_block, (departure_date + enter_at) departure_date "
-				+ "FROM search_view v1 WHERE v1.from_station = ?) s1 "
-				+ "JOIN "
-				+ "(SELECT to_station, block to_block, (departure_date + leave_at) arrival_date, places, sold, km_price, km, trip_id "
-				+ "FROM search_view v2 WHERE v2.to_station = ?) s2 "
-				+ "ON s1.trip_id = s2.trip_id "
-				+ "WHERE from_block <= to_block "
-				+ "AND sold <= places "
+		return jdbcTemplate.query(BASE_SCRIPT
 				+ "AND departure_date <= ? "
 				+ "AND arrival_date <= ? "
 				+ "; ", args, srMapper);	
@@ -153,16 +92,7 @@ public class SearchResultDaoImpl implements SearchResultDao {
 	public List<SearchResult> getResultsAfterDates(Request request) {
 		Object[] args = {request.getDepartureStation(), request.getDestinationStation(), request.getDepartureDate(), request.getArrivalDate()};
 		LOGGER.debug("4 request properties extracted. Sending request to database via Spring jdbcTemplate.");
-		return jdbcTemplate.query(""
-				+ "SELECT * FROM "
-				+ "(SELECT trip_id, route_name, route_type, train, from_station, block from_block, (departure_date + enter_at) departure_date "
-				+ "FROM search_view v1 WHERE v1.from_station = ?) s1 "
-				+ "JOIN "
-				+ "(SELECT to_station, block to_block, (departure_date + leave_at) arrival_date, places, sold, km_price, km, trip_id "
-				+ "FROM search_view v2 WHERE v2.to_station = ?) s2 "
-				+ "ON s1.trip_id = s2.trip_id "
-				+ "WHERE from_block <= to_block "
-				+ "AND sold <= places "
+		return jdbcTemplate.query(BASE_SCRIPT
 				+ "AND departure_date >= ? "
 				+ "AND arrival_date >= ? "
 				+ "; ", args, srMapper);	
@@ -171,16 +101,7 @@ public class SearchResultDaoImpl implements SearchResultDao {
 	public List<SearchResult> getResultsNotBetweenDates(Request request) {
 		Object[] args = {request.getDepartureStation(), request.getDestinationStation(), request.getDepartureDate(), request.getArrivalDate()};
 		LOGGER.debug("4 request properties extracted. Sending request to database via Spring jdbcTemplate.");
-		return jdbcTemplate.query(""
-				+ "SELECT * FROM "
-				+ "(SELECT trip_id, route_name, route_type, train, from_station, block from_block, (departure_date + enter_at) departure_date "
-				+ "FROM search_view v1 WHERE v1.from_station = ?) s1 "
-				+ "JOIN "
-				+ "(SELECT to_station, block to_block, (departure_date + leave_at) arrival_date, places, sold, km_price, km, trip_id "
-				+ "FROM search_view v2 WHERE v2.to_station = ?) s2 "
-				+ "ON s1.trip_id = s2.trip_id "
-				+ "WHERE from_block <= to_block "
-				+ "AND sold <= places "
+		return jdbcTemplate.query(BASE_SCRIPT
 				+ "AND departure_date <= ? "
 				+ "AND arrival_date >= ? "
 				+ "; ", args, srMapper);	

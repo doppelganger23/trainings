@@ -45,7 +45,7 @@ public class SearchResultServiceTest {
 		testSearch(request);
 	}
 	
-	@Test
+	//@Test
 	public void quieryWithoutArrivalDateTest(){
 		LOGGER.debug("Starting quieryWithoutArrivalDateTest");
 		Request request = new Request();
@@ -55,7 +55,7 @@ public class SearchResultServiceTest {
 		testSearch(request);
 	}
 	
-	//@Test
+	@Test
 	public void quieryWithBothDatesTest() {
 		LOGGER.debug("Starting quieryWithBothDatesTest");
 		Request request = new Request();

@@ -2,6 +2,9 @@ package by.epam.grodno.uladzimir_stsiatsko.my_dao.model;
 
 import java.sql.Timestamp;
 
+import org.springframework.stereotype.Repository;
+
+@Repository
 public class Request {
 
 	private int id;

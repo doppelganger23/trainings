@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:wicket="http://wicket.apache.org" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Online Railway Ticket Window</title>
+	<link rel="stylesheet" href="css/styles.css" type="text/css" />
+</head>
+<body>
+
+<!-- wrapper, adds curve background images -->
+<div id="wrapper">
+	<div class="inner-wrapper">
+	
+		<div class="header clear">
+			<!-- REGISTER OPTIONS -->
+			<div class="subscribe">
+				<p>Register as <a wicket:id="passenger-registration-page-link">Passenger</a> | <a wicket:id="administrator-registration-page-link">Administrator</a> or <a wicket:id="log-in-page-link">Log In</a></p>
+			</div>		
+			<!-- HEADER -->
+			<h1><a href="https://github.com/h23GitHub/trainings/tree/master/my_project">Railway Ticket </a></h1>
+			<h2>online window</h2>		
+		</div>
+		
+		<div class="menu"> 
+			<ul class="clear">
+				<li><a wicket:id="home-page-link"><span>Home</span></a></li>
+				<li><a wicket:id="example-page-link"><span>Example</span></a></li>
+				<li><a wicket:id="search-page-link"><span>Search</span></a></li>
+				<li><a href="#"><span>Unused 1</span></a></li>
+				<li><a href="#"><span>Unused 2</span></a></li>
+				<li><a href="#"><span>Unused 3</span></a></li>
+				<li><a href="#"><span>Unused 4</span></a></li>
+				<li><a href="#"><span>Unused 5</span></a></li>
+				<li><a href="#"><span>Contact</span></a></li>				
+			</ul>
+		</div>
+		
+		<div class="body clear">
+			<div class="content"> 
+				<wicket:child/>
+				
+				<!-- отступы: -->
+				<br /><br />
+
+				<div class="copyright">
+					<p>&copy; 2015 Online Railway Cass. <a href="http://validator.w3.org/check/referer" title="valid XHTML">XHTML</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer" title="valid CSS">CSS</a>. Design: <a href="http://www.spyka.net">Free CSS Templates</a> &bull; <a href="http://www.justfreetemplates.com">Free Web Templates</a></p>
+				</div>
+			</div>
+			
+			<div class="sidebar">			
+				<ul>	
+					<li>
+						<h4>Навигация</h4>
+						<ul>
+							<li><a wicket:id="users-page-link">To users page</a></li>
+							<li><a href="http://www.ya.ru" title="spyka Webmaster resources">yandex</a></li>
+							<li><a href="http://www.google.com" title="free web templates">google</a></li>
+						</ul>
+					</li>
+					
+					<li>
+						<h4>Что-то еще</h4>
+						<ul>
+						  <li><a href="#">Lorem ipsum dolor sit amet.</a></li>
+						  <li><a href="#">Quisque consequat nunc a felis.</a></li>
+						  <li><a href="#">Suspendisse consequat magna at.</a></li>
+						  <li><a href="#">Etiam eget diam id ligula rhoncus.</a></li>
+						  <li><a href="#">Sed in mauris non nibh.</a></li>
+						</ul>
+					</li>	
+				</ul>
+			</div>
+		</div><!-- BODY CLEAR END -->
+		
+	</div><!-- INNER WRAPPER END -->
+</div><!-- WRAPPER END -->
+</body>
+</html>

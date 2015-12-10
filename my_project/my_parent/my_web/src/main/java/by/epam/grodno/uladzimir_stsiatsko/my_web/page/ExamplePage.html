@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<wicket:extend xmlns:wicket="http://wicket.apache.org">
+
+	<h1>Wicket Example Page</h1>
+	
+	<form wicket:id="form">
+        <input type="text" wicket:id="msgInput" value="" size="10" />
+        <input type="submit" value="set message" />
+    </form>
+    
+    <span wicket:id="msg" id="msg">Message goes here</span>
+    
+    <form wicket:id="form2">
+        <input type="text" wicket:id="msgInput2" value="" size="10" />
+        <input type="submit" value="set message" />
+    </form>
+    
+    <span wicket:id="msg2" id="msg2">Message goes here</span>    
+</wicket:extend>
