@@ -1,8 +1,9 @@
 package by.epam.grodno.uladzimir_stsiatsko.my_dao.model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class SearchResult {
+public class SearchResult implements Serializable {
 	
 	private int tripId;
 	private String routeName;

@@ -3,6 +3,9 @@ package by.epam.grodno.uladzimir_stsiatsko.my_web.page;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.link.Link;
 
+import by.epam.grodno.uladzimir_stsiatsko.my_web.page.admin_actions.AdminActionsPage;
+import by.epam.grodno.uladzimir_stsiatsko.my_web.page.search.SearchPage;
+
 public class AbstractPage extends WebPage {
 
 	public AbstractPage() {
@@ -22,6 +25,12 @@ public class AbstractPage extends WebPage {
 			@Override
 			public void onClick() {
 				setResponsePage(SearchPage.class);
+			}
+		});
+		add(new Link<Void>("admin-actions-page-link") {
+			@Override
+			public void onClick() {
+				setResponsePage(AdminActionsPage.class);
 			}
 		});
 		add(new Link<Void>("passenger-registration-page-link") {
@@ -48,5 +57,6 @@ public class AbstractPage extends WebPage {
 				setResponsePage(UsersPage.class);
 			}
 		});
+		
 	}
 }

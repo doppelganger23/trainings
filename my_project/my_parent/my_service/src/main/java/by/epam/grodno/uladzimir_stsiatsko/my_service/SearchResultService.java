@@ -8,12 +8,6 @@ import by.epam.grodno.uladzimir_stsiatsko.my_dao.model.SearchResult;
 
 public interface SearchResultService {
 
-	/** Must be either <= or >= */
-	void setDepartureDateCondition(String condition);
-	
-	/** Must be either <= or >= */
-	void setArrivalDateCondition(String condition);
-	
 	List<SearchResult> find(Request request);
 	
 }

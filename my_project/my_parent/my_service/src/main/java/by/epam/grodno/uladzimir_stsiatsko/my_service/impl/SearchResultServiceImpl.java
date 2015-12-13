@@ -21,26 +21,6 @@ public class SearchResultServiceImpl implements SearchResultService {
 	@Autowired
 	private SearchResultDao srDao;
 
-	// критерии поиска по дате
-	private String depDateCondition = ">=";
-	private String arrDateCondition = "<=";
-
-	public void setDepartureDateCondition(String condition) throws InvalidParameterException {
-		if (!">=".equals(condition) && !"<=".equals(condition)){
-			LOGGER.error("Invalid parameter: {}", condition);
-			throw new InvalidParameterException("parameter must be either >= or <=");
-		}
-		depDateCondition = condition;
-	}
-
-	public void setArrivalDateCondition(String condition) throws InvalidParameterException {
-		if (!">=".equals(condition) && !"<=".equals(condition)){
-			LOGGER.error("Invalid parameter: {}", condition);
-			throw new InvalidParameterException("parameter must be either >= or <=");
-		}
-		arrDateCondition = condition;
-	}
-
 	// анализ полей аргумента на наличие даты
 	public List<SearchResult> find(Request request) {
 		if (request.getDepartureDate() == null) {
@@ -66,7 +46,7 @@ public class SearchResultServiceImpl implements SearchResultService {
 
 	public List<SearchResult> findWithoutDepartureDate(Request request) {
 		// анализ на условие сравнения даты
-		if ("<=".equals(arrDateCondition)) {
+		if ("<=".equals(request.getArrCondition())) {
 			LOGGER.debug("Calling SearchResultDao getRusultsArrivalBefore method.");
 			return srDao.getResultsArrivalBefore(request);
 		} else {
@@ -77,7 +57,7 @@ public class SearchResultServiceImpl implements SearchResultService {
 
 	public List<SearchResult> findWithoutArrivalDate(Request request) {
 		// анализ на условие сравнения даты
-		if (">=".equals(depDateCondition)) {
+		if (">=".equals(request.getDepCondition())) {
 			LOGGER.debug("Calling SearchResultDao getRusultsDepartureAfter method.");
 			return srDao.getResultsDepartureAfter(request);
 		} else {
@@ -88,15 +68,15 @@ public class SearchResultServiceImpl implements SearchResultService {
 
 	public List<SearchResult> findWithBothDates(Request request) {
 		// анализ на условие сравнения даты
-		if (">=".equals(depDateCondition)) {
-			if ("<=".equals(arrDateCondition)) {
+		if (">=".equals(request.getDepCondition())) {
+			if ("<=".equals(request.getArrCondition())) {
 				LOGGER.debug("Calling SearchResultDao getRusultsBetweenDates method.");
 				return srDao.getResultsBetweenDates(request);
 			}
 			LOGGER.debug("Calling SearchResultDao getRusultsAfterDates method.");
 			return srDao.getResultsAfterDates(request);
 		}
-		if ("<=".equals(arrDateCondition)) {
+		if ("<=".equals(request.getArrCondition())) {
 			LOGGER.debug("Calling SearchResultDao getRusultsBeforeDates method.");
 			return srDao.getResultsBeforeDates(request);
 		}

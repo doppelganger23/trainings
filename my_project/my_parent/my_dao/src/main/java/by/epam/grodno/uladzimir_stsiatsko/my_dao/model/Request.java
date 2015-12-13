@@ -1,17 +1,21 @@
 package by.epam.grodno.uladzimir_stsiatsko.my_dao.model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Date;
 
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class Request {
+public class Request implements Serializable{
 
 	private int id;
 	private String departureStation;
 	private String destinationStation;
-	private Timestamp departureDate;
-	private Timestamp arrivalDate;
+	private Date departureDate;
+	private Date arrivalDate;
+	private String depCondition = ">=";
+	private String arrCondition = "<=";
 	
 	public int getId() {
 		return id;
@@ -31,17 +35,29 @@ public class Request {
 	public void setDestinationStation(String destinationStation) {
 		this.destinationStation = destinationStation;
 	}
-	public Timestamp getDepartureDate() {
+	public Date getDepartureDate() {
 		return departureDate;
 	}
-	public void setDepartureDate(Timestamp departureDate) {
+	public void setDepartureDate(Date departureDate) {
 		this.departureDate = departureDate;
 	}
-	public Timestamp getArrivalDate() {
+	public Date getArrivalDate() {
 		return arrivalDate;
 	}
-	public void setArrivalDate(Timestamp arrivalDate) {
+	public void setArrivalDate(Date arrivalDate) {
 		this.arrivalDate = arrivalDate;
+	}
+	public String getDepCondition() {
+		return depCondition;
+	}
+	public void setDepCondition(String depCondition) {
+		this.depCondition = depCondition;
+	}
+	public String getArrCondition() {
+		return arrCondition;
+	}
+	public void setArrCondition(String arrCondition) {
+		this.arrCondition = arrCondition;
 	}
 	
 }

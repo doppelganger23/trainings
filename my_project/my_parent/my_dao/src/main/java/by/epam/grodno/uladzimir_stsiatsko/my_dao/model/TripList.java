@@ -1,13 +1,14 @@
 package by.epam.grodno.uladzimir_stsiatsko.my_dao.model;
 
-import java.sql.Timestamp;
+import java.io.Serializable;
+import java.util.Date;
 
-public class TripList {
+public class TripList implements Serializable{
 
 	private int id;
 	private int trainId;
 	private int routeId;
-	private Timestamp departureDate;
+	private Date departureDate;
 	private int ticketsSold;
 	
 	public int getId() {
@@ -28,10 +29,10 @@ public class TripList {
 	public void setRouteId(int routeId) {
 		this.routeId = routeId;
 	}
-	public Timestamp getDepartureDate() {
+	public Date getDepartureDate() {
 		return departureDate;
 	}
-	public void setDepartureDate(Timestamp departureDate) {
+	public void setDepartureDate(Date departureDate) {
 		this.departureDate = departureDate;
 	}
 	public int getTicketsSold() {

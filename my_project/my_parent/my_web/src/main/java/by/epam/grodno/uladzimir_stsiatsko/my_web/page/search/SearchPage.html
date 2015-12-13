@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<wicket:extend xmlns:wicket="http://wicket.apache.org">
+	<h1>Search page</h1>
+	<form wicket:id="request-form">
+		<table>
+			<tr>
+				<td><label>Departure Station</label></td>
+				<td><label>Departure Date</label></td>
+			</tr>
+			<tr>
+				<td><input type="text" wicket:id="departureStation" value="" size="30" /></td>
+				<td><select wicket:id="depCondition"></select>
+				<input type="text" wicket:id="departureDate" value="" size="15" /></td>
+			</tr>
+			<tr>
+				<td><label>Destination Station</label></td>
+				<td><label>Arrival Date</label></td>
+			</tr>
+			<tr>
+				<td><input type="text" wicket:id="destinationStation" value="" size="30" /></td>
+				<td><select wicket:id="arrCondition"></select>
+				<input type="text" wicket:id="arrivalDate" value="" size="15" /></td>
+			</tr>
+			<tr>
+				<td><button type="submit" wicket:id="submit-button">search</button></td>
+			</tr>
+		</table>
+	</form>
+
+</wicket:extend>

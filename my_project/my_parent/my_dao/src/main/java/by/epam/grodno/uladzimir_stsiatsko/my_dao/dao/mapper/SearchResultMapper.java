@@ -16,6 +16,7 @@ public class SearchResultMapper implements RowMapper<SearchResult>{
 			SearchResult sr = new SearchResult();
 			sr.setTripId(rs.getInt(1));
 			sr.setRouteName(rs.getString("route_name"));
+			sr.setRouteType(rs.getString("route_type"));
 			sr.setTrain(rs.getString("train"));
 			sr.setFromStation(rs.getString("from_station"));
 			sr.setFromBlock(rs.getInt("from_block"));

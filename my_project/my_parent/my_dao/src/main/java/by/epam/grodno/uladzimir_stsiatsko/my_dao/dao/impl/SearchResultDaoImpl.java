@@ -37,73 +37,73 @@ public class SearchResultDaoImpl implements SearchResultDao {
 	
 	@Override
 	public List<SearchResult> getResultsNoDateSpecified(Request request) {
-		Object[] args = {request.getDepartureStation(), request.getDestinationStation()};
+		Object[] args = {request.getDepartureStation().toUpperCase(), request.getDestinationStation().toUpperCase()};
 		LOGGER.debug("2 request properties extracted. Sending request to database via Spring jdbcTemplate.");
 		return jdbcTemplate.query(BASE_SCRIPT + "; ", args, srMapper);	
 	}
 	
 	@Override
 	public List<SearchResult> getResultsArrivalBefore(Request request){
-		Object[] args = {request.getDepartureStation(), request.getDestinationStation(), request.getArrivalDate()};
+		Object[] args = {request.getDepartureStation().toUpperCase(), request.getDestinationStation().toUpperCase(), request.getArrivalDate()};
 		LOGGER.debug("3 request properties extracted. Sending request to database via Spring jdbcTemplate.");
-		return jdbcTemplate.query(BASE_SCRIPT + "AND arrival_date <= ? ;", args, srMapper);
+		return jdbcTemplate.query(BASE_SCRIPT + "AND date_trunc('day', arrival_date) <= ? ;", args, srMapper);
 	}
 	
 	@Override
 	public List<SearchResult> getResultsArrivalAfter(Request request){
-		Object[] args = {request.getDepartureStation(), request.getDestinationStation(), request.getArrivalDate()};
+		Object[] args = {request.getDepartureStation().toUpperCase(), request.getDestinationStation().toUpperCase(), request.getArrivalDate()};
 		LOGGER.debug("3 request properties extracted. Sending request to database via Spring jdbcTemplate.");
-		return jdbcTemplate.query(BASE_SCRIPT + "AND arrival_date >= ? ;", args, srMapper);
+		return jdbcTemplate.query(BASE_SCRIPT + "AND date_trunc('day', arrival_date) >= ? ;", args, srMapper);
 	}
 	
 	@Override
 	public List<SearchResult> getResultsDepartureBefore(Request request){
-		Object[] args = {request.getDepartureStation(), request.getDestinationStation(), request.getDepartureDate()};
+		Object[] args = {request.getDepartureStation().toUpperCase(), request.getDestinationStation().toUpperCase(), request.getDepartureDate()};
 		LOGGER.debug("3 request properties extracted. Sending request to database via Spring jdbcTemplate.");
-		return jdbcTemplate.query(BASE_SCRIPT + "AND departure_date <= ? ;", args, srMapper);
+		return jdbcTemplate.query(BASE_SCRIPT + "AND date_trunc('day', departure_date) <= ? ;", args, srMapper);
 	}
 	
 	@Override
 	public List<SearchResult> getResultsDepartureAfter(Request request){
-		Object[] args = {request.getDepartureStation(), request.getDestinationStation(), request.getDepartureDate()};
+		Object[] args = {request.getDepartureStation().toUpperCase(), request.getDestinationStation().toUpperCase(), request.getDepartureDate()};
 		LOGGER.debug("3 request properties extracted. Sending request to database via Spring jdbcTemplate.");
-		return jdbcTemplate.query(BASE_SCRIPT + "AND departure_date >= ? ;", args, srMapper);
+		return jdbcTemplate.query(BASE_SCRIPT + "AND date_trunc('day', departure_date) >= ? ;", args, srMapper);
 	}
 		
 	@Override
 	public List<SearchResult> getResultsBetweenDates(Request request) {
-		Object[] args = {request.getDepartureStation(), request.getDestinationStation(), request.getDepartureDate(), request.getArrivalDate()};
+		Object[] args = {request.getDepartureStation().toUpperCase(), request.getDestinationStation().toUpperCase(), request.getDepartureDate(), request.getArrivalDate()};
 		LOGGER.debug("4 request properties extracted. Sending request to database via Spring jdbcTemplate.");
 		return jdbcTemplate.query(BASE_SCRIPT 
-				+ "AND departure_date >= ? "
-				+ "AND arrival_date <= ? "
+				+ "AND date_trunc('day', departure_date) >= ? "
+				+ "AND date_trunc('day', arrival_date) <= ? "
 				+ "; ", args, srMapper);	
 	}
 	
 	public List<SearchResult> getResultsBeforeDates(Request request) {
-		Object[] args = {request.getDepartureStation(), request.getDestinationStation(), request.getDepartureDate(), request.getArrivalDate()};
+		Object[] args = {request.getDepartureStation().toUpperCase(), request.getDestinationStation().toUpperCase(), request.getDepartureDate(), request.getArrivalDate()};
 		LOGGER.debug("4 request properties extracted. Sending request to database via Spring jdbcTemplate.");
 		return jdbcTemplate.query(BASE_SCRIPT
-				+ "AND departure_date <= ? "
-				+ "AND arrival_date <= ? "
+				+ "AND date_trunc('day', departure_date) <= ? "
+				+ "AND date_trunc('day', arrival_date) <= ? "
 				+ "; ", args, srMapper);	
 	}
 	
 	public List<SearchResult> getResultsAfterDates(Request request) {
-		Object[] args = {request.getDepartureStation(), request.getDestinationStation(), request.getDepartureDate(), request.getArrivalDate()};
+		Object[] args = {request.getDepartureStation().toUpperCase(), request.getDestinationStation().toUpperCase(), request.getDepartureDate(), request.getArrivalDate()};
 		LOGGER.debug("4 request properties extracted. Sending request to database via Spring jdbcTemplate.");
 		return jdbcTemplate.query(BASE_SCRIPT
-				+ "AND departure_date >= ? "
-				+ "AND arrival_date >= ? "
+				+ "AND date_trunc('day', departure_date) >= ? "
+				+ "AND date_trunc('day', arrival_date) >= ? "
 				+ "; ", args, srMapper);	
 	}
 	
 	public List<SearchResult> getResultsNotBetweenDates(Request request) {
-		Object[] args = {request.getDepartureStation(), request.getDestinationStation(), request.getDepartureDate(), request.getArrivalDate()};
+		Object[] args = {request.getDepartureStation().toUpperCase(), request.getDestinationStation().toUpperCase(), request.getDepartureDate(), request.getArrivalDate()};
 		LOGGER.debug("4 request properties extracted. Sending request to database via Spring jdbcTemplate.");
 		return jdbcTemplate.query(BASE_SCRIPT
-				+ "AND departure_date <= ? "
-				+ "AND arrival_date >= ? "
+				+ "AND date_trunc('day', departure_date) <= ? "
+				+ "AND date_trunc('day', arrival_date) >= ? "
 				+ "; ", args, srMapper);	
 	}
 
