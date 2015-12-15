@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<wicket:extend xmlns:wicket="http://wicket.apache.org">
+	<h1>Search Result Page</h1>
+	<table>
+		<thead>
+			<tr>
+				<th>Route Name</th>
+				<th>Type</th>
+				<th>Train Number</th>
+				<th>From</th>
+				<th>Departing</th>
+				<th>To</th>
+				<th>Arrives</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr wicket:id="search-results-list">
+				<td><span wicket:id="route-name"></span></td>
+				<td><span wicket:id="route-type"></span></td>
+				<td><span wicket:id="train"></span></td>
+				<td><span wicket:id="from-station"></span></td>
+				<td><span wicket:id="departure-date"></span></td>
+				<td><span wicket:id="to-station"></span></td>
+				<td><span wicket:id="arrival-date"></span></td>
+				<td><button type="button" wicket:id="buy-ticket-link">Buy Ticket</button></td>
+			</tr>
+		</tbody>
+	</table>	
+</wicket:extend>

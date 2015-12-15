@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<wicket:extend xmlns:wicket="http://wicket.apache.org">
+	<h1>Passenger registration page</h1>
+	<form wicket:id="passenger-registration-form">
+		<table>
+			<tr>
+				<td><label>First name</label></td>
+				<td><input wicket:id="first-name" type="text" /></td>
+			</tr>
+			<tr>
+				<td><label>Last name</label></td>
+				<td><input wicket:id="last-name" type="text" /></td>
+			</tr>
+			<tr>
+				<td><label>Passport number</label></td>
+				<td><input wicket:id="passport-number" type="text" /></td>
+			</tr>
+			<tr>
+				<td colspan="2"><button type="submit" wicket:id="submit-button">Register</button></td>
+			</tr>
+		</table>
+	</form>
+	<div wicket:id="feedback"></div> 
+</wicket:extend>

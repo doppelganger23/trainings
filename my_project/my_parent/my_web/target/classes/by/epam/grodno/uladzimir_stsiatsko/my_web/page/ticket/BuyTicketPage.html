@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<wicket:extend xmlns:wicket="http://wicket.apache.org">
+	<h1>Buy Ticket Page</h1><br/>
+	<h4>You have chosen train:</h4>
+	<table>
+		<tr>
+			<th>Route Name</th>
+			<th>Type</th>
+			<th>Train Number</th>
+			<th>From</th>
+			<th>Departing</th>
+			<th>To</th>
+			<th>Arrives</th>
+		</tr>
+		<tr>
+			<td><span wicket:id="chosen-route-name"></span></td>
+			<td><span wicket:id="chosen-route-type"></span></td>
+			<td><span wicket:id="chosen-train"></span></td>
+			<td><span wicket:id="chosen-from-station"></span></td>
+			<td><span wicket:id="chosen-departure-date"></span></td>
+			<td><span wicket:id="chosen-to-station"></span></td>
+			<td><span wicket:id="chosen-arrival-date"></span></td>
+		</tr>
+	</table><br/>
+	<h4>The ticket cost is <span wicket:id="payment-value"></span> rub.</h4>
+	<button wicket:id="confirm-ticket-link">Confirm purchase</button>
+	
+</wicket:extend>
