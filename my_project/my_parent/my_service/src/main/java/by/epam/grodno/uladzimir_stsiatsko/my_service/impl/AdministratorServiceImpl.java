@@ -20,6 +20,7 @@ public class AdministratorServiceImpl implements AdministratorService {
 		System.out.println("Post-initialization phase complete");
 	}
 
+	//пока не понятно где брать айди
 	@Override
 	public void insertOrUpdate(Administrator admin) {
 		// ноль или null?

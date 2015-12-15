@@ -14,7 +14,7 @@ public class SearchResultMapper implements RowMapper<SearchResult>{
 		@Override
 		public SearchResult mapRow(ResultSet rs, int rowNum) throws SQLException {
 			SearchResult sr = new SearchResult();
-			sr.setTripId(rs.getInt(1));
+			sr.setTripId(rs.getInt(1));// (column number)
 			sr.setRouteName(rs.getString("route_name"));
 			sr.setRouteType(rs.getString("route_type"));
 			sr.setTrain(rs.getString("train"));

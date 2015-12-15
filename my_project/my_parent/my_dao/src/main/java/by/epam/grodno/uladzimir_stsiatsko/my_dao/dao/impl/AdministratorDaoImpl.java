@@ -22,8 +22,8 @@ public class AdministratorDaoImpl implements AdministratorDao {
 
 	@Override
 	public void insert(Administrator admin) {
-		jdbcTemplate.update("INSERT INTO administrator (login, password, last_name, first_name) VALUES (?,?,?,?)",
-				admin.getLogin(), admin.getPassword(), admin.getLastName(), admin.getFirstName());
+		jdbcTemplate.update("INSERT INTO administrator (login, password, last_name, first_name, email) VALUES (?,?,?,?,?)",
+				admin.getLogin(), admin.getPassword(), admin.getLastName(), admin.getFirstName(), admin.getEmail());
 	}
 
 	@Override

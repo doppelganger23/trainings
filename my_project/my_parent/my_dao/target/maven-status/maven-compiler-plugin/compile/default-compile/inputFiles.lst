@@ -3,6 +3,7 @@
 /home/h23/workspace/my_parent/my_dao/src/main/java/by/epam/grodno/uladzimir_stsiatsko/my_dao/dao/StationToStationBlockDao.java
 /home/h23/workspace/my_parent/my_dao/src/main/java/by/epam/grodno/uladzimir_stsiatsko/my_dao/dao/TrainDao.java
 /home/h23/workspace/my_parent/my_dao/src/main/java/by/epam/grodno/uladzimir_stsiatsko/my_dao/dao/impl/RouteMapDaoImpl.java
+/home/h23/workspace/my_parent/my_dao/src/main/java/by/epam/grodno/uladzimir_stsiatsko/my_dao/dao/mapper/PassengerMapper.java
 /home/h23/workspace/my_parent/my_dao/src/main/java/by/epam/grodno/uladzimir_stsiatsko/my_dao/dao/SearchResultDao.java
 /home/h23/workspace/my_parent/my_dao/src/main/java/by/epam/grodno/uladzimir_stsiatsko/my_dao/model/Administrator.java
 /home/h23/workspace/my_parent/my_dao/src/main/java/by/epam/grodno/uladzimir_stsiatsko/my_dao/model/SearchResult.java
@@ -10,6 +11,7 @@
 /home/h23/workspace/my_parent/my_dao/src/main/java/by/epam/grodno/uladzimir_stsiatsko/my_dao/model/Station.java
 /home/h23/workspace/my_parent/my_dao/src/main/java/by/epam/grodno/uladzimir_stsiatsko/my_dao/dao/StationDao.java
 /home/h23/workspace/my_parent/my_dao/src/main/java/by/epam/grodno/uladzimir_stsiatsko/my_dao/dao/impl/PassengerDaoImpl.java
+/home/h23/workspace/my_parent/my_dao/src/main/java/by/epam/grodno/uladzimir_stsiatsko/my_dao/dao/mapper/BillMapper.java
 /home/h23/workspace/my_parent/my_dao/src/main/java/by/epam/grodno/uladzimir_stsiatsko/my_dao/util/SchemaNameAwareBasicDataSource.java
 /home/h23/workspace/my_parent/my_dao/src/main/java/by/epam/grodno/uladzimir_stsiatsko/my_dao/dao/mapper/RequestMapper.java
 /home/h23/workspace/my_parent/my_dao/src/main/java/by/epam/grodno/uladzimir_stsiatsko/my_dao/dao/RequestDao.java

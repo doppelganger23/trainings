@@ -27,7 +27,7 @@ public class TripListDaoImpl implements TripListDao {
 		Object[] args = {tripList.getTrainId(), tripList.getRouteId(), tripList.getDepartureDate(), tripList.getTicketsSold()};
 		jdbcTemplate.update("INSERT INTO trip_list (train_id, route_id, departure_date, tickets_sold) VALUES (?,?,?,?)", args);
 
-		//разобраться потом (альтернатива с возвратом id)
+		//альтернатива с возвратом
 //		KeyHolder keyHolder = new GeneratedKeyHolder();
 //		jdbcTemplate.update(new PreparedStatementCreator() {
 //			@Override

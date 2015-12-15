@@ -7,6 +7,7 @@ public class Administrator {
 	private String password;
 	private String lastName;
 	private String firstName;
+	private String email;
 	
 	public int getId() {
 		return id;
@@ -37,6 +38,12 @@ public class Administrator {
 	}
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	

@@ -4,6 +4,8 @@ import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.link.Link;
 
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.admin_actions.AdminActionsPage;
+import by.epam.grodno.uladzimir_stsiatsko.my_web.page.registration.AdministratorRegistrationPage;
+import by.epam.grodno.uladzimir_stsiatsko.my_web.page.registration.PassengerRegistrationPage;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.search.SearchPage;
 
 public class AbstractPage extends WebPage {

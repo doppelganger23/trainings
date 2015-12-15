@@ -4,6 +4,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import by.epam.grodno.uladzimir_stsiatsko.my_service.AdministratorService;
 
+//НЕ НУЖЕН, УДАЛИТЬ
 public class AdministratorRegisterPage {
 	
 	public static void main(String args[]){

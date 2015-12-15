@@ -2,6 +2,8 @@ package by.epam.grodno.uladzimir_stsiatsko.my_web.page.admin_actions;
 
 import java.util.Date;
 
+import javax.inject.Inject;
+
 import org.apache.wicket.datetime.StyleDateConverter;
 import org.apache.wicket.datetime.markup.html.form.DateTextField;
 import org.apache.wicket.markup.html.form.Form;
@@ -10,11 +12,15 @@ import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.model.PropertyModel;
 
 import by.epam.grodno.uladzimir_stsiatsko.my_dao.model.TripList;
+import by.epam.grodno.uladzimir_stsiatsko.my_service.TripListService;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.CustomDatePicker;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.AbstractPage;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.HomePage;
 
 public class EditTripListsPage extends AbstractPage {
+	
+	@Inject
+	TripListService tlService;
 	
 	@Override
 	protected void onInitialize() {
@@ -35,7 +41,7 @@ public class EditTripListsPage extends AbstractPage {
 		form.add(new SubmitLink("submit-button") {
 			@Override
 			public void onSubmit() {
-		//TODO
+			tlService.addTripList(newTripList);
 			setResponsePage(new HomePage());
 			}
 		});

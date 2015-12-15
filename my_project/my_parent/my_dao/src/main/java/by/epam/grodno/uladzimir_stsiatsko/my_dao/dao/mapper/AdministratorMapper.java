@@ -15,7 +15,7 @@ public final class AdministratorMapper implements RowMapper<Administrator> {
 		String login = rs.getString("login");
 		String password = rs.getString("password");
 		String lastName = rs.getString("last_name");
-		String firstName = rs.getString("firstName");
+		String firstName = rs.getString("first_name");
 		Administrator admin = new Administrator();
 		admin.setId(id);
 		admin.setLogin(login);

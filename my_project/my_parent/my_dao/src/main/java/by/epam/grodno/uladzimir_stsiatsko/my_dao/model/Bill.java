@@ -1,5 +1,8 @@
 package by.epam.grodno.uladzimir_stsiatsko.my_dao.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Bill {
 	
 	private int id;
@@ -8,6 +11,8 @@ public class Bill {
 	private double paymentValue;
 	private boolean isPaid;
 	private int billingNumber;
+	private int fromBlock;
+	private int toBlock;
 	
 	public int getId() {
 		return id;
@@ -44,6 +49,18 @@ public class Bill {
 	}
 	public void setBillingNumber(int billingNumber) {
 		this.billingNumber = billingNumber;
+	}
+	public int getFromBlock() {
+		return fromBlock;
+	}
+	public void setFromBlock(int fromBlock) {
+		this.fromBlock = fromBlock;
+	}
+	public int getToBlock() {
+		return toBlock;
+	}
+	public void setToBlock(int toBlock) {
+		this.toBlock = toBlock;
 	}
 	
 	
