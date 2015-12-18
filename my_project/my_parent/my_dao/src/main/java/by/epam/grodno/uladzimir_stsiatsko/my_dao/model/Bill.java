@@ -1,5 +1,7 @@
 package by.epam.grodno.uladzimir_stsiatsko.my_dao.model;
 
+import java.util.Date;
+
 import org.springframework.stereotype.Component;
 
 @Component
@@ -13,6 +15,7 @@ public class Bill {
 	private int billingNumber;
 	private int fromBlock;
 	private int toBlock;
+	private Date creationDate;
 	
 	public int getId() {
 		return id;
@@ -61,6 +64,12 @@ public class Bill {
 	}
 	public void setToBlock(int toBlock) {
 		this.toBlock = toBlock;
+	}
+	public Date getCreationDate() {
+		return creationDate;
+	}
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
 	}
 	
 	

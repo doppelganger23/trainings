@@ -1,6 +1,8 @@
 package by.epam.grodno.uladzimir_stsiatsko.my_dao.model;
 
-public class Route {
+import java.io.Serializable;
+
+public class Route implements Serializable{
 	
 	private int id;
 	private String routeName;

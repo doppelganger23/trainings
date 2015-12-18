@@ -9,5 +9,9 @@ import by.epam.grodno.uladzimir_stsiatsko.my_dao.model.SearchResult;
 public interface SearchResultService {
 
 	List<SearchResult> find(Request request);
+
+	List<SearchResult> getAll(long first, long count);
+	
+	Integer getCount();
 	
 }

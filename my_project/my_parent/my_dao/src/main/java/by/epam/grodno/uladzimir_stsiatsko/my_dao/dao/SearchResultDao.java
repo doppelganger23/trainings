@@ -25,5 +25,8 @@ public interface SearchResultDao {
 	
 	List<SearchResult> getResultsNotBetweenDates(Request request);
 	
+	List<SearchResult> getAll(long first, long count);
+
+	Integer getCount();	
 
 }

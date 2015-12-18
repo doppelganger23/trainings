@@ -83,4 +83,11 @@ public class SearchResultServiceImpl implements SearchResultService {
 		return srDao.getResultsNotBetweenDates(request);
 	}
 
+	public List<SearchResult> getAll(long first, long count){
+		return srDao.getAll(first, count);
+	}
+	
+	public Integer getCount() {
+		return srDao.getCount();
+	}
 }

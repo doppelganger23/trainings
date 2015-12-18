@@ -1,6 +1,8 @@
 package by.epam.grodno.uladzimir_stsiatsko.my_dao.model;
 
-public class Train {
+import java.io.Serializable;
+
+public class Train implements Serializable{
 
 	private int id;
 	private String trainNumber;

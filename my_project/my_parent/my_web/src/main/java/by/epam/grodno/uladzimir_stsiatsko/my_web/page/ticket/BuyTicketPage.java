@@ -1,5 +1,7 @@
 package by.epam.grodno.uladzimir_stsiatsko.my_web.page.ticket;
 
+import java.util.Date;
+
 import javax.inject.Inject;
 
 import org.apache.wicket.markup.html.basic.Label;
@@ -31,6 +33,7 @@ public class BuyTicketPage extends AbstractPage{
 		bill.setBillingNumber(1234567890);
 		//заглушка, засетать когда сделаю авторизацию
 		bill.setPassengerId(1);
+		bill.setCreationDate(new Date());
 		
 	}
 	

@@ -106,5 +106,18 @@ public class SearchResultDaoImpl implements SearchResultDao {
 				+ "AND date_trunc('day', arrival_date) >= ? "
 				+ "; ", args, srMapper);	
 	}
+	
+	@Override
+	public Integer getCount(){
+		return jdbcTemplate.queryForObject("select count(1) from search_view ;",
+				Integer.class);
+	}
+	
+	@Override
+	public List<SearchResult> getAll(long first, long count){
+			return jdbcTemplate.query(String.format(
+					"select * from search_view limit %s offset %s ;", count,
+					first), new SearchResultMapper());		
+	}
 
 }

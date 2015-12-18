@@ -19,9 +19,9 @@ public class BillDaoImpl implements BillDao {
 	@Override
 	public void insert(Bill bill) {
 		jdbcTemplate.update(
-				"INSERT INTO bill (passenger_id, trip_list_id, payment_value, is_paid, billing_nimber, from_block, to_block) VALUES (?,?,?,?,?,?,?);",
+				"INSERT INTO bill (passenger_id, trip_list_id, payment_value, is_paid, billing_nimber, from_block, to_block, creation_date) VALUES (?,?,?,?,?,?,?,?);",
 				bill.getPassengerId(), bill.getTripListId(), bill.getPaymentValue(), bill.isPaid(),
-				bill.getBillingNumber(), bill.getFromBlock(), bill.getToBlock());
+				bill.getBillingNumber(), bill.getFromBlock(), bill.getToBlock(), bill.getCreationDate());
 	}
 	
 	@Override

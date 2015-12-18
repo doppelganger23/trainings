@@ -3,6 +3,7 @@ package by.epam.grodno.uladzimir_stsiatsko.my_web.page.registration;
 import javax.inject.Inject;
 
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.SubmitLink;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
@@ -33,7 +34,8 @@ public class AdministratorRegistrationPage extends AbstractPage {
 		loginField.add(StringValidator.maximumLength(50));
 		form.add(loginField);
 		
-		TextField<String> passwordField = new TextField<String>("password", new PropertyModel<String>(newAdmin, "password"));
+		//можно добавить второе поле для проверки корректности ввода
+		PasswordTextField passwordField = new PasswordTextField("password", new PropertyModel<String>(newAdmin, "password"));
 		passwordField.setRequired(true);
 		passwordField.add(StringValidator.maximumLength(50));
 		form.add(passwordField);
