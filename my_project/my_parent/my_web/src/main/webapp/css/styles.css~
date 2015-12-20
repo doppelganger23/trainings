@@ -55,7 +55,7 @@ a {
 	color:blue;
 }
 a:hover {
-	color:black;
+	color:dark-blue;
 }
 
 fieldset {

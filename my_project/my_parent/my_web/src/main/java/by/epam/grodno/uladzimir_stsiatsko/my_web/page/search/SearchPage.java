@@ -55,32 +55,8 @@ public class SearchPage extends AbstractPage {
 
 		form.add(new SubmitLink("submit-button") {
 			@Override
-			public void onSubmit() {
-
-				List<SearchResult> resultSet = srService.find(newRequest);
-
-				resultSet.forEach(new Consumer<SearchResult>() {
-					@Override
-					public void accept(SearchResult e) {
-						System.out.println("----------------");
-						System.out.println(e.getTripId());
-						System.out.println(e.getRouteName());
-						System.out.println(e.getRouteType());
-						System.out.println(e.getTrain());
-						System.out.println(e.getFromStation());
-						System.out.println(e.getFromBlock());
-						System.out.println(e.getDepartureDate());
-						System.out.println(e.getToStation());
-						System.out.println(e.getToBlock());
-						System.out.println(e.getArrivalDate());
-						System.out.println(e.getPlaces());
-						System.out.println(e.getSold());
-						System.out.println(e.getKmPrice());
-						System.out.println(e.getKm());
-					}
-				});
-
-				setResponsePage(new SearchResultPage(resultSet));
+			public void onSubmit() {				
+				setResponsePage(new SearchResultPage(srService.find(newRequest)));
 			}
 		});
 

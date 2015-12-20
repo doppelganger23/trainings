@@ -1,4 +1,25 @@
 <!DOCTYPE html>
 <wicket:extend xmlns:wicket="http://wicket.apache.org">
-	<h1>Edit passengers page</h1>
+	<h1>Edit Passengers Page</h1>
+	<table>
+		<thead>
+			<tr>
+				<th wicket:id="sortId">ID</th>
+				<th wicket:id="sortfName">first name</th>
+				<th wicket:id="sortlName">last name</th>
+				<th wicket:id="sortPassport">passport number</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr wicket:id="passengers-list">
+				<td><span wicket:id="id"></span></td>
+				<td><span wicket:id="firstName"></span></td>
+				<td><span wicket:id="lName"></span></td>
+				<td><span wicket:id="passportNumber"></span></td>
+				<td><button type="button" wicket:id="delete-link">Delete</button></td>
+			</tr>
+		</tbody>
+	</table>
+	<div wicket:id="paging"></div>
 </wicket:extend>

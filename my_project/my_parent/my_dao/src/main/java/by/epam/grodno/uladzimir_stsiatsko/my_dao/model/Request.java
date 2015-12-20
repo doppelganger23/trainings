@@ -1,7 +1,6 @@
 package by.epam.grodno.uladzimir_stsiatsko.my_dao.model;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.util.Date;
 
 import org.springframework.stereotype.Repository;
