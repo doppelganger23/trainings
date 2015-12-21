@@ -16,7 +16,13 @@ public class AdministratorDaoImpl implements AdministratorDao {
 
 	@Override
 	public Administrator getById(int id) {
-		return jdbcTemplate.queryForObject("select * from administrator where id = ?", new Object[] { 1 },
+		return jdbcTemplate.queryForObject("select * from administrator where id = ?", new Object[] { id },
+				new AdministratorMapper());
+	}
+	
+	@Override
+	public Administrator getByLogin(String login) {
+		return jdbcTemplate.queryForObject("select * from administrator where login = ?", new Object[] { login },
 				new AdministratorMapper());
 	}
 

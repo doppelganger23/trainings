@@ -1,17 +1,21 @@
 package by.epam.grodno.uladzimir_stsiatsko.my_web.app;
 
+import javax.inject.Inject;
+
 import org.apache.wicket.Session;
 import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
 import org.apache.wicket.authroles.authorization.strategies.role.Roles;
 import org.apache.wicket.injection.Injector;
 import org.apache.wicket.request.Request;
 
+import by.epam.grodno.uladzimir_stsiatsko.my_service.AdministratorService;
+
 public class CustomSession extends AuthenticatedWebSession {
 
-//	@Inject
-//	private UserService userService;
+	@Inject
+	private AdministratorService adminService;
 
-	private Long currentuserid;
+	private Integer currentuserid;
 
 	private Roles roles;
 
@@ -25,19 +29,20 @@ public class CustomSession extends AuthenticatedWebSession {
 	}
 
 	@Override
-	protected boolean authenticate(String username, String password) {
-//		if (userService == null) {
-//			throw new IllegalArgumentException("user service is null");
-//		}
-		// TODO implement logic with DB
-
-		if ("test".equals(username) && "test".equals(password)) {
-			currentuserid = 11l;
-			return true;
-		} else {
-			return false;
+	protected boolean authenticate(String login, String password) {
+		//неужели необходима проверка?
+		if (adminService == null) {
+			throw new IllegalArgumentException("user service is null");
 		}
-
+		
+		Integer id = adminService.authenticate(login, password);
+		if(id != null){
+			currentuserid = id;
+			roles = new Roles();
+			roles.add("admin");
+			return true;
+		} // else Integer id = passengerService.authenticate(login, password) - TODO
+		return false;
 	}
 
 	@Override
@@ -61,7 +66,7 @@ public class CustomSession extends AuthenticatedWebSession {
 		return roles;
 	}
 
-	public Long getCurrentuserid() {
+	public Integer getCurrentuserid() {
 		return currentuserid;
 	}
 

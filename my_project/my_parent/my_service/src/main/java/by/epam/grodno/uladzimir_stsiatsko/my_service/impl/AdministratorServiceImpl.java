@@ -20,7 +20,7 @@ public class AdministratorServiceImpl implements AdministratorService {
 		System.out.println("Post-initialization phase complete");
 	}
 
-	//пока не понятно где брать айди
+	// пока не понятно где брать айди
 	@Override
 	public void insertOrUpdate(Administrator admin) {
 		// ноль или null?
@@ -39,6 +39,15 @@ public class AdministratorServiceImpl implements AdministratorService {
 		admin.setFirstName(firstName);
 		admin.setLastName(lastName);
 		adminDao.insert(admin);
+	}
+
+	@Override
+	public Integer authenticate(String login, String password) {
+		Administrator admin = adminDao.getByLogin(login);
+		if (admin != null && admin.getPassword().equals(password)){
+			return admin.getId();
+		}
+		return null;
 	}
 
 }
