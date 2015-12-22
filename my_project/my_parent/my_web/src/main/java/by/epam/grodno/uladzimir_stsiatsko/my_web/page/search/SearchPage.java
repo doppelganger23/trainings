@@ -20,7 +20,7 @@ import org.apache.wicket.validation.validator.StringValidator;
 import by.epam.grodno.uladzimir_stsiatsko.my_dao.model.Request;
 import by.epam.grodno.uladzimir_stsiatsko.my_dao.model.SearchResult;
 import by.epam.grodno.uladzimir_stsiatsko.my_service.SearchResultService;
-import by.epam.grodno.uladzimir_stsiatsko.my_web.CustomDatePicker;
+import by.epam.grodno.uladzimir_stsiatsko.my_web.app.CustomDatePicker;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.AbstractPage;
 
 public class SearchPage extends AbstractPage {

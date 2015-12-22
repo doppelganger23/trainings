@@ -8,6 +8,7 @@ public class Administrator {
 	private String lastName;
 	private String firstName;
 	private String email;
+	private String accessLevel;
 	
 	public int getId() {
 		return id;
@@ -44,6 +45,12 @@ public class Administrator {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public String getAccessLevel() {
+		return accessLevel;
+	}
+	public void setAccessLevel(String accessLevel) {
+		this.accessLevel = accessLevel;
 	}
 	
 	

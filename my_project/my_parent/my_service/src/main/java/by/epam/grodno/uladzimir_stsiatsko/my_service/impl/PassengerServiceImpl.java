@@ -20,6 +20,7 @@ public class PassengerServiceImpl implements PassengerService {
 		pDao.insert(passenger);
 	}
 	
+	@Override
 	public void delete (Passenger passenger){
 		pDao.remove(passenger);
 	}

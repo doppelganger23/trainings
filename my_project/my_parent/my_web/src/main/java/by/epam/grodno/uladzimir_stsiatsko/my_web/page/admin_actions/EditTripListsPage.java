@@ -18,7 +18,7 @@ import by.epam.grodno.uladzimir_stsiatsko.my_dao.model.TripList;
 import by.epam.grodno.uladzimir_stsiatsko.my_service.RouteService;
 import by.epam.grodno.uladzimir_stsiatsko.my_service.TrainService;
 import by.epam.grodno.uladzimir_stsiatsko.my_service.TripListService;
-import by.epam.grodno.uladzimir_stsiatsko.my_web.CustomDatePicker;
+import by.epam.grodno.uladzimir_stsiatsko.my_web.app.CustomDatePicker;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.AbstractPage;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.HomePage;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.renderer.RouteChoiceRenderer;

@@ -11,7 +11,7 @@ public class AdminActionsPage extends AbstractPage {
 		add(new Link<Void>("edit-passengers-page-link") {
 			@Override
 			public void onClick() {
-				setResponsePage(EditPassengersPage.class);
+				setResponsePage(EditAccountsPage.class);
 			}
 		});
 		

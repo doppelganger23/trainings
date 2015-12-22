@@ -16,12 +16,16 @@ public final class AdministratorMapper implements RowMapper<Administrator> {
 		String password = rs.getString("password");
 		String lastName = rs.getString("last_name");
 		String firstName = rs.getString("first_name");
+		String email = rs.getString("email");
+		String accessLevel = rs.getString("access_level");
 		Administrator admin = new Administrator();
 		admin.setId(id);
 		admin.setLogin(login);
 		admin.setPassword(password);
 		admin.setFirstName(firstName);
 		admin.setLastName(lastName);
+		admin.setEmail(email);
+		admin.setAccessLevel(accessLevel);
 		return admin;
 	}
 }

@@ -30,7 +30,7 @@ public class CustomSession extends AuthenticatedWebSession {
 
 	@Override
 	protected boolean authenticate(String login, String password) {
-		//неужели необходима проверка?
+		//необходима проверка?
 		if (adminService == null) {
 			throw new IllegalArgumentException("user service is null");
 		}
