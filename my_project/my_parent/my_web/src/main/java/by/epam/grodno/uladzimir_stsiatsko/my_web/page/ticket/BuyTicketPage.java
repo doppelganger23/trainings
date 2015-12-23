@@ -32,7 +32,7 @@ public class BuyTicketPage extends AbstractPage{
 		//пойдет такой или сменить на лонг | добавить генерацию?
 		bill.setBillingNumber(1234567890);
 		//заглушка, засетать когда сделаю авторизацию
-		bill.setPassengerId(1);
+		bill.setAccountId(1);
 		bill.setCreationDate(new Date());
 		
 	}

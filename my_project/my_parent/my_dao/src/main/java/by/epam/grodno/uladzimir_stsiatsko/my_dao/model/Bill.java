@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 public class Bill {
 	
 	private int id;
-	private int passengerId;
+	private int accountId;
 	private int tripListId;
 	private double paymentValue;
 	private boolean isPaid;
@@ -23,11 +23,11 @@ public class Bill {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getPassengerId() {
-		return passengerId;
+	public int getAccountId() {
+		return accountId;
 	}
-	public void setPassengerId(int passengerId) {
-		this.passengerId = passengerId;
+	public void setAccountId(int accountId) {
+		this.accountId = accountId;
 	}
 	public int getTripListId() {
 		return tripListId;

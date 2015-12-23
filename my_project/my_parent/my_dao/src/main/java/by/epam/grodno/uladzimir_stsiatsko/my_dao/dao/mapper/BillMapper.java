@@ -13,7 +13,7 @@ public class BillMapper implements RowMapper<Bill> {
 	@Override
 	public Bill mapRow(ResultSet rs, int rowNum) throws SQLException {
 		int id = rs.getInt("id");
-		int passengerId = rs.getInt("passenger_id");
+		int accountId = rs.getInt("account_id");
 		int tripListId = rs.getInt("trip_list_id");
 		double paymentValue = rs.getDouble("payment_value");
 		boolean isPaid = rs.getBoolean("is_paid");
@@ -23,7 +23,7 @@ public class BillMapper implements RowMapper<Bill> {
 		Date creationDate = rs.getDate("creation_date");
 		Bill bill = new Bill();
 		bill.setId(id);
-		bill.setPassengerId(passengerId);
+		bill.setAccountId(accountId);
 		bill.setTripListId(tripListId);
 		bill.setPaymentValue(paymentValue);
 		bill.setPaid(isPaid);

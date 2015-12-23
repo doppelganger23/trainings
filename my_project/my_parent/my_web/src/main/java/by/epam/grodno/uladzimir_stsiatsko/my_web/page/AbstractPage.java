@@ -4,8 +4,7 @@ import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.link.Link;
 
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.admin_actions.AdminActionsPage;
-import by.epam.grodno.uladzimir_stsiatsko.my_web.page.registration.AdministratorRegistrationPage;
-import by.epam.grodno.uladzimir_stsiatsko.my_web.page.registration.PassengerRegistrationPage;
+import by.epam.grodno.uladzimir_stsiatsko.my_web.page.registration.RegistrationPage;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.search.SearchPage;
 
 public class AbstractPage extends WebPage {
@@ -35,16 +34,10 @@ public class AbstractPage extends WebPage {
 				setResponsePage(AdminActionsPage.class);
 			}
 		});
-		add(new Link<Void>("passenger-registration-page-link") {
+		add(new Link<Void>("registration-page-link") {
 			@Override
 			public void onClick() {
-				setResponsePage(PassengerRegistrationPage.class);
-			}
-		});
-		add(new Link<Void>("administrator-registration-page-link") {
-			@Override
-			public void onClick() {
-				setResponsePage(AdministratorRegistrationPage.class);
+				setResponsePage(RegistrationPage.class);
 			}
 		});
 		add(new Link<Void>("log-in-page-link") {

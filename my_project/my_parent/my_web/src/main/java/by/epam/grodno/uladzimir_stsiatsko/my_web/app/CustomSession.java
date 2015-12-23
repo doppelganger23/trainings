@@ -8,12 +8,12 @@ import org.apache.wicket.authroles.authorization.strategies.role.Roles;
 import org.apache.wicket.injection.Injector;
 import org.apache.wicket.request.Request;
 
-import by.epam.grodno.uladzimir_stsiatsko.my_service.AdministratorService;
+import by.epam.grodno.uladzimir_stsiatsko.my_service.AccountService;
 
 public class CustomSession extends AuthenticatedWebSession {
 
 	@Inject
-	private AdministratorService adminService;
+	private AccountService accService;
 
 	private Integer currentuserid;
 
@@ -31,11 +31,11 @@ public class CustomSession extends AuthenticatedWebSession {
 	@Override
 	protected boolean authenticate(String login, String password) {
 		//необходима проверка?
-		if (adminService == null) {
-			throw new IllegalArgumentException("user service is null");
+		if (accService == null) {
+			throw new IllegalArgumentException("account service is null");
 		}
 		
-		Integer id = adminService.authenticate(login, password);
+		Integer id = accService.authenticate(login, password);
 		if(id != null){
 			currentuserid = id;
 			roles = new Roles();
