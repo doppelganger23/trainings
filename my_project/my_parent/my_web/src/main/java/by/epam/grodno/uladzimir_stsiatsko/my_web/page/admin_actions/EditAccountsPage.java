@@ -4,6 +4,8 @@ import java.util.Iterator;
 
 import javax.inject.Inject;
 
+import org.apache.wicket.authorization.Action;
+import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeAction;
 import org.apache.wicket.extensions.markup.html.repeater.data.sort.ISortState;
 import org.apache.wicket.extensions.markup.html.repeater.data.sort.OrderByBorder;
 import org.apache.wicket.extensions.markup.html.repeater.data.sort.SortOrder;
@@ -21,6 +23,7 @@ import by.epam.grodno.uladzimir_stsiatsko.my_dao.model.Account;
 import by.epam.grodno.uladzimir_stsiatsko.my_service.AccountService;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.AbstractPage;
 
+@AuthorizeAction(action=Action.RENDER, roles={"admin"})
 public class EditAccountsPage extends AbstractPage {
 
 	@Inject
@@ -45,7 +48,15 @@ public class EditAccountsPage extends AbstractPage {
 				item.add(new Link("delete-link") {
 					@Override
 					public void onClick() {
+						//дописать ворнинг месседж
 						aService.delete(acc);
+					}
+				});
+				
+				item.add(new Link("edit-link") {
+					@Override
+					public void onClick() {
+						setResponsePage(new UpdateAccountPage(acc));
 					}
 				});
 

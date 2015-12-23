@@ -13,7 +13,7 @@ import by.epam.grodno.uladzimir_stsiatsko.my_service.AccountService;
 public class AccountServiceImpl implements AccountService {
 
 	@Autowired
-	private AccountDao accDao;
+	private AccountDao accDao;	
 
 	@Override
 	public void register(String login, String password, String firstName, String lastName, String email,
@@ -45,6 +45,14 @@ public class AccountServiceImpl implements AccountService {
 			return acc.getId();
 		}
 		return null;
+	}
+	
+	@Override
+	public String getAccessLevel(int id){
+		if (accDao.getById(id) == null){
+			return null;
+		}
+		return accDao.getById(id).getAccessLevel();
 	}
 
 	@Override
@@ -106,6 +114,11 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public int getCount() {
 		return accDao.getCount();
+	}
+
+	@Override
+	public void update(Account acc) {
+		accDao.update(acc);
 	}
 
 }

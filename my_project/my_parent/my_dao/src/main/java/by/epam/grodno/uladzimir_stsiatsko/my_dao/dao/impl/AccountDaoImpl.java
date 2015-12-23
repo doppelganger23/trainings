@@ -3,6 +3,7 @@ package by.epam.grodno.uladzimir_stsiatsko.my_dao.dao.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -18,20 +19,32 @@ public class AccountDaoImpl implements AccountDao {
 
 	@Override
 	public Account getById(int id) {
-		return jdbcTemplate.queryForObject("select * from account where id = ?", new Object[] { id },
-				new AccountMapper());
+		try {
+			return jdbcTemplate.queryForObject("select * from account where id = ?", new Object[] { id },
+					new AccountMapper());
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
 	}
 
 	@Override
 	public Account getByLogin(String login) {
-		return jdbcTemplate.queryForObject("select * from account where login = ?", new Object[] { login },
-				new AccountMapper());
+		try {
+			return jdbcTemplate.queryForObject("select * from account where login = ?", new Object[] { login },
+					new AccountMapper());
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
 	}
-	
+
 	@Override
 	public Account getByEmail(String email) {
-		return jdbcTemplate.queryForObject("select * from account where email = ?", new Object[] { email },
-				new AccountMapper());
+		try {
+			return jdbcTemplate.queryForObject("select * from account where email = ?", new Object[] { email },
+					new AccountMapper());
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
 	}
 
 	@Override
@@ -48,7 +61,7 @@ public class AccountDaoImpl implements AccountDao {
 		jdbcTemplate.update(
 				"UPDATE account SET login=?, password=?, last_name=?, first_name=?, email=?, access_level=? WHERE id=?",
 				acc.getLogin(), acc.getPassword(), acc.getLastName(), acc.getFirstName(), acc.getEmail(),
-				acc.getAccessLevel());
+				acc.getAccessLevel(), acc.getId());
 	}
 
 	@Override
@@ -59,8 +72,8 @@ public class AccountDaoImpl implements AccountDao {
 
 	@Override
 	public List<Account> getAll(long first, long count, String sortBy, String sortType) {
-		return jdbcTemplate.query(String.format("select * from account order by %s %s limit %s offset %s ;",
-				sortBy, sortType, count, first), new AccountMapper());
+		return jdbcTemplate.query(String.format("select * from account order by %s %s limit %s offset %s ;", sortBy,
+				sortType, count, first), new AccountMapper());
 	}
 
 	@Override

@@ -4,10 +4,12 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.SubmitLink;
 import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.Model;
 
 import by.epam.grodno.uladzimir_stsiatsko.my_web.app.CustomSession;
+import by.epam.grodno.uladzimir_stsiatsko.my_web.page.registration.RegistrationPage;
 
 public class LogInPage extends AbstractPage {
 
@@ -18,8 +20,8 @@ public class LogInPage extends AbstractPage {
 		add(new FeedbackPanel("f"));
 		Form<Void> form = new Form<Void>("login-form");
 
-		final Model<String> loginModel = new Model(null);
-		final Model<String> passModel = new Model(null);
+		final Model<String> loginModel = new Model<>(null);
+		final Model<String> passModel = new Model<>(null);
 
 		TextField<String> loginTf = new TextField<String>("login", loginModel);
 		form.add(loginTf);
@@ -38,13 +40,21 @@ public class LogInPage extends AbstractPage {
 						passModel.getObject());
 
 				if (isSuccess) {
-					setResponsePage(new UsersPage());
+					setResponsePage(new HomePage());
 				} else {
 					error("login error");
 					setResponsePage(getPage());
 				}
 
 			}
+		});
+		
+		add(new Link<Void>("register"){
+			@Override
+			public void onClick(){
+				setResponsePage(new RegistrationPage());
+			}
+			
 		});
 	}
 

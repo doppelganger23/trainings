@@ -8,11 +8,15 @@ public interface AccountService {
 	
 	Integer authenticate(String login, String password);
 	
+	String getAccessLevel(int id);
+	
 	void register(String login, String password, String firstName, String lastName, String email, String accessLevel);
 	
 	void register(Account acc);
 	
 	void delete (Account acc);
+	
+	void update (Account acc);
 	
 	Account getByLogin(String login);
 	

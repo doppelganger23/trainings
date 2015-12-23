@@ -14,7 +14,7 @@
 		<div class="header clear">
 			<!-- REGISTER OPTIONS -->
 			<div class="subscribe">
-				<p><a wicket:id="registration-page-link">Register Account</a> | <a wicket:id="log-in-page-link">Log In</a></p>
+				<p><a wicket:id="registration-page-link">Register Account</a> | <a wicket:id="log-in-page-link">Log In</a> <a wicket:id="log-out-link">Log Out</a> | </p>
 			</div>		
 			<!-- HEADER -->
 			<h1><a href="https://github.com/h23GitHub/trainings/tree/master/my_project">Railway Ticket </a></h1>
@@ -23,14 +23,10 @@
 		
 		<div class="menu"> 
 			<ul class="clear">
-				<li><a wicket:id="home-page-link"><span>Home</span></a></li>
-				<li><a wicket:id="example-page-link"><span>Example</span></a></li>
+				<li><a wicket:id="home-page-link" title="TODO: add content"><span>Home</span></a></li>
 				<li><a wicket:id="search-page-link"><span>Search</span></a></li>
-				<li><a wicket:id="admin-actions-page-link"><span>Admin actions</span></a></li>
-				<li><a href="#"><span>Unused 2</span></a></li>
-				<li><a href="#"><span>Unused 3</span></a></li>
-				<li><a href="#"><span>Unused 4</span></a></li>
-				<li><a href="#"><span>Unused 5</span></a></li>
+<!-- 				<li><a wicket:id="admin-actions-page-link"><span>Admin actions</span></a></li> -->
+				<li><a href="#"><span>Unused</span></a></li>
 				<li><a href="#"><span>Contact</span></a></li>				
 			</ul>
 		</div>
@@ -52,20 +48,18 @@
 					<li>
 						<h4>Навигация</h4>
 						<ul>
-							<li><a wicket:id="users-page-link">To users page</a></li>
+							<li><a wicket:id="users-page-link" title="Just for tests">To users page</a></li>
 							<li><a href="http://www.ya.ru" title="spyka Webmaster resources">yandex</a></li>
 							<li><a href="http://www.google.com" title="free web templates">google</a></li>
 						</ul>
 					</li>
-					
-					<li>
-						<h4>Что-то еще</h4>
+					<li wicket:id="list-container">
+						<h4>ADMIN ACTIONS</h4>
 						<ul>
-						  <li><a href="#">Lorem ipsum dolor sit amet.</a></li>
-						  <li><a href="#">Quisque consequat nunc a felis.</a></li>
-						  <li><a href="#">Suspendisse consequat magna at.</a></li>
-						  <li><a href="#">Etiam eget diam id ligula rhoncus.</a></li>
-						  <li><a href="#">Sed in mauris non nibh.</a></li>
+						  <li><h5><a wicket:id="edit-accounts-page-link">Edit Accounts</a></h5></li>
+						  <li><h5><a wicket:id="edit-trip-lists-page-link">Edit Trip Lists</a></h5></li>
+						  <li><h5><a wicket:id="edit-bills-page-link">Edit Bills</a></h5></li>
+						  <li><h5><a wicket:id="edit-bank-details-page-link">Edit Bank Details</a></h5></li>
 						</ul>
 					</li>	
 				</ul>

@@ -1,57 +1,107 @@
 package by.epam.grodno.uladzimir_stsiatsko.my_web.page;
 
+import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.link.Link;
 
-import by.epam.grodno.uladzimir_stsiatsko.my_web.page.admin_actions.AdminActionsPage;
+import by.epam.grodno.uladzimir_stsiatsko.my_web.app.CustomSession;
+import by.epam.grodno.uladzimir_stsiatsko.my_web.page.admin_actions.EditAccountsPage;
+import by.epam.grodno.uladzimir_stsiatsko.my_web.page.admin_actions.EditBankDetailsPage;
+import by.epam.grodno.uladzimir_stsiatsko.my_web.page.admin_actions.EditBillsPage;
+import by.epam.grodno.uladzimir_stsiatsko.my_web.page.admin_actions.EditTripListsPage;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.registration.RegistrationPage;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.search.SearchPage;
 
 public class AbstractPage extends WebPage {
 
 	public AbstractPage() {
+		
+//		protected void onInitialize(){
 		add(new Link<Void>("home-page-link") {
 			@Override
 			public void onClick() {
-				setResponsePage(HomePage.class);
-			}
-		});
-		add(new Link<Void>("example-page-link") {
-			@Override
-			public void onClick() {
-				setResponsePage(ExamplePage.class);
+				setResponsePage(new HomePage());
 			}
 		});
 		add(new Link<Void>("search-page-link") {
 			@Override
 			public void onClick() {
-				setResponsePage(SearchPage.class);
+				setResponsePage(new SearchPage());
 			}
 		});
-		add(new Link<Void>("admin-actions-page-link") {
+		// add(new Link<Void>("admin-actions-page-link") {
+		// @Override
+		// public void onClick() {
+		// setResponsePage(AdminActionsPage.class);
+		// }
+		// });
+
+		Link<Void> regLink = new Link<Void>("registration-page-link") {
 			@Override
 			public void onClick() {
-				setResponsePage(AdminActionsPage.class);
+				setResponsePage(new RegistrationPage());
 			}
-		});
-		add(new Link<Void>("registration-page-link") {
+		};
+		add(regLink);
+		Link<Void> logInLink = new Link<Void>("log-in-page-link") {
 			@Override
 			public void onClick() {
-				setResponsePage(RegistrationPage.class);
+				setResponsePage(new LogInPage());
 			}
-		});
-		add(new Link<Void>("log-in-page-link") {
+		};
+		add(logInLink);
+		Link<Void> logOutLink = new Link<Void>("log-out-link") {
 			@Override
 			public void onClick() {
-				setResponsePage(LogInPage.class);
+				CustomSession.get().signOut();
+				setResponsePage(new LogInPage());
 			}
-		});
+		};
+		add(logOutLink);
+
+		if (CustomSession.get().getRoles() == null) {
+			logOutLink.setVisible(false);
+		} else {
+			logInLink.setVisible(false);
+			regLink.setVisible(false);
+		}
+
+//		WebMarkupContainer listContainer = new WebMarkupContainer("list-container");
+//		add(listContainer);
+//		if (!CustomSession.get().getRoles().hasRole("admin")) {
+//			listContainer.setVisible(false);
+//		}
+
 		add(new Link<Void>("users-page-link") {
 			@Override
 			public void onClick() {
-				setResponsePage(UsersPage.class);
+				setResponsePage(new UsersPage());
 			}
 		});
-		
+		add(new Link<Void>("edit-accounts-page-link") {
+			@Override
+			public void onClick() {
+				setResponsePage(new EditAccountsPage());
+			}
+		});
+		add(new Link<Void>("edit-trip-lists-page-link") {
+			@Override
+			public void onClick() {
+				setResponsePage(new EditTripListsPage());
+			}
+		});
+		add(new Link<Void>("edit-bills-page-link") {
+			@Override
+			public void onClick() {
+				setResponsePage(new EditBillsPage());
+			}
+		});
+		add(new Link<Void>("edit-bank-details-page-link") {
+			@Override
+			public void onClick() {
+				setResponsePage(new EditBankDetailsPage());
+			}
+		});
+
 	}
 }

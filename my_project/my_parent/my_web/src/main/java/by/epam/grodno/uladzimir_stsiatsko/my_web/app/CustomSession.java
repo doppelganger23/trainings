@@ -30,18 +30,21 @@ public class CustomSession extends AuthenticatedWebSession {
 
 	@Override
 	protected boolean authenticate(String login, String password) {
-		//необходима проверка?
+		// необходима проверка?
 		if (accService == null) {
 			throw new IllegalArgumentException("account service is null");
 		}
-		
+
 		Integer id = accService.authenticate(login, password);
-		if(id != null){
+		if (id != null) {
 			currentuserid = id;
 			roles = new Roles();
-			roles.add("admin");
+			roles.add("passenger");
+			if (accService.getAccessLevel(currentuserid) == "admin") {
+				roles.add("admin");
+			}
 			return true;
-		} // else Integer id = passengerService.authenticate(login, password) - TODO
+		}
 		return false;
 	}
 
@@ -57,11 +60,12 @@ public class CustomSession extends AuthenticatedWebSession {
 		if (currentuserid == null) {
 			return null;
 		}
-
 		if (roles == null) {
 			roles = new Roles();
-			// TODO add actual list of roles for current logged user
-			roles.add("admin");// 'client', 'simple user' etc...
+			roles.add("passenger");
+			if (accService.getAccessLevel(currentuserid) == "admin") {
+				roles.add("admin");
+			}
 		}
 		return roles;
 	}
