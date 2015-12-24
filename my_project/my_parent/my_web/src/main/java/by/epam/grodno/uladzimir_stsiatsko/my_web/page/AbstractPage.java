@@ -58,19 +58,25 @@ public class AbstractPage extends WebPage {
 			}
 		};
 		add(logOutLink);
+		
+		WebMarkupContainer container = new WebMarkupContainer("container");
+		add(container);
+		if (CustomSession.get().getRoles() == null || !CustomSession.get().getRoles().hasRole("admin")) {
+			
+		} else {
+			
+		}
 
 		if (CustomSession.get().getRoles() == null) {
 			logOutLink.setVisible(false);
+			container.setVisible(false);
 		} else {
 			logInLink.setVisible(false);
 			regLink.setVisible(false);
+			if(!CustomSession.get().getRoles().hasRole("admin")){
+				container.setVisible(false);
+			}
 		}
-
-//		WebMarkupContainer listContainer = new WebMarkupContainer("list-container");
-//		add(listContainer);
-//		if (!CustomSession.get().getRoles().hasRole("admin")) {
-//			listContainer.setVisible(false);
-//		}
 
 		add(new Link<Void>("users-page-link") {
 			@Override
@@ -78,25 +84,25 @@ public class AbstractPage extends WebPage {
 				setResponsePage(new UsersPage());
 			}
 		});
-		add(new Link<Void>("edit-accounts-page-link") {
+		container.add(new Link<Void>("edit-accounts-page-link") {
 			@Override
 			public void onClick() {
 				setResponsePage(new EditAccountsPage());
 			}
 		});
-		add(new Link<Void>("edit-trip-lists-page-link") {
+		container.add(new Link<Void>("edit-trip-lists-page-link") {
 			@Override
 			public void onClick() {
 				setResponsePage(new EditTripListsPage());
 			}
 		});
-		add(new Link<Void>("edit-bills-page-link") {
+		container.add(new Link<Void>("edit-bills-page-link") {
 			@Override
 			public void onClick() {
 				setResponsePage(new EditBillsPage());
 			}
 		});
-		add(new Link<Void>("edit-bank-details-page-link") {
+		container.add(new Link<Void>("edit-bank-details-page-link") {
 			@Override
 			public void onClick() {
 				setResponsePage(new EditBankDetailsPage());

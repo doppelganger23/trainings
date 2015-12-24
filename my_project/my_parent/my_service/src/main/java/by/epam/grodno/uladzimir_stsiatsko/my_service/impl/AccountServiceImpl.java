@@ -2,6 +2,8 @@ package by.epam.grodno.uladzimir_stsiatsko.my_service.impl;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,8 @@ import by.epam.grodno.uladzimir_stsiatsko.my_service.AccountService;
 
 @Service
 public class AccountServiceImpl implements AccountService {
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(AccountServiceImpl.class);
 
 	@Autowired
 	private AccountDao accDao;	
@@ -50,8 +54,10 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public String getAccessLevel(int id){
 		if (accDao.getById(id) == null){
+			LOGGER.info("returning null");
 			return null;
 		}
+		LOGGER.info("returning " + accDao.getById(id).getAccessLevel());
 		return accDao.getById(id).getAccessLevel();
 	}
 
