@@ -55,7 +55,7 @@ a {
 	color:blue;
 }
 a:hover {
-	color:dark-blue;
+	color:black;
 }
 
 fieldset {
@@ -277,26 +277,29 @@ div.sidebar {
 	width:209px;
 	padding-top:25px;
 }
+/**
 div.sidebar ul {
 	list-style:none;
 	margin:0;
-}
-div.sidebar ul li ul {
+}**/
+div.sidebar ul {
+list-style:none;
+	margin:0;
 	margin-left:10px;
 	margin-bottom:30px;
 	padding:7px 0 0;
 	color:#fff;
 }
-div.sidebar ul li ul li {
+div.sidebarul li {
 	padding:0 0 8px;
 	font-size:11px;
 }
-div.sidebar ul li ul li a, div.subscribe a {
+div.sidebar ul li a, div.subscribe a {
 	font-family:"Trebuchet MS", Verdana, Arial;
 	font-weight:bold;
 	color:#57A3EE;
 }
-div.sidebar ul li ul li a:hover, div.subscribe a:hover {
+div.sidebar ul li a:hover, div.subscribe a:hover {
 	color:#1058A0;
 }
 div.sidebar h4 {

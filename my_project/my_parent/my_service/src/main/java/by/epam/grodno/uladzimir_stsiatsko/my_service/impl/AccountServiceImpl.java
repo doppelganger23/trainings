@@ -54,10 +54,10 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public String getAccessLevel(int id){
 		if (accDao.getById(id) == null){
-			LOGGER.info("returning null");
+			LOGGER.debug("returning null");
 			return null;
 		}
-		LOGGER.info("returning " + accDao.getById(id).getAccessLevel());
+		LOGGER.debug("returning " + accDao.getById(id).getAccessLevel());
 		return accDao.getById(id).getAccessLevel();
 	}
 

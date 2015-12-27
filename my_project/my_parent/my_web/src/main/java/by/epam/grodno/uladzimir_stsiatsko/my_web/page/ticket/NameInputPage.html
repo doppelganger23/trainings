@@ -1,4 +1,20 @@
 <!DOCTYPE html>
 <wicket:extend xmlns:wicket="http://wicket.apache.org">
 	<h1>Name Input Page</h1>
+
+	<form wicket:id="login-form">
+		<table>
+			<tr>
+				<td>login:</td>
+				<td><input type="text" wicket:id="login" /></td>
+			</tr>
+			<tr>
+				<td>password:</td>
+				<td><input type="password" wicket:id="password" /></td>
+			</tr>
+		</table>
+		<button type="submit" wicket:id="submit">LOGIN</button>
+	</form><br/>
+	<p>Don't have an account? </p><button type="submit" wicket:id="register">Register</button>
+	<div wicket:id="feedback"></div>
 </wicket:extend>

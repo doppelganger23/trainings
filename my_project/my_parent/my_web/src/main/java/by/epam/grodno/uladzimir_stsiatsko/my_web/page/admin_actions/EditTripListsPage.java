@@ -9,6 +9,7 @@ import org.apache.wicket.datetime.markup.html.form.DateTextField;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.SubmitLink;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
 
@@ -38,6 +39,7 @@ public class EditTripListsPage extends AbstractPage {
 	@Override
 	protected void onInitialize() {
 		super.onInitialize();
+		add(new FeedbackPanel("feedback"));
 
 		final TripList newTripList = new TripList();
 
@@ -59,13 +61,16 @@ public class EditTripListsPage extends AbstractPage {
 		form.add(routeIdChoice);
 
 		// date part, without time yet
-		form.add(new DateTextField("departure-date", new PropertyModel<Date>(newTripList, "departureDate"),
-				new StyleDateConverter("S-", true)).add(new CustomDatePicker()));
+		DateTextField dateField = new DateTextField("departure-date",
+				new PropertyModel<Date>(newTripList, "departureDate"), new StyleDateConverter("S-", true));
+		dateField.add(new CustomDatePicker());
+		dateField.setRequired(true);
+		form.add(dateField);
 
 		form.add(new SubmitLink("submit-button") {
 			@Override
 			public void onSubmit() {
-				//добавить проверку маршрутов на совпадение
+				// добавить проверку маршрутов на совпадение
 				newTripList.setTrainId(trainModel.getObject().getId());
 				newTripList.setRouteId(routeModel.getObject().getId());
 				tlService.addTripList(newTripList);

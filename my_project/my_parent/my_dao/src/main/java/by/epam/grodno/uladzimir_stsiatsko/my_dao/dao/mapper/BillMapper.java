@@ -21,6 +21,7 @@ public class BillMapper implements RowMapper<Bill> {
 		int fromBlock = rs.getInt("from_block");
 		int toBlock = rs.getInt("to_block");
 		Date creationDate = rs.getDate("creation_date");
+		String currencyOfPayment = rs.getString("currency_of_payment");
 		Bill bill = new Bill();
 		bill.setId(id);
 		bill.setAccountId(accountId);
@@ -31,6 +32,7 @@ public class BillMapper implements RowMapper<Bill> {
 		bill.setFromBlock(fromBlock);
 		bill.setToBlock(toBlock);
 		bill.setCreationDate(creationDate);
+		bill.setCurrencyOfPayment(currencyOfPayment);
 		return bill;
 	}
 	

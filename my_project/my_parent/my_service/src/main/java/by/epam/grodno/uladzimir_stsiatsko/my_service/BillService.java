@@ -7,4 +7,8 @@ public interface BillService {
 	void addBill(Bill bill);
 
 	double countPrice (Bill bill);
+	
+	//supported types are USD and BYR, but you can add more
+	int getBillingNumber(String currencyType);
+	
 }

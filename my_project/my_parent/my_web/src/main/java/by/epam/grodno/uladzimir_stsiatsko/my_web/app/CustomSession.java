@@ -44,15 +44,15 @@ public class CustomSession extends AuthenticatedWebSession {
 			currentuserid = id;
 			roles = new Roles();
 			roles.add("passenger");
-			LOGGER.info("passenger role added");
-			LOGGER.info(id.toString());
+			LOGGER.debug("passenger role added");
+			LOGGER.debug(id.toString());
 			if ("admin".equals(accService.getAccessLevel(currentuserid))) {
 				roles.add("admin");
-				LOGGER.info("admin role added");
+				LOGGER.debug("admin role added");
 			}
 			return true;
 		}
-		LOGGER.info("no roles added");
+		LOGGER.debug("no roles added");
 		return false;
 	}
 
@@ -61,25 +61,25 @@ public class CustomSession extends AuthenticatedWebSession {
 		super.signOut();
 		currentuserid = null;
 		roles = null;
-		LOGGER.info("roles deleted");
+		LOGGER.debug("roles deleted");
 	}
 
 	@Override
 	public Roles getRoles() {
 		if (currentuserid == null) {
-			LOGGER.info("no roles confirmed");
+			LOGGER.debug("no roles confirmed");
 			return null;
 		}
 		if (roles == null) {
 			roles = new Roles();
 			roles.add("passenger");
-			LOGGER.info("passenger role confirmed");
+			LOGGER.debug("passenger role confirmed");
 			if ("admin".equals(accService.getAccessLevel(currentuserid))) {
 				roles.add("admin");
-				LOGGER.info("admin role confirmed");
+				LOGGER.debug("admin role confirmed");
 			}
 		}
-		LOGGER.info("returning roles: " + roles);
+		LOGGER.debug("returning roles: " + roles);
 		return roles;
 	}
 

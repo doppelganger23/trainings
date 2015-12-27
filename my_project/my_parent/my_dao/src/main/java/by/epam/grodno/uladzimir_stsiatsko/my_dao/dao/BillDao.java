@@ -11,4 +11,7 @@ public interface BillDao {
 	//counts price for each block through which passenger will travel
 	List<Double> getPriceElements(Bill bill);
 	
+	//supported types are USD and BYR, but you can add more
+	int getBillingNumber(String currencyType);
+	
 }

@@ -16,6 +16,7 @@ public class Bill {
 	private int fromBlock;
 	private int toBlock;
 	private Date creationDate;
+	private String currencyOfPayment;
 	
 	public int getId() {
 		return id;
@@ -70,6 +71,12 @@ public class Bill {
 	}
 	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
+	}
+	public String getCurrencyOfPayment() {
+		return currencyOfPayment;
+	}
+	public void setCurrencyOfPayment(String currencyOfPayment) {
+		this.currencyOfPayment = currencyOfPayment;
 	}
 	
 	

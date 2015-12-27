@@ -77,7 +77,7 @@ public class SearchResultPage extends AbstractPage{
 				item.add(new Label("to-station", sResult.getToStation()));
 				item.add(new Label("arrival-date", sResult.getArrivalDate()));			
 
-				item.add(new Link("buy-ticket-link") {
+				item.add(new Link<Void>("buy-ticket-link") {
 					@Override
 					public void onClick() {
 						setResponsePage(new BuyTicketPage(sResult));

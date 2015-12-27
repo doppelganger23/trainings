@@ -14,19 +14,15 @@ import by.epam.grodno.uladzimir_stsiatsko.my_web.page.search.SearchPage;
 
 public class AbstractPage extends WebPage {
 
-	public AbstractPage() {
-		
-//		protected void onInitialize(){
-		add(new Link<Void>("home-page-link") {
+	// public AbstractPage() {
+
+	protected void onInitialize() {
+		super.onInitialize();
+		//убрать из финальной версии
+		add(new Link<Void>("users-page-link") {
 			@Override
 			public void onClick() {
-				setResponsePage(new HomePage());
-			}
-		});
-		add(new Link<Void>("search-page-link") {
-			@Override
-			public void onClick() {
-				setResponsePage(new SearchPage());
+				setResponsePage(new UsersPage());
 			}
 		});
 		// add(new Link<Void>("admin-actions-page-link") {
@@ -58,32 +54,21 @@ public class AbstractPage extends WebPage {
 			}
 		};
 		add(logOutLink);
-		
+
 		WebMarkupContainer container = new WebMarkupContainer("container");
 		add(container);
-		if (CustomSession.get().getRoles() == null || !CustomSession.get().getRoles().hasRole("admin")) {
-			
-		} else {
-			
-		}
-
+		
 		if (CustomSession.get().getRoles() == null) {
 			logOutLink.setVisible(false);
 			container.setVisible(false);
 		} else {
 			logInLink.setVisible(false);
 			regLink.setVisible(false);
-			if(!CustomSession.get().getRoles().hasRole("admin")){
+			if (!CustomSession.get().getRoles().hasRole("admin")) {
 				container.setVisible(false);
 			}
 		}
-
-		add(new Link<Void>("users-page-link") {
-			@Override
-			public void onClick() {
-				setResponsePage(new UsersPage());
-			}
-		});
+		
 		container.add(new Link<Void>("edit-accounts-page-link") {
 			@Override
 			public void onClick() {
@@ -108,6 +93,20 @@ public class AbstractPage extends WebPage {
 				setResponsePage(new EditBankDetailsPage());
 			}
 		});
+
+		add(new Link<Void>("home-page-link") {
+			@Override
+			public void onClick() {
+				setResponsePage(new HomePage());
+			}
+		});
+		add(new Link<Void>("search-page-link") {
+			@Override
+			public void onClick() {
+				setResponsePage(new SearchPage());
+			}
+		});
+		
 
 	}
 }

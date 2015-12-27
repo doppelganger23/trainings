@@ -22,7 +22,9 @@
 			<td><span wicket:id="chosen-arrival-date"></span></td>
 		</tr>
 	</table><br/>
-	<h4>The ticket cost is <span wicket:id="payment-value"></span> rub.</h4>
+	<form wicket:id="confirmation-form">
+	<h4>The ticket cost is <span wicket:id="payment-value"></span> <select wicket:id="currency-type"></select></h4>
+<!-- 	<button wicket:id="calculate-link">update</button> -->
 	<button wicket:id="confirm-ticket-link">Confirm purchase</button>
-	
+	</form>
 </wicket:extend>

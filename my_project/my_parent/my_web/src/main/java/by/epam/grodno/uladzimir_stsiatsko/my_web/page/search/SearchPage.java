@@ -1,8 +1,6 @@
 package by.epam.grodno.uladzimir_stsiatsko.my_web.page.search;
 
 import java.util.Arrays;
-import java.util.List;
-import java.util.function.Consumer;
 
 import javax.inject.Inject;
 
@@ -14,11 +12,9 @@ import org.apache.wicket.markup.html.form.SubmitLink;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
-import org.apache.wicket.model.Model;
 import org.apache.wicket.validation.validator.StringValidator;
 
 import by.epam.grodno.uladzimir_stsiatsko.my_dao.model.Request;
-import by.epam.grodno.uladzimir_stsiatsko.my_dao.model.SearchResult;
 import by.epam.grodno.uladzimir_stsiatsko.my_service.SearchResultService;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.app.CustomDatePicker;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.AbstractPage;

@@ -29,4 +29,13 @@ public class BillServiceImpl implements BillService {
 		}
 		return price;
 	}
+	
+	@Override
+	public int getBillingNumber(String currencyType){
+		int result = billDao.getBillingNumber(currencyType);
+		if(result == 0){
+			throw new IllegalArgumentException("Supported currency types: USD, BYR");
+		}
+		return result;
+	}
 }

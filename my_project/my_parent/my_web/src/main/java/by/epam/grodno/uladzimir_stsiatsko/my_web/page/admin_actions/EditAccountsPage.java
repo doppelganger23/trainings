@@ -45,7 +45,7 @@ public class EditAccountsPage extends AbstractPage {
 				item.add(new Label("email"));
 				item.add(new Label("accessLevel"));
 
-				item.add(new Link("delete-link") {
+				item.add(new Link<Void>("delete-link") {
 					@Override
 					public void onClick() {
 						//дописать ворнинг месседж
@@ -53,7 +53,7 @@ public class EditAccountsPage extends AbstractPage {
 					}
 				});
 				
-				item.add(new Link("edit-link") {
+				item.add(new Link<Void>("edit-link") {
 					@Override
 					public void onClick() {
 						setResponsePage(new UpdateAccountPage(acc));
