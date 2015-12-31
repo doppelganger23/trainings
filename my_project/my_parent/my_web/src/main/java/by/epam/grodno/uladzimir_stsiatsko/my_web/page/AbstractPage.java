@@ -5,6 +5,7 @@ import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.link.Link;
 
 import by.epam.grodno.uladzimir_stsiatsko.my_web.app.CustomSession;
+import by.epam.grodno.uladzimir_stsiatsko.my_web.app.LangSelectionLink;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.admin_actions.EditAccountsPage;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.admin_actions.EditBankDetailsPage;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.admin_actions.EditBillsPage;
@@ -14,24 +15,25 @@ import by.epam.grodno.uladzimir_stsiatsko.my_web.page.search.SearchPage;
 
 public class AbstractPage extends WebPage {
 
-	// public AbstractPage() {
-
 	protected void onInitialize() {
 		super.onInitialize();
-		//убрать из финальной версии
-		add(new Link<Void>("users-page-link") {
+		
+		add(new LangSelectionLink("ru"));
+		add(new LangSelectionLink("en"));
+		
+		add(new Link<Void>("home-page-link") {
 			@Override
 			public void onClick() {
-				setResponsePage(new UsersPage());
+				setResponsePage(new HomePage());
 			}
 		});
-		// add(new Link<Void>("admin-actions-page-link") {
-		// @Override
-		// public void onClick() {
-		// setResponsePage(AdminActionsPage.class);
-		// }
-		// });
-
+		add(new Link<Void>("search-page-link") {
+			@Override
+			public void onClick() {
+				setResponsePage(new SearchPage());
+			}
+		});
+		
 		Link<Void> regLink = new Link<Void>("registration-page-link") {
 			@Override
 			public void onClick() {
@@ -93,20 +95,6 @@ public class AbstractPage extends WebPage {
 				setResponsePage(new EditBankDetailsPage());
 			}
 		});
-
-		add(new Link<Void>("home-page-link") {
-			@Override
-			public void onClick() {
-				setResponsePage(new HomePage());
-			}
-		});
-		add(new Link<Void>("search-page-link") {
-			@Override
-			public void onClick() {
-				setResponsePage(new SearchPage());
-			}
-		});
 		
-
 	}
 }

@@ -4,6 +4,8 @@ import java.util.Arrays;
 
 import javax.inject.Inject;
 
+import org.apache.wicket.authorization.Action;
+import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeAction;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.SubmitLink;
@@ -17,6 +19,7 @@ import by.epam.grodno.uladzimir_stsiatsko.my_dao.model.TripList;
 import by.epam.grodno.uladzimir_stsiatsko.my_service.AccountService;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.AbstractPage;
 
+@AuthorizeAction(action=Action.RENDER, roles={"admin"})
 public class UpdateAccountPage extends AbstractPage {
 	
 	private Account acc;

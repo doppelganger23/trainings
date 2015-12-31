@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.inject.Inject;
 
+import org.apache.wicket.authorization.Action;
+import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeAction;
 import org.apache.wicket.datetime.StyleDateConverter;
 import org.apache.wicket.datetime.markup.html.form.DateTextField;
 import org.apache.wicket.markup.html.form.DropDownChoice;
@@ -25,6 +27,7 @@ import by.epam.grodno.uladzimir_stsiatsko.my_web.page.HomePage;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.renderer.RouteChoiceRenderer;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.renderer.TrainChoiceRenderer;
 
+@AuthorizeAction(action=Action.RENDER, roles={"admin"})
 public class EditTripListsPage extends AbstractPage {
 
 	@Inject

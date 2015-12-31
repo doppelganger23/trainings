@@ -6,7 +6,6 @@
 	<link rel="stylesheet" href="css/styles.css" type="text/css" />
 </head>
 <body>
-
 <!-- wrapper, adds curve background images -->
 <div id="wrapper">
 	<div class="inner-wrapper">
@@ -14,28 +13,25 @@
 		<div class="header clear">
 			<!-- REGISTER OPTIONS -->
 			<div class="subscribe">
-				<p><a wicket:id="registration-page-link">Register Account</a> | <a wicket:id="log-in-page-link">Log In</a> <a wicket:id="log-out-link">Log Out</a> | </p>
+				<p><a wicket:id="ru"><wicket:message key="locale.ru"/></a> | <a wicket:id="en"><wicket:message key="locale.en"/></a></p>
 			</div>		
 			<!-- HEADER -->
-			<h1><a href="https://github.com/h23GitHub/trainings/tree/master/my_project">Railway Ticket </a></h1>
-			<h2>online window</h2>		
+			<h1><a href="https://github.com/h23GitHub/trainings/tree/master/my_project"><wicket:message key="emblem.main"/> </a></h1>
+			<h2><wicket:message key="emblem.small"/></h2>		
 		</div>
 		
 		<div class="menu"> 
 			<ul class="clear">
-				<li><a wicket:id="home-page-link" title="TODO: add content"><span>Home</span></a></li>
-				<li><a wicket:id="search-page-link"><span>Search</span></a></li>
-<!-- 				<li><a wicket:id="admin-actions-page-link"><span>Admin actions</span></a></li> -->
-				<li><a href="#"><span>Unused</span></a></li>
-				<li><a href="#"><span>Contact</span></a></li>				
+				<li><a wicket:id="home-page-link" title="TODO: localize title"><span><wicket:message key="menu.home"/></span></a></li>
+				<li><a wicket:id="search-page-link"><span><wicket:message key="menu.search"/></span></a></li>
+				<li><a href="#"><span><wicket:message key="menu.about"/></span></a></li>
+				<li><a href="#"><span><wicket:message key="menu.contact"/></span></a></li>				
 			</ul>
 		</div>
 		
 		<div class="body clear">
 			<div class="content"> 
 				<wicket:child/>
-				
-				<!-- отступы: -->
 				<br /><br />
 
 				<div class="copyright">
@@ -44,11 +40,11 @@
 			</div>
 			
 			<div class="sidebar">			
-						<h4>Навигация</h4>					
+						<h4>ACTIONS</h4>					
 						<ul>
-							<li><a wicket:id="users-page-link" title="Just for tests">To users page</a></li>
-							<li><a href="http://www.ya.ru" title="spyka Webmaster resources">yandex</a></li>
-							<li><a href="http://www.google.com" title="free web templates">google</a></li>
+							<li><a wicket:id="registration-page-link">Register Account</a></li>
+							<li><a wicket:id="log-in-page-link">Log In</a></li>
+							<li><a wicket:id="log-out-link">Log Out</a></li>
 						</ul>
 					
 					<div wicket:id="container">
@@ -61,9 +57,8 @@
 						</ul>
 					</div>
 			</div>
-		</div><!-- BODY CLEAR END -->
-		
-	</div><!-- INNER WRAPPER END -->
-</div><!-- WRAPPER END -->
+		</div>
+	</div>
+</div>
 </body>
 </html>
