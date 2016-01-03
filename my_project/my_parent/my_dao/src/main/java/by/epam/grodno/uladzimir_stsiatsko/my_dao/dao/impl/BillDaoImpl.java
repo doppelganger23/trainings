@@ -44,4 +44,8 @@ public class BillDaoImpl implements BillDao {
 			return 0;
 		}
 	}
+	
+	public void setPaid(int id, boolean isPaid){
+		jdbcTemplate.update(String.format("UPDATE bill SET is_paid = %s WHERE id = %s ;", isPaid, id));
+	}
 }

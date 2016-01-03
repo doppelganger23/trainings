@@ -5,5 +5,7 @@ import by.epam.grodno.uladzimir_stsiatsko.my_dao.model.TripList;
 public interface TripListService {
 	
 	void addTripList(TripList tripList);
+	
+	void deleteTripList(int id);
 
 }

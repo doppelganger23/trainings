@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <wicket:extend xmlns:wicket="http://wicket.apache.org">
-	<h1>Search Result Page</h1>
+	<h1><wicket:message key="header.SRPage" /></h1>
 	<table>
 		<thead>
 			<tr>
-				<th>Route Name</th>
-				<th>Type</th>
-				<th>Train Number</th>
-				<th>From</th>
-				<th>Departing</th>
-				<th>To</th>
-				<th>Arrives</th>
+				<th><wicket:message key="mark.routeName" /></th>
+				<th><wicket:message key="mark.type" /></th>
+				<th><wicket:message key="mark.trainNumber" /></th>
+				<th><wicket:message key="mark.from" /></th>
+				<th><wicket:message key="mark.departing" /></th>
+				<th><wicket:message key="mark.to" /></th>
+				<th><wicket:message key="mark.arrives" /></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -22,7 +22,7 @@
 				<td><span wicket:id="departure-date"></span></td>
 				<td><span wicket:id="to-station"></span></td>
 				<td><span wicket:id="arrival-date"></span></td>
-				<td><button type="button" wicket:id="buy-ticket-link">Buy Ticket</button></td>
+				<td><button type="button" wicket:id="buy-ticket-link"><wicket:message key="button.buyTicket" /></button></td>
 			</tr>
 		</tbody>
 	</table>

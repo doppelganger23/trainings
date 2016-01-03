@@ -38,4 +38,9 @@ public class BillServiceImpl implements BillService {
 		}
 		return result;
 	}
+	
+	@Override
+	public void setPaid(int id, boolean isPaid){
+		billDao.setPaid(id, isPaid);
+	}
 }

@@ -1,25 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-	<entry key="button.submit">ОТПРАВИТЬ</entry>
 	<entry key="button.register">РЕГИСТРАЦИЯ</entry>
-	
+	<entry key="button.search">ПОИСК</entry>
+	<entry key="button.submit">ОТПРАВИТЬ</entry>
+	<entry key="button.buyTicket">Купить билет</entry>
+	<entry key="button.confirmPurchase">Подтвердить покупку</entry>
+	<entry key="button.delete">Удалить</entry>
+	<entry key="button.edit">Править</entry>
+	<entry key="button.setPaid">Оплачено</entry>
+
 	<entry key="emblem.main">Железнодорожная Касса</entry>
 	<entry key="emblem.small">онлайн-сервис</entry>
 
 	<entry key="header.loginPage">Страница входа</entry>
-	
+	<entry key="header.searchPage">Страница поиска</entry>
+	<entry key="header.actions">ДЕЙСТВИЯ</entry>
+	<entry key="header.adminActions">АДМИНИСТРАТОРУ</entry>
+	<entry key="header.SRPage">Результаты поиска:</entry>
+	<entry key="header.BuyTicketPage">Страница покупки билета</entry>
+	<entry key="header.trainChosen">Вы выбрали поезд:</entry>
+	<entry key="header.BankDetailsPage">Реквизиты оплаты</entry>
+	<entry key="header.editAccsPage">Учетные записи:</entry>
+
 	<entry key="locale.ru">Русский</entry>
 	<entry key="locale.en">Английский</entry>
 
+	<entry key="label.departureStation">Станция отправления</entry>
+	<entry key="label.departureDate">Дата отправления</entry>
+	<entry key="label.destinationStation">Станция назначения</entry>
+	<entry key="label.arrivalDate">Дата прибытия</entry>
+	<entry key="label.yourBillingNumber">Номер счета:</entry>
+	<entry key="label.yourPaymentValue">Сумма к оплате:</entry>
+
+	<entry key="link.registerAcc">Регистрация</entry>
+	<entry key="link.logIn">Войти</entry>
+	<entry key="link.logOut">Выйти</entry>
+	<entry key="link.editAccs">Учетные записи</entry>
+	<entry key="link.editTripLists">Списки рейсов</entry>
+	<entry key="link.editBills">Выданные счета</entry>
+	<entry key="link.editBankD">Банковская информация</entry>
+
 	<entry key="mark.login">Логин:</entry>
 	<entry key="mark.password">Пароль:</entry>
-	
+	<entry key="mark.routeName">Маршрут</entry>
+	<entry key="mark.type">Тип</entry>
+	<entry key="mark.trainNumber">Номер поезда</entry>
+	<entry key="mark.from">Из</entry>
+	<entry key="mark.departing">Отправляется</entry>
+	<entry key="mark.to">В</entry>
+	<entry key="mark.arrives">Прибывает</entry>
+	<entry key="mark.ticketCostIs">Билет стоит </entry>
+	<entry key="mark.actions">Действия</entry>
+
 	<entry key="menu.home">ДОМАШНЯЯ</entry>
 	<entry key="menu.search">ПОИСК</entry>
 	<entry key="menu.about">О САЙТЕ</entry>
 	<entry key="menu.contact">КОНТАКТЫ</entry>
 
 	<entry key="msg.haveAcc">Не зарегистрированы?</entry>
+
+	<entry key="paging.id">ID</entry>
+	<entry key="paging.login">Логин</entry>
+	<entry key="paging.firstName">Имя</entry>
+	<entry key="paging.lastName">Фамилия</entry>
+	<entry key="paging.email">Электронная почта</entry>
+	<entry key="paging.accessLevel">Уровень доступа</entry>
+	<entry key="paging.billId">ID счета</entry>
+	<entry key="paging.paymentValue">Сумма платежа</entry>
+	<entry key="paging.currencyOfPayment">Валюта оплаты</entry>
+	<entry key="paging.billingNumber">Номер счета</entry>
+	<entry key="paging.creationDate">Дата создания</entry>
+	<entry key="paging.isPaid">Оплачено?</entry>
+	<entry key="paging.trainNumber">Номер поезда</entry>
+	<entry key="paging.routeType">Тип вагона</entry>
+	<entry key="paging.routeName">Маршрут</entry>
+	<entry key="paging.departureDate">Время отправления</entry>
+	<entry key="paging.ticketsSold">Продано билетов</entry>
+
+	<entry key="title.main">Онлайн-сервис Железнодорожная Касса</entry>
+
+	<entry key="header.updateAccPage">Изменение учетной записи</entry>
+	<entry key="label.login">Логин</entry>
+	<entry key="label.firstName">Имя</entry>
+	<entry key="label.lastName">Фамилия</entry>
+	<entry key="label.email">Электронная почта</entry>
+	<entry key="label.accessLevel">Уровень доступа</entry>
+	<entry key="button.updateAcc">Применить обновления</entry>
+
+	<entry key="header.editTLPage">Добавить рейс в списки</entry>
+	<entry key="label.trainNumber">Номер поезда</entry>
+	<entry key="label.routeName">Название маршрута</entry>
+	<entry key="label.departureDate">Дата отправления</entry>
+	<entry key="button.addTripList">Добавить</entry>
+
+	<entry key="header.editBillsPage">Выданные счета</entry>
+	<entry key="header.editBankDPage">Банковская информация</entry>
 
 </properties>

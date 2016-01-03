@@ -58,4 +58,8 @@ public class TripListDaoImpl implements TripListDao {
 		return jdbcTemplate.query("SELECT * FROM trip_list", tlMapper);
 	}
 	
+	public void deleteTripList(int id){
+		jdbcTemplate.update(String.format("DELETE FROM trip_list WHERE id = %s", id));
+	}
+	
 }

@@ -14,4 +14,6 @@ public interface BillDao {
 	//supported types are USD and BYR, but you can add more
 	int getBillingNumber(String currencyType);
 	
+	void setPaid(int id, boolean isPaid);
+	
 }

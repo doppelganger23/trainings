@@ -11,4 +11,6 @@ public interface TripListDao {
 	
 	List<TripList> findTrips(Request request);
 	
+	void deleteTripList(int id);
+	
 }

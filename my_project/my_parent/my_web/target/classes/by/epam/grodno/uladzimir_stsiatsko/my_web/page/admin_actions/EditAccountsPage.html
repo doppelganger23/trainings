@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <wicket:extend xmlns:wicket="http://wicket.apache.org">
-	<h1>Edit Accounts Page</h1>
+	<h1><wicket:message key="header.editAccsPage" /></h1>
 	<table>
 		<thead>
 			<tr>
-				<th wicket:id="sortId">ID</th>
-				<th wicket:id="sortLogin">login</th>
-				<th wicket:id="sortFirstName">first name</th>
-				<th wicket:id="sortlName">last name</th>
-				<th wicket:id="sortEmail">email</th>
-				<th wicket:id="sortAccessLevel">access level</th>
-				<th>Actions</th>
+				<th wicket:id="sortId"><wicket:message key="paging.id" /></th>
+				<th wicket:id="sortLogin"><wicket:message key="paging.login" /></th>
+				<th wicket:id="sortFirstName"><wicket:message key="paging.firstName" /></th>
+				<th wicket:id="sortlName"><wicket:message key="paging.lastName" /></th>
+				<th wicket:id="sortEmail"><wicket:message key="paging.email" /></th>
+				<th wicket:id="sortAccessLevel"><wicket:message key="paging.accessLevel" /></th>
+				<th><wicket:message key="mark.actions" /></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -21,8 +21,8 @@
 				<td><span wicket:id="lName"></span></td>
 				<td><span wicket:id="email"></span></td>
 				<td><span wicket:id="accessLevel"></span></td>
-				<td><button type="button" wicket:id="delete-link">Delete</button>
-					<button type="button" wicket:id="edit-link">Edit</button></td>
+				<td><button type="button" wicket:id="delete-link"><wicket:message key="button.delete" /></button>
+					<button type="button" wicket:id="edit-link"><wicket:message key="button.edit" /></button></td>
 			</tr>
 		</tbody>
 	</table>
