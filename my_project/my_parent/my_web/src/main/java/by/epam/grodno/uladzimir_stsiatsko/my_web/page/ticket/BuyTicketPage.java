@@ -70,20 +70,20 @@ public class BuyTicketPage extends AbstractPage {
 		add(new Label("chosen-to-station", sResult.getToStation()));
 		add(new Label("chosen-arrival-date", sResult.getArrivalDate()));
 
-		Form<Void> form = new Form<Void>("confirmation-form");
+		Form<Void> confirmForm = new Form<Void>("confirmation-form");
 
 		BillMetaData metaBill = getSession().getMetaData(CURRENCY);
 		if (metaBill == null){
-			LOGGER.info("metadata is null");
+			LOGGER.debug("metadata is null");
 			displayedCurrency = "BYR";
 			displayedValue = bill.getPaymentValue();
 		} else {
-			LOGGER.info("metadata is not null");
+			LOGGER.debug("metadata is not null");
 			displayedCurrency = metaBill.getCurrency();
-			displayedValue = bill.getPaymentValue() * bdService.getByrExchangeRate(displayedCurrency);
+			displayedValue = bill.getPaymentValue() / bdService.getByrExchangeRate(displayedCurrency);
 		}
 		
-		form.add(new Label("payment-value", displayedValue));
+		confirmForm.add(new Label("payment-value", displayedValue));
 		final Model<String> currencyModel = new Model<>(displayedCurrency);
 
 		final DropDownChoice<String> currencyChoice = new DropDownChoice<String>("currency-type", currencyModel, bdService.findAllTypes()){
@@ -99,8 +99,7 @@ public class BuyTicketPage extends AbstractPage {
                 return true;
             }
         };;
-        //<<<AJAX GO HERE
-		form.add(currencyChoice);
+		confirmForm.add(currencyChoice);
 		
 		SubmitLink submitLink = new SubmitLink("confirm-ticket-link") {
 			@Override
@@ -116,31 +115,8 @@ public class BuyTicketPage extends AbstractPage {
 				}
 			}
 		};
-		form.add(submitLink);
-		add(form);
-		
-//		---AJAX
-//		currencyChoice.add(new AjaxEventBehavior("change"){
-//			@Override
-//			protected void onEvent(AjaxRequestTarget target) {
-//				String newCurrency = currencyModel.getObject();
-//				LOGGER.info("setting currency to " + newCurrency);
-//				defCurrency = newCurrency;
-//				target.add(currencyChoice);
-//			}
-//		});
-		
-//		AjaxSubmitLink ajaxSubmitLink = new AjaxSubmitLink("calculate-link"){
-//			@Override
-//			public void onSubmit(AjaxRequestTarget target, Form<?> form) {
-//				String newCurrency = currencyModel.getObject();
-//				LOGGER.info("setting currency to " + newCurrency);
-//				defCurrency = newCurrency;
-//				target.add(currencyChoice);
-//			}
-//		};
-//		ajaxSubmitLink.
-//		form.add(ajaxSubmitLink);
+		confirmForm.add(submitLink);
+		add(confirmForm);
 
 	}
 

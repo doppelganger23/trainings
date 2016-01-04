@@ -6,7 +6,7 @@ public class BankDetail implements Serializable {
 	
 	private String currencyOfPayment;
 	private int billingNumber;
-	private double byrExchangerRate;
+	private double byrExchangeRate;
 	
 	public String getCurrencyOfPayment() {
 		return currencyOfPayment;
@@ -20,11 +20,11 @@ public class BankDetail implements Serializable {
 	public void setBillingNumber(int billingNumber) {
 		this.billingNumber = billingNumber;
 	}
-	public double getByrExchangerRate() {
-		return byrExchangerRate;
+	public double getByrExchangeRate() {
+		return byrExchangeRate;
 	}
-	public void setByrExchangerRate(double byrExchangerRate) {
-		this.byrExchangerRate = byrExchangerRate;
+	public void setByrExchangeRate(double byrExchangerRate) {
+		this.byrExchangeRate = byrExchangerRate;
 	}
 
 }

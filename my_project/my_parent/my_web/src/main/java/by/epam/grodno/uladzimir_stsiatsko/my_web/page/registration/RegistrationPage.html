@@ -1,30 +1,30 @@
 <!DOCTYPE html>
 <wicket:extend xmlns:wicket="http://wicket.apache.org">
-	<h2>Registration Page</h2>
+	<h2><wicket:message key="header.registrationPage" /></h2>
 	<form wicket:id="registration-form">
 		<table>
 			<tr>
-				<td><label>Login</label></td>
+				<td><label><wicket:message key="label.login" /></label></td>
 				<td><input wicket:id="login" type="text" /></td>
 			</tr>
 			<tr>
-				<td><label>Password</label></td>
+				<td><label><wicket:message key="label.password" /></label></td>
 				<td><input wicket:id="password" type="password" /></td>
 			</tr>
 			<tr>
-				<td><label>First name</label></td>
+				<td><label><wicket:message key="label.firstName" /></label></td>
 				<td><input wicket:id="first-name" type="text" /></td>
 			</tr>
 			<tr>
-				<td><label>Last name</label></td>
+				<td><label><wicket:message key="label.lastName" /></label></td>
 				<td><input wicket:id="last-name" type="text" /></td>
 			</tr>
 			<tr>
-				<td><label>Email</label></td>
+				<td><label><wicket:message key="label.email" /></label></td>
 				<td><input wicket:id="email" type="text" /></td>
 			</tr>
 			<tr>
-				<td colspan="2"><button type="submit" wicket:id="submit-button">Register</button></td>
+				<td colspan="2"><button type="submit" wicket:id="submit-button"><wicket:message key="button.register" /></button></td>
 			</tr>
 		</table>
 	</form>

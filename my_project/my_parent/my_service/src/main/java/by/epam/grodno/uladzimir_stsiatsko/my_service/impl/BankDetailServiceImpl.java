@@ -10,34 +10,59 @@ import by.epam.grodno.uladzimir_stsiatsko.my_dao.model.BankDetail;
 import by.epam.grodno.uladzimir_stsiatsko.my_service.BankDetailService;
 
 @Service
-public class BankDetailServiceImpl implements BankDetailService{
-	
+public class BankDetailServiceImpl implements BankDetailService {
+
 	@Autowired
 	private BankDetailDao bdDao;
 	
+	public void addBankDetail(BankDetail bankDetail){
+		bdDao.addBankDetail(bankDetail);
+	}
+
 	@Override
-	public List<BankDetail> findAll(){
+	public void updateBankDetail(BankDetail bankDetail) {
+		bdDao.update(bankDetail);
+	}
+	
+	public void deleteBankDetail(String currencyOfPayment){
+		bdDao.deleteBankDetail(currencyOfPayment);
+	}
+
+	public List<BankDetail> getAll(long first, long count, String sortBy, String sortType) {
+		if ("ASCENDING".equals(sortType)) {
+			return bdDao.getAll(first, count, sortBy, "asc");
+		} else {
+			return bdDao.getAll(first, count, sortBy, "desc");
+		}
+	}
+
+	public int getCount(){
+		return bdDao.getCount();
+	}
+	
+	@Override
+	public List<BankDetail> findAll() {
 		return bdDao.getAll();
 	}
-	
+
 	@Override
-	public List<String> findAllTypes(){
+	public List<String> findAllTypes() {
 		return bdDao.getAllTypes();
 	}
-	
+
 	@Override
-	public double getByrExchangeRate(String currencyType){
+	public double getByrExchangeRate(String currencyType) {
 		double result = bdDao.getByrExchangeRate(currencyType);
-		if(result == 0){
+		if (result == 0) {
 			throw new IllegalArgumentException("currency type not supported");
 		}
 		return result;
 	}
-	
+
 	@Override
-	public int getBillingNumber(String currencyType){
+	public int getBillingNumber(String currencyType) {
 		int result = bdDao.getBillingNumber(currencyType);
-		if(result == 0){
+		if (result == 0) {
 			throw new IllegalArgumentException("currency type not supported");
 		}
 		return result;

@@ -9,6 +9,8 @@
 	<entry key="button.delete">Удалить</entry>
 	<entry key="button.edit">Править</entry>
 	<entry key="button.setPaid">Оплачено</entry>
+	<entry key="button.addBankDetail">Добавить</entry>
+	<entry key="button.updateBankDetail">Применить</entry>
 
 	<entry key="emblem.main">Железнодорожная Касса</entry>
 	<entry key="emblem.small">онлайн-сервис</entry>
@@ -22,6 +24,8 @@
 	<entry key="header.trainChosen">Вы выбрали поезд:</entry>
 	<entry key="header.BankDetailsPage">Реквизиты оплаты</entry>
 	<entry key="header.editAccsPage">Учетные записи:</entry>
+	<entry key="header.updateBankDPage">Редактировать банковскую информацию</entry>
+	<entry key="header.registrationPage">Регистрация</entry>
 
 	<entry key="locale.ru">Русский</entry>
 	<entry key="locale.en">Английский</entry>
@@ -32,6 +36,14 @@
 	<entry key="label.arrivalDate">Дата прибытия</entry>
 	<entry key="label.yourBillingNumber">Номер счета:</entry>
 	<entry key="label.yourPaymentValue">Сумма к оплате:</entry>
+	<entry key="label.currencyOfPayment">Валюта оплаты</entry>
+	<entry key="label.billingNumber">Номер счета</entry>
+	<entry key="label.byrExchangeRate">Курс белорусского рубля</entry>
+	<entry key="label.login">Логин</entry>
+	<entry key="label.password">Пароль</entry>
+	<entry key="label.firstName">Имя</entry>
+	<entry key="label.lastName">Фамилия</entry>
+	<entry key="label.email">Электронная почта</entry>
 
 	<entry key="link.registerAcc">Регистрация</entry>
 	<entry key="link.logIn">Войти</entry>
@@ -55,7 +67,7 @@
 
 	<entry key="menu.home">ДОМАШНЯЯ</entry>
 	<entry key="menu.search">ПОИСК</entry>
-	<entry key="menu.about">О САЙТЕ</entry>
+	<entry key="menu.about">АЛГОРИТМ ПОИСКА</entry>
 	<entry key="menu.contact">КОНТАКТЫ</entry>
 
 	<entry key="msg.haveAcc">Не зарегистрированы?</entry>
@@ -77,6 +89,8 @@
 	<entry key="paging.routeName">Маршрут</entry>
 	<entry key="paging.departureDate">Время отправления</entry>
 	<entry key="paging.ticketsSold">Продано билетов</entry>
+	<entry key="paging.billingNumber">Номер счета</entry>
+	<entry key="paging.byrExchangeRate">Курс белорусского рубля</entry>
 
 	<entry key="title.main">Онлайн-сервис Железнодорожная Касса</entry>
 

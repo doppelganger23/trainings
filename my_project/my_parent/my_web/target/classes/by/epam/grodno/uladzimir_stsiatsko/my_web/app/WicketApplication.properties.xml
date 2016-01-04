@@ -9,6 +9,8 @@
 	<entry key="button.delete">Delete</entry>
 	<entry key="button.edit">Edit</entry>
 	<entry key="button.setPaid">Set Paid</entry>
+	<entry key="button.addBankDetail">Add Bank Detail</entry>
+	<entry key="button.updateBankDetail">Update</entry>
 
 	<entry key="emblem.main">Railway Ticket</entry>
 	<entry key="emblem.small">online window</entry>
@@ -22,6 +24,8 @@
 	<entry key="header.trainChosen">You have chosen the train:</entry>
 	<entry key="header.BankDetailsPage">Bank Details Page</entry>
 	<entry key="header.editAccsPage">Edit Accounts Page</entry>
+	<entry key="header.updateBankDPage">Update Bank Details Page</entry>
+	<entry key="header.registrationPage">Registration Page</entry>
 
 	<entry key="label.departureStation">Departure Station</entry>
 	<entry key="label.departureDate">Departure Date</entry>
@@ -29,7 +33,15 @@
 	<entry key="label.arrivalDate">Arrival Date</entry>
 	<entry key="label.yourBillingNumber">Your billing number is:</entry>
 	<entry key="label.yourPaymentValue">Your payment value is:</entry>
-
+	<entry key="label.currencyOfPayment">Currency of Payment</entry>
+	<entry key="label.billingNumber">Billing Number</entry>
+	<entry key="label.byrExchangeRate">BYR Exchange Rate</entry>
+	<entry key="label.login">Login</entry>
+	<entry key="label.password">Password</entry>
+	<entry key="label.firstName">First Name</entry>
+	<entry key="label.lastName">Last Name</entry>
+	<entry key="label.email">Email</entry>
+	
 	<entry key="link.registerAcc">Register Account</entry>
 	<entry key="link.logIn">Log In</entry>
 	<entry key="link.logOut">Log Out</entry>
@@ -77,6 +89,8 @@
 	<entry key="paging.routeName">Route Name</entry>
 	<entry key="paging.departureDate">Departure Date</entry>
 	<entry key="paging.ticketsSold">Tickets Sold</entry>
+	<entry key="paging.billingNumber">Billing Number</entry>
+	<entry key="paging.byrExchangeRate">BYR Exchange Rate</entry>
 
 	<entry key="title.main">Online Railway Ticket Window</entry>
 	

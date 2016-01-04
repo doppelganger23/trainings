@@ -60,11 +60,6 @@ public class UpdateAccountPage extends AbstractPage {
 		emailField.add(StringValidator.maximumLength(50));
 		form.add(emailField);
 		
-//		TextField<String> accessLevelField = new TextField<String>("new-access-level", new PropertyModel<String>(acc, "accessLevel"));
-//		accessLevelField.setRequired(true);
-//		accessLevelField.add(StringValidator.maximumLength(50));
-//		form.add(accessLevelField);
-		
 		form.add(new DropDownChoice<String>("new-access-level", new PropertyModel<String>(acc, "accessLevel"), Arrays.asList("passenger", "admin")));
 		
 		

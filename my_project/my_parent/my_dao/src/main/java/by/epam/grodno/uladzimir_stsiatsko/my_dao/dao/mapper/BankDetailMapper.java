@@ -12,11 +12,11 @@ public class BankDetailMapper implements RowMapper<BankDetail> {
 	public BankDetail mapRow(ResultSet rs, int rowNum) throws SQLException {
 		String currencyOfPayment = rs.getString("currency_of_payment");
 		int billingNumber = rs.getInt("billing_number");
-		double byrExchangerRate = rs.getDouble("byr_exchange_rate");
+		double byrExchangeRate = rs.getDouble("byr_exchange_rate");
 		BankDetail bd = new BankDetail();
 		bd.setCurrencyOfPayment(currencyOfPayment);
 		bd.setBillingNumber(billingNumber);
-		bd.setByrExchangerRate(byrExchangerRate);
+		bd.setByrExchangeRate(byrExchangeRate);
 		return bd;
 	}
 }

@@ -31,7 +31,7 @@ public class RegistrationPage extends AbstractPage {
 		final Account newAcc = new Account();
 		newAcc.setAccessLevel("passenger");
 
-		Form<TripList> form = new Form<>("registration-form");
+		Form<Account> form = new Form<>("registration-form");
 		add(form);
 		TextField<String> loginField = new TextField<String>("login", new PropertyModel<String>(newAcc, "login"));
 		loginField.setRequired(true);
