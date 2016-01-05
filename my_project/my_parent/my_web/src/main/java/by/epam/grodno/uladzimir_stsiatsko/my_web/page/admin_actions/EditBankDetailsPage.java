@@ -29,20 +29,18 @@ import org.apache.wicket.validation.validator.StringValidator;
 import by.epam.grodno.uladzimir_stsiatsko.my_dao.model.BankDetail;
 import by.epam.grodno.uladzimir_stsiatsko.my_service.BankDetailService;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.AbstractPage;
+import by.epam.grodno.uladzimir_stsiatsko.my_web.page.admin_actions.update.UpdateBankDetailPage;
 
 @AuthorizeAction(action = Action.RENDER, roles = { "admin" })
 public class EditBankDetailsPage extends AbstractPage {
 
 	@Inject
 	BankDetailService bdService;
-	FeedbackPanel feedbackPanel;
 
 	@Override
 	protected void onInitialize() {
 		super.onInitialize();
-
-		feedbackPanel = new FeedbackPanel("feedback");
-		add(feedbackPanel);
+		add(new FeedbackPanel("feedback"));
 
 		final BankDetail newBankDetail = new BankDetail();
 		Form<BankDetail> addBDForm = new Form<BankDetail>("add-bank-detail-form");
@@ -70,11 +68,11 @@ public class EditBankDetailsPage extends AbstractPage {
 				String upperCaseCurrencyType = newBankDetail.getCurrencyOfPayment().toUpperCase();
 				newBankDetail.setCurrencyOfPayment(upperCaseCurrencyType);
 				if(bdService.findAllTypes().contains(upperCaseCurrencyType)){
-					error("This currency type allready exists");
+					error(getString("error.currencyExists"));
 				} else {
 					bdService.addBankDetail(newBankDetail);
+					setResponsePage(new EditBankDetailsPage());
 				}
-				setResponsePage(new EditBankDetailsPage());
 			}
 		});
 

@@ -1,5 +1,6 @@
 package by.epam.grodno.uladzimir_stsiatsko.my_web.page.ticket;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.inject.Inject;
@@ -22,7 +23,7 @@ import by.epam.grodno.uladzimir_stsiatsko.my_web.page.AbstractPage;
 
 public class BuyTicketPage extends AbstractPage {
 	private static final Logger LOGGER = LoggerFactory.getLogger(BuyTicketPage.class);
-	
+
 	public static MetaDataKey<BillMetaData> CURRENCY = new MetaDataKey<BillMetaData>() {
 	};
 
@@ -32,7 +33,7 @@ public class BuyTicketPage extends AbstractPage {
 	private BillService billService;
 	@Inject
 	private Bill bill;
-	
+
 	private String displayedCurrency;
 	private double displayedValue;
 
@@ -73,41 +74,43 @@ public class BuyTicketPage extends AbstractPage {
 		Form<Void> confirmForm = new Form<Void>("confirmation-form");
 
 		BillMetaData metaBill = getSession().getMetaData(CURRENCY);
-		if (metaBill == null){
+		if (metaBill == null) {
 			LOGGER.debug("metadata is null");
 			displayedCurrency = "BYR";
-			displayedValue = bill.getPaymentValue();
+			displayedValue = roundUpScale2(bill.getPaymentValue());
 		} else {
 			LOGGER.debug("metadata is not null");
 			displayedCurrency = metaBill.getCurrency();
-			displayedValue = bill.getPaymentValue() / bdService.getByrExchangeRate(displayedCurrency);
+			displayedValue = roundUpScale2(bill.getPaymentValue() / bdService.getByrExchangeRate(displayedCurrency));
 		}
-		
+
 		confirmForm.add(new Label("payment-value", displayedValue));
 		final Model<String> currencyModel = new Model<>(displayedCurrency);
 
-		final DropDownChoice<String> currencyChoice = new DropDownChoice<String>("currency-type", currencyModel, bdService.findAllTypes()){
-            @Override
-            protected void onSelectionChanged(final String newCurrency) {
-            	LOGGER.info("It's " + newCurrency + " time!");
-				getSession().setMetaData(CURRENCY,
-						new BillMetaData(newCurrency));
+		final DropDownChoice<String> currencyChoice = new DropDownChoice<String>("currency-type", currencyModel,
+				bdService.findAllTypes()) {
+			@Override
+			protected void onSelectionChanged(final String newCurrency) {
+				LOGGER.info("It's " + newCurrency + " time!");
+				getSession().setMetaData(CURRENCY, new BillMetaData(newCurrency));
 				setResponsePage(new BuyTicketPage(sResult));
-            }
-            @Override
-            protected boolean wantOnSelectionChangedNotifications() {
-                return true;
-            }
-        };;
+			}
+
+			@Override
+			protected boolean wantOnSelectionChangedNotifications() {
+				return true;
+			}
+		};
+		;
 		confirmForm.add(currencyChoice);
-		
+
 		SubmitLink submitLink = new SubmitLink("confirm-ticket-link") {
 			@Override
 			public void onSubmit() {
 				bill.setBillingNumber(bdService.getBillingNumber(displayedCurrency));
 				bill.setCurrencyOfPayment(displayedCurrency);
 				bill.setPaymentValue(displayedValue);
-				
+
 				if (currentuserid != 0) {
 					setResponsePage(new BankDetailsPage(bill));
 				} else {
@@ -118,6 +121,13 @@ public class BuyTicketPage extends AbstractPage {
 		confirmForm.add(submitLink);
 		add(confirmForm);
 
+	}
+
+	private double roundUpScale2(double aValue) {
+		BigDecimal decimal = new BigDecimal(aValue);
+		decimal = decimal.setScale(2, BigDecimal.ROUND_HALF_UP);
+		double result = decimal.doubleValue();
+		return result;
 	}
 
 }

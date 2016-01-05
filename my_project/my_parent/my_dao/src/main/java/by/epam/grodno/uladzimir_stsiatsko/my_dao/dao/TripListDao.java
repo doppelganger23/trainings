@@ -13,4 +13,6 @@ public interface TripListDao {
 	
 	void deleteTripList(int id);
 	
+	boolean containsTrain(int trainId);
+	
 }

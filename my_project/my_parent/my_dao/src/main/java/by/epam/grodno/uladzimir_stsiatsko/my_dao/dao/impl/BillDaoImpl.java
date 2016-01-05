@@ -16,6 +16,14 @@ public class BillDaoImpl implements BillDao {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	
+	public boolean containsBill(int tripListId){
+		Integer count = jdbcTemplate.queryForObject("SELECT count(1) FROM bill WHERE trip_list_id = ? ;", Integer.class, tripListId);
+		if(count.intValue() > 0){
+			return true;
+		}
+		return false;		
+	}
 
 	@Override
 	public void insert(Bill bill) {

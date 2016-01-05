@@ -62,4 +62,13 @@ public class TripListDaoImpl implements TripListDao {
 		jdbcTemplate.update(String.format("DELETE FROM trip_list WHERE id = %s", id));
 	}
 	
+	public boolean containsTrain(int trainId){
+		Integer count = jdbcTemplate.queryForObject("SELECT COUNT(1) FROM trip_list WHERE train_id = ? ;", Integer.class, trainId);
+		if(count.intValue() > 0){
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 }

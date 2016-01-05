@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 
 import by.epam.grodno.uladzimir_stsiatsko.my_dao.dao.BankDetailDao;
 import by.epam.grodno.uladzimir_stsiatsko.my_dao.dao.mapper.BankDetailMapper;
-import by.epam.grodno.uladzimir_stsiatsko.my_dao.model.Account;
 import by.epam.grodno.uladzimir_stsiatsko.my_dao.model.BankDetail;
 
 @Repository

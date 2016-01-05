@@ -16,6 +16,11 @@ public class BillServiceImpl implements BillService {
 	BillDao billDao;
 	
 	@Override
+	public boolean containsBill(int tripListId){
+		return billDao.containsBill(tripListId);
+	}
+	
+	@Override
 	public void addBill(Bill bill){
 		billDao.insert(bill);
 	}

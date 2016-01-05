@@ -7,5 +7,7 @@ public interface TripListService {
 	void addTripList(TripList tripList);
 	
 	void deleteTripList(int id);
+	
+	boolean containsTrain(int trainId);
 
 }

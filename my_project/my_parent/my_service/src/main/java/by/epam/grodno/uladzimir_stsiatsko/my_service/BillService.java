@@ -4,6 +4,8 @@ import by.epam.grodno.uladzimir_stsiatsko.my_dao.model.Bill;
 
 public interface BillService {
 	
+	boolean containsBill(int tripListId);
+	
 	void addBill(Bill bill);
 
 	double countPrice (Bill bill);

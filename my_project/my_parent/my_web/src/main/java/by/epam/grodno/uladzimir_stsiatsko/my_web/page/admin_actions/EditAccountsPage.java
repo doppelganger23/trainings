@@ -22,6 +22,7 @@ import org.apache.wicket.model.IModel;
 import by.epam.grodno.uladzimir_stsiatsko.my_dao.model.Account;
 import by.epam.grodno.uladzimir_stsiatsko.my_service.AccountService;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.AbstractPage;
+import by.epam.grodno.uladzimir_stsiatsko.my_web.page.admin_actions.update.UpdateAccountPage;
 
 @AuthorizeAction(action=Action.RENDER, roles={"admin"})
 public class EditAccountsPage extends AbstractPage {

@@ -32,6 +32,7 @@ import by.epam.grodno.uladzimir_stsiatsko.my_dao.model.Route;
 import by.epam.grodno.uladzimir_stsiatsko.my_dao.model.Train;
 import by.epam.grodno.uladzimir_stsiatsko.my_dao.model.TripList;
 import by.epam.grodno.uladzimir_stsiatsko.my_dao.model.TripListInfo;
+import by.epam.grodno.uladzimir_stsiatsko.my_service.BillService;
 import by.epam.grodno.uladzimir_stsiatsko.my_service.RouteService;
 import by.epam.grodno.uladzimir_stsiatsko.my_service.TrainService;
 import by.epam.grodno.uladzimir_stsiatsko.my_service.TripListInfoService;
@@ -43,6 +44,9 @@ import by.epam.grodno.uladzimir_stsiatsko.my_web.renderer.TrainChoiceRenderer;
 
 @AuthorizeAction(action=Action.RENDER, roles={"admin"})
 public class EditTripListsPage extends AbstractPage {
+	
+	@Inject
+	BillService bService;
 	
 	@Inject
 	TripListInfoService tlInfoService;
@@ -110,12 +114,16 @@ public class EditTripListsPage extends AbstractPage {
 				item.add(new Label("departureDate"));
 				item.add(new Label("ticketsSold"));
 				
-				item.add(new Link<Void>("delete-trip-list-link"){
+				Link<Void> deleteLink = new Link<Void>("delete-trip-list-link"){
 					@Override
 					public void onClick(){
-						tlService.deleteTripList(tlInfo.getId());
+							tlService.deleteTripList(tlInfo.getId());
 					}
-				});
+				};
+				item.add(deleteLink);
+				if(bService.containsBill(tlInfo.getId())){
+					deleteLink.setVisible(false);
+				}
 			}
 		};
 		add(dataView);

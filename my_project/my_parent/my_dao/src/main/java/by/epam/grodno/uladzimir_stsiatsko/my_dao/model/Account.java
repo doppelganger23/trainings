@@ -1,6 +1,8 @@
 package by.epam.grodno.uladzimir_stsiatsko.my_dao.model;
 
-public class Account {
+import java.io.Serializable;
+
+public class Account implements Serializable {
 
 	private int id;
 	private String login;

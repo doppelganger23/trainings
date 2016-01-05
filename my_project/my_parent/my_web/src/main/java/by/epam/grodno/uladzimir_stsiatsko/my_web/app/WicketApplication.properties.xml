@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
+
 	<entry key="button.register">REGISTER</entry>
 	<entry key="button.search">SEARCH</entry>
 	<entry key="button.submit">SUBMIT</entry>
@@ -11,10 +12,18 @@
 	<entry key="button.setPaid">Set Paid</entry>
 	<entry key="button.addBankDetail">Add Bank Detail</entry>
 	<entry key="button.updateBankDetail">Update</entry>
+	<entry key="button.addNewTrain">Add New Train</entry>
+	<entry key="button.updateTrain">Update Train</entry>
 
 	<entry key="emblem.main">Railway Ticket</entry>
 	<entry key="emblem.small">online window</entry>
 
+	<entry key="error.currencyExists">This currency type allready exists</entry>
+	<entry key="error.cantDeleteTripList">This trip list can't be deleted because of structural
+		integrity needs</entry>
+	<entry key="error.trainExists">Train with such number already exists</entry>
+	<entry key="error.trainNumberTaken">This number already used</entry>
+	
 	<entry key="header.loginPage">Log In Page</entry>
 	<entry key="header.searchPage">Search Page</entry>
 	<entry key="header.actions">ACTIONS</entry>
@@ -26,6 +35,8 @@
 	<entry key="header.editAccsPage">Edit Accounts Page</entry>
 	<entry key="header.updateBankDPage">Update Bank Details Page</entry>
 	<entry key="header.registrationPage">Registration Page</entry>
+	<entry key="header.editTrainPage">Edit Train Page</entry>
+	<entry key="header.updateTrainPage">Update Train Page</entry>
 
 	<entry key="label.departureStation">Departure Station</entry>
 	<entry key="label.departureDate">Departure Date</entry>
@@ -41,7 +52,9 @@
 	<entry key="label.firstName">First Name</entry>
 	<entry key="label.lastName">Last Name</entry>
 	<entry key="label.email">Email</entry>
-	
+	<entry key="label.trainNumber">Train Number</entry>
+	<entry key="label.passengersCapacity">Passengers Capacity</entry>
+
 	<entry key="link.registerAcc">Register Account</entry>
 	<entry key="link.logIn">Log In</entry>
 	<entry key="link.logOut">Log Out</entry>
@@ -49,6 +62,7 @@
 	<entry key="link.editTripLists">Edit Trip Lists</entry>
 	<entry key="link.editBills">Edit Bills</entry>
 	<entry key="link.editBankD">Edit Bank Details</entry>
+	<entry key="link.editTrains">Edit Trains</entry>
 
 	<entry key="locale.ru">Russian</entry>
 	<entry key="locale.en">English</entry>
@@ -71,7 +85,7 @@
 	<entry key="menu.contact">CONTACT</entry>
 
 	<entry key="msg.haveAcc">Do not have an account?</entry>
-	
+
 	<entry key="paging.id">Id</entry>
 	<entry key="paging.login">Login</entry>
 	<entry key="paging.firstName">First Name</entry>
@@ -91,9 +105,10 @@
 	<entry key="paging.ticketsSold">Tickets Sold</entry>
 	<entry key="paging.billingNumber">Billing Number</entry>
 	<entry key="paging.byrExchangeRate">BYR Exchange Rate</entry>
+	<entry key="paging.passengersCapacity">Passengers Capacity</entry>
 
 	<entry key="title.main">Online Railway Ticket Window</entry>
-	
+
 	<entry key="header.updateAccPage">Update Account Page</entry>
 	<entry key="label.login">Login</entry>
 	<entry key="label.firstName">First Name</entry>
@@ -101,13 +116,13 @@
 	<entry key="label.email">Email</entry>
 	<entry key="label.accessLevel">Access Level</entry>
 	<entry key="button.updateAcc">Update Account</entry>
-	
+
 	<entry key="header.editTLPage">Edit Trip Lists Page</entry>
 	<entry key="label.trainNumber">Train Number</entry>
 	<entry key="label.routeName">Route Name</entry>
 	<entry key="label.departureDate">Departure Date</entry>
 	<entry key="button.addTripList">Add Trip List</entry>
-	
+
 	<entry key="header.editBillsPage">Edit Bills Page</entry>
 	<entry key="header.editBankDPage">Edit Bank Details Page</entry>
 
