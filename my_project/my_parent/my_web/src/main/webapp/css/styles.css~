@@ -157,7 +157,6 @@ div.inner-wrapper {
 	background:transparent url('../images/wrapper-bottom.jpg') no-repeat scroll bottom left;
 }
 
-
 /** header **/
 div.header {
 	display:block;
@@ -277,13 +276,8 @@ div.sidebar {
 	width:209px;
 	padding-top:25px;
 }
-/**
 div.sidebar ul {
 	list-style:none;
-	margin:0;
-}**/
-div.sidebar ul {
-list-style:none;
 	margin:0;
 	margin-left:10px;
 	margin-bottom:30px;
@@ -341,4 +335,20 @@ div.copyright p {
 }
 div.copyright p a {
 	font-weight:bold;
+}
+
+div.wicket-aa {
+    background-color:white;
+    border:1px solid #CCCCCC;
+    color:black;
+}
+div.wicket-aa ul {
+   list-style-image:none;
+   list-style-position:outside;
+   list-style-type:none;
+   margin:0pt;
+   padding:5px;
+}
+div.wicket-aa ul li.selected {
+    background-color:#CCCCCC;
 }

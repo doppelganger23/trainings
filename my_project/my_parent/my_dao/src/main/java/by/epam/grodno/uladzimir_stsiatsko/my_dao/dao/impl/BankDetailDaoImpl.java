@@ -32,9 +32,6 @@ public class BankDetailDaoImpl implements BankDetailDao {
 	}
 	
 	public void deleteBankDetail(String currencyOfPayment){
-		if("BYR".equals(currencyOfPayment)){
-			throw new IllegalArgumentException("BYR row from this table is integral part of the logic and cannot be deleted");
-		}
 		jdbcTemplate.update("DELETE FROM bank_detail WHERE currency_of_payment = ? ;", currencyOfPayment);
 	}
 	

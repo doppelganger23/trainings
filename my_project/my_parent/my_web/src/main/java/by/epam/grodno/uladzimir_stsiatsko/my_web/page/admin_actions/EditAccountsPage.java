@@ -65,12 +65,12 @@ public class EditAccountsPage extends AbstractPage {
 		};
 		add(dataView);
 
-		add(new OrderByBorder<Object>("sortId", "sort-by-id", accsDataProvider));
-		add(new OrderByBorder<Object>("sortLogin", "sort-by-login", accsDataProvider));
-		add(new OrderByBorder<Object>("sortFirstName", "sort-by-first-name", accsDataProvider));
-		add(new OrderByBorder<Object>("sortlName", "sort-by-last-name", accsDataProvider));
-		add(new OrderByBorder<Object>("sortEmail", "sort-by-email", accsDataProvider));
-		add(new OrderByBorder<Object>("sortAccessLevel", "sort-by-access-level", accsDataProvider));
+		add(new OrderByBorder<Object>("sortId", "id", accsDataProvider));
+		add(new OrderByBorder<Object>("sortLogin", "login", accsDataProvider));
+		add(new OrderByBorder<Object>("sortFirstName", "first_name", accsDataProvider));
+		add(new OrderByBorder<Object>("sortlName", "last_name", accsDataProvider));
+		add(new OrderByBorder<Object>("sortEmail", "email", accsDataProvider));
+		add(new OrderByBorder<Object>("sortAccessLevel", "access_level", accsDataProvider));
 		
 		add(new PagingNavigator("paging", dataView));
 
@@ -80,7 +80,7 @@ public class EditAccountsPage extends AbstractPage {
 
 		public AccountsDataProvider() {
 			super();
-			setSort("sort-by-id", SortOrder.ASCENDING);
+			setSort("id", SortOrder.ASCENDING);
 		}
 
 		@Override

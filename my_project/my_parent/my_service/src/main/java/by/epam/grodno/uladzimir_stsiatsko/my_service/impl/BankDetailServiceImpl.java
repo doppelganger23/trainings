@@ -14,8 +14,8 @@ public class BankDetailServiceImpl implements BankDetailService {
 
 	@Autowired
 	private BankDetailDao bdDao;
-	
-	public void addBankDetail(BankDetail bankDetail){
+
+	public void addBankDetail(BankDetail bankDetail) {
 		bdDao.addBankDetail(bankDetail);
 	}
 
@@ -23,9 +23,14 @@ public class BankDetailServiceImpl implements BankDetailService {
 	public void updateBankDetail(BankDetail bankDetail) {
 		bdDao.update(bankDetail);
 	}
-	
-	public void deleteBankDetail(String currencyOfPayment){
-		bdDao.deleteBankDetail(currencyOfPayment);
+
+	public void deleteBankDetail(String currencyOfPayment) {
+		if ("BYR".equals(currencyOfPayment)) {
+			throw new IllegalArgumentException(
+					"BYR row from this table is integral part of the logic and cannot be deleted");
+		} else {
+			bdDao.deleteBankDetail(currencyOfPayment);
+		}
 	}
 
 	public List<BankDetail> getAll(long first, long count, String sortBy, String sortType) {
@@ -36,10 +41,10 @@ public class BankDetailServiceImpl implements BankDetailService {
 		}
 	}
 
-	public int getCount(){
+	public int getCount() {
 		return bdDao.getCount();
 	}
-	
+
 	@Override
 	public List<BankDetail> findAll() {
 		return bdDao.getAll();

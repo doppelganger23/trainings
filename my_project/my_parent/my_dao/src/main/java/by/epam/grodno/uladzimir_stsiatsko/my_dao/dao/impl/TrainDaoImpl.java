@@ -16,37 +16,24 @@ public class TrainDaoImpl implements TrainDao {
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 
+	@Override
 	public List<Train> getAll() {
 		return jdbcTemplate.query("SELECT * FROM train;", new TrainMapper());
 	}
 
+	@Override
 	public void addTrain(Train train) {
-		if (!containsTrain(train.getTrainNumber())) {
 			jdbcTemplate.update("INSERT INTO train (train_number, passengers_capacity) VALUES (?, ?) ;",
 					train.getTrainNumber(), train.getPassengersCapacity());
-		} else {
-			throw new IllegalArgumentException("Train number must be unique");
-		}
 	}
 
+	@Override
 	public void update(Train train) {
-		if (containsTrain(train.getTrainNumber())) {
 			jdbcTemplate.update("UPDATE train SET train_number = ?, passengers_capacity = ? WHERE id = ?",
 					train.getTrainNumber(), train.getPassengersCapacity(), train.getId());
-		} else {
-			throw new IllegalArgumentException("Train not found");
-		}
 	}
 
-	public boolean containsTrain(String trainNumber) {
-		Integer count = jdbcTemplate.queryForObject("SELECT count(1) FROM train WHERE train_number = ? ;",
-				Integer.class, trainNumber);
-		if (count.intValue() > 0) {
-			return true;
-		}
-		return false;
-	}
-
+	@Override
 	public void deleteTrain(int id) {
 		jdbcTemplate.update("DELETE FROM train WHERE id = ? ;", id);
 	}
@@ -60,5 +47,15 @@ public class TrainDaoImpl implements TrainDao {
 	@Override
 	public int getCount() {
 		return jdbcTemplate.queryForObject("SELECT COUNT(1) FROM train ;", Integer.class);
+	}
+	
+	@Override
+	public boolean containsTrain(String trainNumber) {
+		Integer count = jdbcTemplate.queryForObject("SELECT count(1) FROM train WHERE train_number = ? ;",
+				Integer.class, trainNumber);
+		if (count.intValue() > 0) {
+			return true;
+		}
+		return false;
 	}
 }

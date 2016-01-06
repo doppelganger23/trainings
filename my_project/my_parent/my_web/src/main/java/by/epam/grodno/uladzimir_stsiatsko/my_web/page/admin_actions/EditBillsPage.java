@@ -65,15 +65,15 @@ public class EditBillsPage extends AbstractPage {
 		};
 		add(dataView);
 				
-		add(new OrderByBorder<Object>("sortBillId", "sort-by-bill-id", biDataProvider));
-		add(new OrderByBorder<Object>("sortPaymentValue", "sort-by-payment-value", biDataProvider));
-		add(new OrderByBorder<Object>("sortCurrencyOfPayment", "sort-by-currency-of-payment", biDataProvider));
-		add(new OrderByBorder<Object>("sortBillingNumber", "sort-by-billing-number", biDataProvider));
-		add(new OrderByBorder<Object>("sortCreationDate", "sort-by-creation-date", biDataProvider));
-		add(new OrderByBorder<Object>("sortIsPaid", "sort-by-is-paid", biDataProvider));
-		add(new OrderByBorder<Object>("sortFirstName", "sort-by-first-name", biDataProvider));
-		add(new OrderByBorder<Object>("sortLastName", "sort-by-last-name", biDataProvider));
-		add(new OrderByBorder<Object>("sortEmail", "sort-by-email", biDataProvider));
+		add(new OrderByBorder<Object>("sortBillId", "bill_id", biDataProvider));
+		add(new OrderByBorder<Object>("sortPaymentValue", "payment_value", biDataProvider));
+		add(new OrderByBorder<Object>("sortCurrencyOfPayment", "currency_of_payment", biDataProvider));
+		add(new OrderByBorder<Object>("sortBillingNumber", "billing_number", biDataProvider));
+		add(new OrderByBorder<Object>("sortCreationDate", "creation_date", biDataProvider));
+		add(new OrderByBorder<Object>("sortIsPaid", "is_paid", biDataProvider));
+		add(new OrderByBorder<Object>("sortFirstName", "first_name", biDataProvider));
+		add(new OrderByBorder<Object>("sortLastName", "last_name", biDataProvider));
+		add(new OrderByBorder<Object>("sortEmail", "email", biDataProvider));
 		
 		add(new PagingNavigator("paging", dataView));
 		
@@ -83,7 +83,7 @@ public class EditBillsPage extends AbstractPage {
 
 		public BillInfoDataProvider() {
 			super();
-			setSort("sort-by-bill-id", SortOrder.ASCENDING);
+			setSort("bill_id", SortOrder.ASCENDING);
 		}
 
 		@Override

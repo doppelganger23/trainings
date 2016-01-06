@@ -15,30 +15,43 @@ public class TrainServiceImpl implements TrainService {
 
 	@Autowired
 	TripListService tlService;
-	
+
 	@Autowired
 	TrainDao tDao;
 
+	@Override
 	public void addTrain(Train train) {
-		tDao.addTrain(train);
-	}
-	
-	public void update(Train train) {
-		tDao.update(train);
+		if (containsTrain(train.getTrainNumber())) {
+			tDao.addTrain(train);
+		} else {
+			throw new IllegalArgumentException("Train number must be unique");
+		}
 	}
 
+	@Override
+	public void update(Train train) {
+		if (containsTrain(train.getTrainNumber())) {
+			tDao.update(train);
+		} else {
+			throw new IllegalArgumentException("Train not found");
+		}
+	}
+
+	@Override
 	public boolean containsTrain(String trainNumber) {
 		return tDao.containsTrain(trainNumber);
 	}
-	
+
+	@Override
 	public void deleteTrain(int id) throws IllegalArgumentException {
-		if(tlService.containsTrain(id)){
+		if (tlService.containsTrain(id)) {
 			throw new IllegalArgumentException("This train can't be deleted because of structural integrity needs");
 		} else {
 			tDao.deleteTrain(id);
 		}
 	}
 
+	@Override
 	public List<Train> getAll(long first, long count, String sortBy, String sortType) {
 		if (sortType.equals("ASCENDING")) {
 			return tDao.getAll(first, count, sortBy, "asc");
@@ -47,6 +60,7 @@ public class TrainServiceImpl implements TrainService {
 		}
 	}
 
+	@Override
 	public int getCount() {
 		return tDao.getCount();
 	}

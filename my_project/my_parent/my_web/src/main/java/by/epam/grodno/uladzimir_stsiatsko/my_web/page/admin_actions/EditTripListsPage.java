@@ -128,12 +128,12 @@ public class EditTripListsPage extends AbstractPage {
 		};
 		add(dataView);
 		
-		add(new OrderByBorder<Object>("sortId", "sort-by-id", tliDataProvider));
-		add(new OrderByBorder<Object>("sortTrainNumber", "sort-by-train-number", tliDataProvider));
-		add(new OrderByBorder<Object>("sortRouteType", "sort-by-route-type", tliDataProvider));
-		add(new OrderByBorder<Object>("sortRouteName", "sort-by-route-name", tliDataProvider));
-		add(new OrderByBorder<Object>("sortDepartureDate", "sort-by-departure-date", tliDataProvider));
-		add(new OrderByBorder<Object>("sortTicketsSold", "sort-by-tickets-sold", tliDataProvider));
+		add(new OrderByBorder<Object>("sortId", "id", tliDataProvider));
+		add(new OrderByBorder<Object>("sortTrainNumber", "train_number", tliDataProvider));
+		add(new OrderByBorder<Object>("sortRouteType", "route_type", tliDataProvider));
+		add(new OrderByBorder<Object>("sortRouteName", "route_name", tliDataProvider));
+		add(new OrderByBorder<Object>("sortDepartureDate", "departure_date", tliDataProvider));
+		add(new OrderByBorder<Object>("sortTicketsSold", "tickets_sold", tliDataProvider));
 		
 		add(new PagingNavigator("paging", dataView));
 	}
@@ -142,7 +142,7 @@ public class EditTripListsPage extends AbstractPage {
 
 		public TripListInfoDataProvider() {
 			super();
-			setSort("sort-by-id", SortOrder.ASCENDING);
+			setSort("id", SortOrder.ASCENDING);
 		}
 
 		@Override

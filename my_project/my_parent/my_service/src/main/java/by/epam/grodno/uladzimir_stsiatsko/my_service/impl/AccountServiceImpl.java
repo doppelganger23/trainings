@@ -73,48 +73,11 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public List<Account> getAll(long first, long count, String sortBy, String sortType) {
-		if ("sort-by-id".equals(sortBy)) {
 			if ("ASCENDING".equals(sortType)) {
-				return accDao.getAll(first, count, "id", "asc");
-			} else
-				return accDao.getAll(first, count, "id", "desc");
-		}
-		if ("sort-by-login".equals(sortBy)) {
-			if ("ASCENDING".equals(sortType)) {
-				return accDao.getAll(first, count, "login", "asc");
+				return accDao.getAll(first, count, sortBy, "asc");
 			} else {
-				return accDao.getAll(first, count, "login", "desc");
-			}
-		}
-		if ("sort-by-first-name".equals(sortBy)) {
-			if ("ASCENDING".equals(sortType)) {
-				return accDao.getAll(first, count, "first_name", "asc");
-			} else {
-				return accDao.getAll(first, count, "first_name", "desc");
-			}
-		}
-		if ("sort-by-last-name".equals(sortBy)) {
-			if ("ASCENDING".equals(sortType)) {
-				return accDao.getAll(first, count, "last_name", "asc");
-			} else {
-				return accDao.getAll(first, count, "last_name", "desc");
-			}
-		}
-		if ("sort-by-email".equals(sortBy)) {
-			if ("ASCENDING".equals(sortType)) {
-				return accDao.getAll(first, count, "email", "asc");
-			} else {
-				return accDao.getAll(first, count, "email", "desc");
-			}
-		}
-		if ("sort-by-access-level".equals(sortBy)) {
-			if ("ASCENDING".equals(sortType)) {
-				return accDao.getAll(first, count, "access_level", "asc");
-			} else {
-				return accDao.getAll(first, count, "access_level", "desc");
-			}
-		}
-		return accDao.getAll(first, count, "id", "asc");
+				return accDao.getAll(first, count, sortBy, "desc");
+			} 
 	}
 
 	@Override

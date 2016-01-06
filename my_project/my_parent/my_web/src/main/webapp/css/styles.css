@@ -157,7 +157,6 @@ div.inner-wrapper {
 	background:transparent url('../images/wrapper-bottom.jpg') no-repeat scroll bottom left;
 }
 
-
 /** header **/
 div.header {
 	display:block;
@@ -336,4 +335,22 @@ div.copyright p {
 }
 div.copyright p a {
 	font-weight:bold;
+}
+
+
+/** autocomplete **/
+div.wicket-aa {
+    background-color:white;
+    border:1px solid #CCCCCC;
+    color:black;
+}
+div.wicket-aa ul {
+   list-style-image:none;
+   list-style-position:outside;
+   list-style-type:none;
+   margin:0pt;
+   padding:5px;
+}
+div.wicket-aa ul li.selected {
+    background-color:#CCCCCC;
 }
