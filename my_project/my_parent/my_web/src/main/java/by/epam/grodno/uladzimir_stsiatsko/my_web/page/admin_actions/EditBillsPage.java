@@ -4,6 +4,7 @@ import java.util.Iterator;
 
 import javax.inject.Inject;
 
+import org.apache.wicket.MetaDataKey;
 import org.apache.wicket.authorization.Action;
 import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeAction;
 import org.apache.wicket.extensions.markup.html.repeater.data.sort.ISortState;
@@ -22,6 +23,7 @@ import org.apache.wicket.model.IModel;
 import by.epam.grodno.uladzimir_stsiatsko.my_dao.model.BillInfo;
 import by.epam.grodno.uladzimir_stsiatsko.my_service.BillInfoService;
 import by.epam.grodno.uladzimir_stsiatsko.my_service.BillService;
+import by.epam.grodno.uladzimir_stsiatsko.my_web.metadata.ElementsOnPageMetaData;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.AbstractPage;
 
 @AuthorizeAction(action=Action.RENDER, roles={"admin"})
@@ -33,12 +35,23 @@ public class EditBillsPage extends AbstractPage {
 	@Inject
 	BillService billService;
 	
+	public static MetaDataKey<ElementsOnPageMetaData> ELEMENTS_ON_PAGE = new MetaDataKey<ElementsOnPageMetaData>() {
+	};
+	private int elementsOnPage = 5;
+	
+	public EditBillsPage(){
+		ElementsOnPageMetaData meta = getSession().getMetaData(ELEMENTS_ON_PAGE);
+		if(meta != null){
+			this.elementsOnPage = meta.getElementsOnPage();
+		}
+	}
+	
 	@Override
 	protected void onInitialize() {
 		super.onInitialize();
 		
 		BillInfoDataProvider biDataProvider = new BillInfoDataProvider();
-		DataView<BillInfo> dataView = new DataView<BillInfo>("bill-info-list", biDataProvider, 5) {
+		DataView<BillInfo> dataView = new DataView<BillInfo>("bill-info-list", biDataProvider, elementsOnPage) {
 			@Override
 			protected void populateItem(Item<BillInfo> item) {
 				final BillInfo bInfo = item.getModelObject();
@@ -76,6 +89,28 @@ public class EditBillsPage extends AbstractPage {
 		add(new OrderByBorder<Object>("sortEmail", "email", biDataProvider));
 		
 		add(new PagingNavigator("paging", dataView));
+		
+		add(new Link<Void>("5-elements-link"){
+			@Override
+			public void onClick(){
+				getSession().setMetaData(ELEMENTS_ON_PAGE, new ElementsOnPageMetaData(5));
+				setResponsePage(new EditBillsPage());
+			}
+		});
+		add(new Link<Void>("10-elements-link"){
+			@Override
+			public void onClick(){
+				getSession().setMetaData(ELEMENTS_ON_PAGE, new ElementsOnPageMetaData(10));
+				setResponsePage(new EditBillsPage());
+			}
+		});
+		add(new Link<Void>("20-elements-link"){
+			@Override
+			public void onClick(){
+				getSession().setMetaData(ELEMENTS_ON_PAGE, new ElementsOnPageMetaData(20));
+				setResponsePage(new EditBillsPage());
+			}
+		});
 		
 	}
 

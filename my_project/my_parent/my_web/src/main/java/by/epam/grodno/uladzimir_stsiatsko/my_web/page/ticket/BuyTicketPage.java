@@ -19,12 +19,13 @@ import by.epam.grodno.uladzimir_stsiatsko.my_dao.model.SearchResult;
 import by.epam.grodno.uladzimir_stsiatsko.my_service.BankDetailService;
 import by.epam.grodno.uladzimir_stsiatsko.my_service.BillService;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.app.CustomSession;
+import by.epam.grodno.uladzimir_stsiatsko.my_web.metadata.CurrencyMetaData;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.AbstractPage;
 
 public class BuyTicketPage extends AbstractPage {
 	private static final Logger LOGGER = LoggerFactory.getLogger(BuyTicketPage.class);
 
-	public static MetaDataKey<BillMetaData> CURRENCY = new MetaDataKey<BillMetaData>() {
+	public static MetaDataKey<CurrencyMetaData> CURRENCY = new MetaDataKey<CurrencyMetaData>() {
 	};
 
 	@Inject
@@ -73,14 +74,14 @@ public class BuyTicketPage extends AbstractPage {
 
 		Form<Void> confirmForm = new Form<Void>("confirmation-form");
 
-		BillMetaData metaBill = getSession().getMetaData(CURRENCY);
-		if (metaBill == null) {
+		CurrencyMetaData meta = getSession().getMetaData(CURRENCY);
+		if (meta == null) {
 			LOGGER.debug("metadata is null");
 			displayedCurrency = "BYR";
 			displayedValue = roundUpScale2(bill.getPaymentValue());
 		} else {
 			LOGGER.debug("metadata is not null");
-			displayedCurrency = metaBill.getCurrency();
+			displayedCurrency = meta.getCurrency();
 			displayedValue = roundUpScale2(bill.getPaymentValue() / bdService.getByrExchangeRate(displayedCurrency));
 		}
 
@@ -92,7 +93,7 @@ public class BuyTicketPage extends AbstractPage {
 			@Override
 			protected void onSelectionChanged(final String newCurrency) {
 				LOGGER.info("It's " + newCurrency + " time!");
-				getSession().setMetaData(CURRENCY, new BillMetaData(newCurrency));
+				getSession().setMetaData(CURRENCY, new CurrencyMetaData(newCurrency));
 				setResponsePage(new BuyTicketPage(sResult));
 			}
 

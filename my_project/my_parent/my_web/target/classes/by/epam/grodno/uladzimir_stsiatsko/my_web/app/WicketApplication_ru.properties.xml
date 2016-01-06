@@ -57,6 +57,7 @@
 	<entry key="label.email">Электронная почта</entry>
 	<entry key="label.trainNumber">Номер поезда</entry>
 	<entry key="label.passengersCapacity">Пассажировместимость</entry>
+	<entry key="label.elementsOnPage">Элементов на странице: </entry>
 
 
 	<entry key="link.registerAcc">Регистрация</entry>

@@ -54,6 +54,7 @@
 	<entry key="label.email">Email</entry>
 	<entry key="label.trainNumber">Train Number</entry>
 	<entry key="label.passengersCapacity">Passengers Capacity</entry>
+	<entry key="label.elementsOnPage">Elements on page: </entry>
 
 	<entry key="link.registerAcc">Register Account</entry>
 	<entry key="link.logIn">Log In</entry>

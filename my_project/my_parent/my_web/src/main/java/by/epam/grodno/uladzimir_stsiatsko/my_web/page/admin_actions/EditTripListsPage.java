@@ -5,6 +5,7 @@ import java.util.Iterator;
 
 import javax.inject.Inject;
 
+import org.apache.wicket.MetaDataKey;
 import org.apache.wicket.authorization.Action;
 import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeAction;
 import org.apache.wicket.datetime.StyleDateConverter;
@@ -38,6 +39,7 @@ import by.epam.grodno.uladzimir_stsiatsko.my_service.TrainService;
 import by.epam.grodno.uladzimir_stsiatsko.my_service.TripListInfoService;
 import by.epam.grodno.uladzimir_stsiatsko.my_service.TripListService;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.app.CustomDatePicker;
+import by.epam.grodno.uladzimir_stsiatsko.my_web.metadata.ElementsOnPageMetaData;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.AbstractPage;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.renderer.RouteChoiceRenderer;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.renderer.TrainChoiceRenderer;
@@ -59,6 +61,17 @@ public class EditTripListsPage extends AbstractPage {
 
 	@Inject
 	RouteService routeService;
+	
+	public static MetaDataKey<ElementsOnPageMetaData> ELEMENTS_ON_PAGE = new MetaDataKey<ElementsOnPageMetaData>() {
+	};
+	private int elementsOnPage = 5;
+	
+	public EditTripListsPage(){
+		ElementsOnPageMetaData meta = getSession().getMetaData(ELEMENTS_ON_PAGE);
+		if(meta != null){
+			this.elementsOnPage = meta.getElementsOnPage();
+		}
+	}
 
 	@Override
 	protected void onInitialize() {
@@ -103,7 +116,7 @@ public class EditTripListsPage extends AbstractPage {
 		});
 		
 		TripListInfoDataProvider tliDataProvider = new TripListInfoDataProvider();
-		DataView<TripListInfo> dataView = new DataView<TripListInfo>("trip-list-info-list", tliDataProvider, 5){
+		DataView<TripListInfo> dataView = new DataView<TripListInfo>("trip-list-info-list", tliDataProvider, elementsOnPage){
 			@Override
 			protected void populateItem(Item<TripListInfo> item){	
 				final TripListInfo tlInfo = item.getModelObject();
@@ -136,6 +149,29 @@ public class EditTripListsPage extends AbstractPage {
 		add(new OrderByBorder<Object>("sortTicketsSold", "tickets_sold", tliDataProvider));
 		
 		add(new PagingNavigator("paging", dataView));
+		
+		add(new Link<Void>("5-elements-link"){
+			@Override
+			public void onClick(){
+				getSession().setMetaData(ELEMENTS_ON_PAGE, new ElementsOnPageMetaData(5));
+				setResponsePage(new EditTripListsPage());
+			}
+		});
+		add(new Link<Void>("10-elements-link"){
+			@Override
+			public void onClick(){
+				getSession().setMetaData(ELEMENTS_ON_PAGE, new ElementsOnPageMetaData(10));
+				setResponsePage(new EditTripListsPage());
+			}
+		});
+		add(new Link<Void>("20-elements-link"){
+			@Override
+			public void onClick(){
+				getSession().setMetaData(ELEMENTS_ON_PAGE, new ElementsOnPageMetaData(20));
+				setResponsePage(new EditTripListsPage());
+			}
+		});
+		
 	}
 
 	private class TripListInfoDataProvider extends SortableDataProvider<TripListInfo, Object> {

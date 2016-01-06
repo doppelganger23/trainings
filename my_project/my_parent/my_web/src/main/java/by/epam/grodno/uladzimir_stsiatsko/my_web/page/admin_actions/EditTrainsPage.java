@@ -4,6 +4,7 @@ import java.util.Iterator;
 
 import javax.inject.Inject;
 
+import org.apache.wicket.MetaDataKey;
 import org.apache.wicket.authorization.Action;
 import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeAction;
 import org.apache.wicket.extensions.markup.html.repeater.data.sort.ISortState;
@@ -29,6 +30,7 @@ import org.apache.wicket.validation.validator.StringValidator;
 import by.epam.grodno.uladzimir_stsiatsko.my_dao.model.Train;
 import by.epam.grodno.uladzimir_stsiatsko.my_service.TrainService;
 import by.epam.grodno.uladzimir_stsiatsko.my_service.TripListService;
+import by.epam.grodno.uladzimir_stsiatsko.my_web.metadata.ElementsOnPageMetaData;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.AbstractPage;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.admin_actions.update.UpdateTrainPage;
 
@@ -40,6 +42,17 @@ public class EditTrainsPage extends AbstractPage {
 	
 	@Inject
 	TrainService tService;
+	
+	public static MetaDataKey<ElementsOnPageMetaData> ELEMENTS_ON_PAGE = new MetaDataKey<ElementsOnPageMetaData>() {
+	};
+	private int elementsOnPage = 5;
+	
+	public EditTrainsPage(){
+		ElementsOnPageMetaData meta = getSession().getMetaData(ELEMENTS_ON_PAGE);
+		if(meta != null){
+			this.elementsOnPage = meta.getElementsOnPage();
+		}
+	}
 
 	@Override
 	protected void onInitialize() {
@@ -74,7 +87,7 @@ public class EditTrainsPage extends AbstractPage {
 		});
 
 		TrainsDataProvider tDataProvider = new TrainsDataProvider();
-		DataView<Train> dataView = new DataView<Train>("train-list", tDataProvider, 5) {
+		DataView<Train> dataView = new DataView<Train>("train-list", tDataProvider, elementsOnPage) {
 			@Override
 			protected void populateItem(Item<Train> item) {
 				final Train train = item.getModelObject();
@@ -111,6 +124,28 @@ public class EditTrainsPage extends AbstractPage {
 		add(new OrderByBorder<Object>("sortPassengersCapacity", "passengers_capacity", tDataProvider));
 
 		add(new PagingNavigator("paging", dataView));
+		
+		add(new Link<Void>("5-elements-link"){
+			@Override
+			public void onClick(){
+				getSession().setMetaData(ELEMENTS_ON_PAGE, new ElementsOnPageMetaData(5));
+				setResponsePage(new EditTrainsPage());
+			}
+		});
+		add(new Link<Void>("10-elements-link"){
+			@Override
+			public void onClick(){
+				getSession().setMetaData(ELEMENTS_ON_PAGE, new ElementsOnPageMetaData(10));
+				setResponsePage(new EditTrainsPage());
+			}
+		});
+		add(new Link<Void>("20-elements-link"){
+			@Override
+			public void onClick(){
+				getSession().setMetaData(ELEMENTS_ON_PAGE, new ElementsOnPageMetaData(20));
+				setResponsePage(new EditTrainsPage());
+			}
+		});
 
 	}
 

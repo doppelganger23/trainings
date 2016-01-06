@@ -4,6 +4,7 @@ import java.util.Iterator;
 
 import javax.inject.Inject;
 
+import org.apache.wicket.MetaDataKey;
 import org.apache.wicket.authorization.Action;
 import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeAction;
 import org.apache.wicket.extensions.markup.html.repeater.data.sort.ISortState;
@@ -28,6 +29,7 @@ import org.apache.wicket.validation.validator.StringValidator;
 
 import by.epam.grodno.uladzimir_stsiatsko.my_dao.model.BankDetail;
 import by.epam.grodno.uladzimir_stsiatsko.my_service.BankDetailService;
+import by.epam.grodno.uladzimir_stsiatsko.my_web.metadata.ElementsOnPageMetaData;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.AbstractPage;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.admin_actions.update.UpdateBankDetailPage;
 
@@ -36,6 +38,17 @@ public class EditBankDetailsPage extends AbstractPage {
 
 	@Inject
 	BankDetailService bdService;
+	
+	public static MetaDataKey<ElementsOnPageMetaData> ELEMENTS_ON_PAGE = new MetaDataKey<ElementsOnPageMetaData>() {
+	};
+	private int elementsOnPage = 5;
+	
+	public EditBankDetailsPage(){
+		ElementsOnPageMetaData meta = getSession().getMetaData(ELEMENTS_ON_PAGE);
+		if(meta != null){
+			this.elementsOnPage = meta.getElementsOnPage();
+		}
+	}
 
 	@Override
 	protected void onInitialize() {
@@ -77,7 +90,7 @@ public class EditBankDetailsPage extends AbstractPage {
 		});
 
 		BankDetailsDataProvider bdDataProvider = new BankDetailsDataProvider();
-		DataView<BankDetail> dataView = new DataView<BankDetail>("bill-info-list", bdDataProvider, 5) {
+		DataView<BankDetail> dataView = new DataView<BankDetail>("bill-info-list", bdDataProvider, elementsOnPage) {
 			@Override
 			protected void populateItem(Item<BankDetail> item) {
 				final BankDetail bDetail = item.getModelObject();
@@ -113,6 +126,28 @@ public class EditBankDetailsPage extends AbstractPage {
 		add(new OrderByBorder<Object>("sortByrExchangeRate", "byr_exchange_rate", bdDataProvider));
 
 		add(new PagingNavigator("paging", dataView));
+		
+		add(new Link<Void>("5-elements-link"){
+			@Override
+			public void onClick(){
+				getSession().setMetaData(ELEMENTS_ON_PAGE, new ElementsOnPageMetaData(5));
+				setResponsePage(new EditBankDetailsPage());
+			}
+		});
+		add(new Link<Void>("10-elements-link"){
+			@Override
+			public void onClick(){
+				getSession().setMetaData(ELEMENTS_ON_PAGE, new ElementsOnPageMetaData(10));
+				setResponsePage(new EditBankDetailsPage());
+			}
+		});
+		add(new Link<Void>("20-elements-link"){
+			@Override
+			public void onClick(){
+				getSession().setMetaData(ELEMENTS_ON_PAGE, new ElementsOnPageMetaData(20));
+				setResponsePage(new EditBankDetailsPage());
+			}
+		});
 
 	}
 
