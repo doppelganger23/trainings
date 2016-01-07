@@ -19,4 +19,19 @@ public class RouteServiceImpl implements RouteService {
 		return rDao.getAll();
 	}
 
+	@Override
+	public void delete(Route route) {
+		rDao.detete(route);
+	}
+
+	@Override
+	public List<Route> getAll(long first, long count, String sortBy, String sortType) {
+		return rDao.getAll(first, count, sortBy, sortType);
+	}
+
+	@Override
+	public int getCount() {
+		return rDao.getCount();
+	}
+
 }

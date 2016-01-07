@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<wicket:extend xmlns:wicket="http://wicket.apache.org">
+	<h2>About Page</h2>
+	<ul id="accordion">
+		<li><span>Used Technologies</span>
+			<div>
+				<p>*Описать роль каждой технологии в проекте*</p>
+				<p>Apache Commons (-lang3 and -dbcp)</p>
+				<p>Apache Maven</p>
+				<p>Apache Wicket and Google Wicket JQuery-ui</p>
+				<p>Eclipse Jetty (-server, -webapp and -util)</p>
+				<p>JUnit</p>
+				<p>Log4j (-api, -core, -slf4j-impl and -jcl)</p>
+				<p>Postgresql 9.3</p>
+				<p>Spring Framework (including spring -core, -jdbc, -beans, -context, -web and -test)</p>
+			</div></li>
+		<li><span>Search Algorythm</span>
+			<div>
+				<p>
+					<img src="images/map.jpg" alt="Письма мастера дзен">
+				</p>
+				<p>Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum
+					sit amet purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris
+					turpis porttitor velit, faucibus interdum tellus libero ac justo.
+					Vivamus non quam. In suscipit faucibus urna.</p>
+			</div></li>
+		<li><span>Database Structure</span>
+			<div>
+				<p>
+					<img src="images/tables.jpg" alt="Письма мастера дзен">
+				</p>
+				<p>Nam enim risus, molestie et, porta ac, aliquam ac, risus.
+					Quisque lobortis. Phasellus pellentesque purus in massa. Aenean in
+					pede. Phasellus ac libero ac tellus pellentesque semper. Sed ac
+					felis. Sed commodo, magna quis lacinia ornare, quam ante aliquam
+					nisi, eu iaculis leo purus venenatis dui.</p>
+				<ul>
+					<li>List item one</li>
+					<li>List item two</li>
+					<li>List item three</li>
+				</ul>
+			</div></li>
+		<li><span>SQL Queries</span>
+			<ul id="accordion">
+				<li><span>Search View Creation Script</span>
+					<div>
+						<p>CREATE VIEW search_view AS</p>
+
+						<p>SELECT tl.id trip_id, r.route_name, t.train_number train,
+							s.name from_station, s2.name to_station, r.route_type,
+							tl.departure_date, rm.block_number_in_route block,
+							rm.block_enter_time enter_at, rm.block_leave_time leave_at,
+							t.passengers_capacity places, tl.tickets_sold sold,
+							r.price_for_kilometer km_price, sts.distance_in_kilometres km</p>
+
+						<p>FROM station_to_station_block sts</p>
+						<p>JOIN station s ON sts.departure_station_id = s.id</p>
+						<p>JOIN station s2 ON sts.destination_station_id = s2.id</p>
+						<p>JOIN route_map rm ON rm.station_to_station_block_id =
+							sts.id</p>
+						<p>JOIN route r ON rm.route_id = r.id</p>
+						<p>JOIN trip_list tl ON tl.route_id = r.id</p>
+						<p>JOIN train t ON tl.train_id = t.id</p>
+
+						<p>ORDER BY from_station, to_station, route_type,
+							departure_date;</p>
+
+					</div></li>
+				<li><span>Main Search Script (example)</span>
+					<div>
+						<p>SELECT * FROM</p>
+
+						<p>(SELECT trip_id, route_name, route_type, train,
+							from_station, block from_block, (departure_date + enter_at)
+							departure_date</p>
+						<p>FROM search_view v1 WHERE v1.from_station = 'МОСТЫ') s1</p>
+						<p>JOIN</p>
+						<p>(SELECT to_station, block to_block, (departure_date +
+							leave_at) arrival_date, places, sold, km_price, km, trip_id</p>
+						<p>FROM search_view v2 WHERE v2.to_station = 'ОСИПОВИЧИ') s2</p>
+						<p>ON s1.trip_id = s2.trip_id</p>
+						<p>WHERE from_block &lt;= to_block</p>
+						<p>AND sold &lt;= places</p>
+
+						<p>AND departure_date >= '2015-12-01'</p>
+						<p>AND arrival_date &lt;= '2015-12-03';</p>
+					</div></li>
+				<li><span>Price Calculation Script (example)</span>
+					<div>
+					<p>SELECT km_price*km summ FROM search_view v</p>
+					<p>WHERE trip_id = 19 AND block BETWEEN 2 AND 5;</p>
+					</div></li>
+			</ul></li>
+	</ul>
+</wicket:extend>
+
+
+

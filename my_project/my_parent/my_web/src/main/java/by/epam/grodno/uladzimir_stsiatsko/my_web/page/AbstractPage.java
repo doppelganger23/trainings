@@ -34,6 +34,12 @@ public class AbstractPage extends WebPage {
 				setResponsePage(new SearchPage());
 			}
 		});
+		add(new Link<Void>("about-page-link") {
+			@Override
+			public void onClick() {
+				setResponsePage(new AboutPage());
+			}
+		});
 		
 		Link<Void> regLink = new Link<Void>("registration-page-link") {
 			@Override

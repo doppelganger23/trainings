@@ -6,6 +6,12 @@ import by.epam.grodno.uladzimir_stsiatsko.my_dao.model.Route;
 
 public interface RouteDao {
 	
-	public List<Route> getAll();
+	void detete(Route route);
+	
+	List<Route> getAll(long first, long count, String sortBy, String sortType);
+	
+	int getCount();
+	
+	List<Route> getAll();
 
 }

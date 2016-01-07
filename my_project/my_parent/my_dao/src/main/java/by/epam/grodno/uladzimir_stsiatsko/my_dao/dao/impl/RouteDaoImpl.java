@@ -19,5 +19,23 @@ public class RouteDaoImpl implements RouteDao {
 	public List<Route> getAll(){
 		return jdbcTemplate.query("SELECT * FROM route;", new RouteMapper());
 	}
+
+	@Override
+	public void detete(Route route) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Route> getAll(long first, long count, String sortBy, String sortType) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int getCount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 }
