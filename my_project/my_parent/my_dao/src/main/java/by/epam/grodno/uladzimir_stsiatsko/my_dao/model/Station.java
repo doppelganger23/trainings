@@ -1,6 +1,8 @@
 package by.epam.grodno.uladzimir_stsiatsko.my_dao.model;
 
-public class Station {
+import java.io.Serializable;
+
+public class Station implements Serializable {
 	
 	private int id;
 	private String name;

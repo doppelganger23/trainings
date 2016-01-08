@@ -29,7 +29,7 @@ public class SearchPage extends AbstractPage {
 	@Inject
 	private StationService stService;
 	
-	private final List<String> CHOICES = stService.getStations();
+	private final List<String> CHOICES = stService.getStationNames();
 
 	@Inject
 	private SearchResultService srService;

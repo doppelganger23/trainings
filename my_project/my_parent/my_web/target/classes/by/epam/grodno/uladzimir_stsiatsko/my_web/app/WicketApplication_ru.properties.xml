@@ -14,6 +14,12 @@
 	<entry key="button.updateBankDetail">Применить</entry>
 	<entry key="button.addNewTrain">Добавить поезд</entry>
 	<entry key="button.updateTrain">Применить</entry>
+	<entry key="button.create">Создать</entry>
+	<entry key="header.editRoutesPage">Редактировать маршруты</entry>
+	<entry key="label.routeName">Название</entry>
+	<entry key="label.routeType">Тип вагона</entry>
+	<entry key="label.priceForKilometer">Цена за километр, руб.</entry>
+	<entry key="label.stsBlock">Железнодорожный перегон</entry>
 
 	<entry key="emblem.main">Железнодорожная Касса</entry>
 	<entry key="emblem.small">онлайн-сервис</entry>
@@ -37,6 +43,8 @@
 	<entry key="header.registrationPage">Регистрация</entry>
 	<entry key="header.editTrainPage">Редактирование списка поездов</entry>
 	<entry key="header.updateTrainPage">Изменение параметров поезда</entry>
+	<entry key="header.editRoutesPage">Редактировать маршруты</entry>
+	<entry key="header.updateRouteMapPage">Редактирование карты маршрута</entry>
 
 	<entry key="locale.ru">Русский</entry>
 	<entry key="locale.en">Английский</entry>
@@ -68,6 +76,7 @@
 	<entry key="link.editBills">Выданные счета</entry>
 	<entry key="link.editBankD">Банковская информация</entry>
 	<entry key="link.editTrains">Поезда</entry>
+	<entry key="link.editRoutes">Маршруты</entry>
 
 	<entry key="mark.login">Логин:</entry>
 	<entry key="mark.password">Пароль:</entry>
@@ -108,6 +117,7 @@
 	<entry key="paging.billingNumber">Номер счета</entry>
 	<entry key="paging.byrExchangeRate">Курс белорусского рубля</entry>
 	<entry key="paging.passengersCapacity">Пассажировместимость</entry>
+	<entry key="paging.priceForkilometer">Цена за километр, руб.</entry>
 
 	<entry key="title.main">Онлайн-сервис Железнодорожная Касса</entry>
 

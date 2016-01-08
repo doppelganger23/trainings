@@ -1,13 +1,15 @@
 package by.epam.grodno.uladzimir_stsiatsko.my_dao.model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class RouteMap {
+public class RouteMap implements Serializable {
 	
 	private int id;
 	private int routeId;
 	private int stationToStationBlockId;
 	private int blockNumberInRoute;
+	//разбить на два и поправить формат
 	private Timestamp timeSinceDeparture;
 	
 	public int getId() {

@@ -9,6 +9,7 @@ import by.epam.grodno.uladzimir_stsiatsko.my_web.app.LangSelectionLink;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.admin_actions.EditAccountsPage;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.admin_actions.EditBankDetailsPage;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.admin_actions.EditBillsPage;
+import by.epam.grodno.uladzimir_stsiatsko.my_web.page.admin_actions.EditRoutesPage;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.admin_actions.EditTrainsPage;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.admin_actions.EditTripListsPage;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.registration.RegistrationPage;
@@ -94,6 +95,12 @@ public class AbstractPage extends WebPage {
 			@Override
 			public void onClick() {
 				setResponsePage(new EditTrainsPage());
+			}
+		});
+		container.add(new Link<Void>("edit-routes-page-link") {
+			@Override
+			public void onClick() {
+				setResponsePage(new EditRoutesPage());
 			}
 		});
 		container.add(new Link<Void>("edit-bills-page-link") {

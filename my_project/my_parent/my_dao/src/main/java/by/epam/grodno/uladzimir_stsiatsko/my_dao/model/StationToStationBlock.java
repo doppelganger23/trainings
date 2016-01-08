@@ -1,6 +1,8 @@
 package by.epam.grodno.uladzimir_stsiatsko.my_dao.model;
 
-public class StationToStationBlock {
+import java.io.Serializable;
+
+public class StationToStationBlock implements Serializable {
 	
 	private int id;
 	private int departureStationId;

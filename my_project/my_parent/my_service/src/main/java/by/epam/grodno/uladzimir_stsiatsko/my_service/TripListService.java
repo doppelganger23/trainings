@@ -9,5 +9,7 @@ public interface TripListService {
 	void deleteTripList(int id);
 	
 	boolean containsTrain(int trainId);
+	
+	boolean containsRoute(int routeId);
 
 }

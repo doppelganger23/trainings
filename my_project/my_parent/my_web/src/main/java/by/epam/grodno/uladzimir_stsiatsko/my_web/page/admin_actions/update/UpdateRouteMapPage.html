@@ -1,10 +1,28 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-
-</body>
-</html>
+<wicket:extend xmlns:wicket="http://wicket.apache.org">
+	<h1>
+		<wicket:message key="header.updateRouteMapPage" />
+	</h1>
+	<form wicket:id="form">
+		<table>
+			<tr>
+				<td><label><wicket:message key="label.stsBlock" /></label></td>
+				<td><select wicket:id="block-id-choice"></select></td>
+			</tr>
+<!-- 			<tr> -->
+<!-- 				<td><label><wicket:message key="label.routeName" /></label></td> -->
+<!-- 				<td><select wicket:id="route-id-choice"></select></td> -->
+<!-- 			</tr> -->
+<!-- 			<tr> -->
+<!-- 				<td><label><wicket:message key="label.departureDate" /></label></td> -->
+<!-- 				<td><input wicket:id="departure-date" type="text" /></td> -->
+<!-- 			</tr> -->
+<!-- 			<tr> -->
+<!-- 				<td colspan="2"><button type="submit" wicket:id="submit-button"> -->
+<!-- 						<wicket:message key="button.addTripList" /> -->
+<!-- 					</button></td> -->
+<!-- 			</tr> -->
+		</table>
+	</form>
+	<div wicket:id="feedback"></div>
+</wicket:extend>

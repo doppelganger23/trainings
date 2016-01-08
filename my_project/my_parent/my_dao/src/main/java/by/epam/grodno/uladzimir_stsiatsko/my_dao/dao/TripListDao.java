@@ -15,4 +15,6 @@ public interface TripListDao {
 	
 	boolean containsTrain(int trainId);
 	
+	boolean containsRoute(int routeId);
+	
 }

@@ -34,4 +34,8 @@ public class TripListServiceImpl implements TripListService {
 		return tlDao.containsTrain(trainId);
 	}
 	
+	public boolean containsRoute(int routeId){
+		return tlDao.containsRoute(routeId);
+	}
+	
 }

@@ -12,22 +12,63 @@
 				<p>JUnit</p>
 				<p>Log4j (-api, -core, -slf4j-impl and -jcl)</p>
 				<p>Postgresql 9.3</p>
-				<p>Spring Framework (including spring -core, -jdbc, -beans, -context, -web and -test)</p>
+				<p>Spring Framework (including spring -core, -jdbc, -beans,
+					-context, -web and -test)</p>
 			</div></li>
+			
 		<li><span>Search Algorythm</span>
-			<div>
-				<p>
-					<img src="images/map.jpg" alt="Письма мастера дзен">
-				</p>
-				<p>Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum
-					sit amet purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris
-					turpis porttitor velit, faucibus interdum tellus libero ac justo.
-					Vivamus non quam. In suscipit faucibus urna.</p>
-			</div></li>
+			<ul id="accordion">
+				<li><span>Структура карты маршрутов</span>
+					<div>
+						<p>
+							<img src="images/map.jpg" alt="Карта Беларуси">
+						</p>
+					</div></li>
+
+				<li><span>Визуализация поискового алгоритма</span>
+					<div>
+						<p>
+							<img src="images/alg-demo.jpg" alt="Пример действия алгоритма">
+						</p>
+					</div></li>
+
+				<li><span>Описание алгоритма поиска</span>
+					<div>
+						<p>Сперва в базе ищутся все перегоны, содержащие станцию
+							отправления в столбце 'from_station' (помечены красным), затем
+							содержащие станцию назначения в 'to_station' (помечены зеленым).
+							После чего из обоих выборок берутся те, что принадлежат одному
+							рейсу.</p>
+						<p>При помощи столбца 'block_number_in_route' проверяется,
+							расположены ли перегоны в правильном порядке (чтобы в выдачу не
+							попал, например, маршрут 'X -> Y' )</p>
+						<p>И наконец проверяется наличие свободных мест в вагонах,
+							даты отправления и назначения.</p>
+					</div></li>
+
+				<li><span>Код поискового запроса</span>
+					<div>
+						<p>SELECT * FROM</p>
+						<p>(SELECT trip_id, route_name, route_type, train,
+							from_station, block from_block, (departure_date + enter_at)
+							departure_date</p>
+						<p>FROM search_view v1 WHERE v1.from_station = 'МОСТЫ') s1</p>
+						<p>JOIN</p>
+						<p>(SELECT to_station, block to_block, (departure_date +
+							leave_at) arrival_date, places, sold, km_price, km, trip_id</p>
+						<p>FROM search_view v2 WHERE v2.to_station = 'ОСИПОВИЧИ') s2</p>
+						<p>ON s1.trip_id = s2.trip_id</p>
+						<p>WHERE from_block &lt;= to_block</p>
+						<p>AND sold &lt;= places</p>
+						<p>AND departure_date >= '2015-12-01'</p>
+						<p>AND arrival_date &lt;= '2015-12-03';</p>
+					</div></li>
+			</ul></li>
+			
 		<li><span>Database Structure</span>
 			<div>
 				<p>
-					<img src="images/tables.jpg" alt="Письма мастера дзен">
+					<img src="images/tables.jpg" alt="Структура базы данных">
 				</p>
 				<p>Nam enim risus, molestie et, porta ac, aliquam ac, risus.
 					Quisque lobortis. Phasellus pellentesque purus in massa. Aenean in
@@ -87,8 +128,8 @@
 					</div></li>
 				<li><span>Price Calculation Script (example)</span>
 					<div>
-					<p>SELECT km_price*km summ FROM search_view v</p>
-					<p>WHERE trip_id = 19 AND block BETWEEN 2 AND 5;</p>
+						<p>SELECT km_price*km summ FROM search_view v</p>
+						<p>WHERE trip_id = 19 AND block BETWEEN 2 AND 5;</p>
 					</div></li>
 			</ul></li>
 	</ul>

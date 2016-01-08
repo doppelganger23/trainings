@@ -71,4 +71,12 @@ public class TripListDaoImpl implements TripListDao {
 		}
 	}
 	
+	public boolean containsRoute(int routeId){
+		Integer count = jdbcTemplate.queryForObject("SELECT COUNT(1) FROM trip_list WHERE route_id = ? ;", Integer.class, routeId);
+		if(count.intValue() > 0){
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

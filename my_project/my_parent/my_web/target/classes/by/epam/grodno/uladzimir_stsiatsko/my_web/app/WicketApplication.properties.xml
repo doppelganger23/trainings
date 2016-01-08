@@ -14,6 +14,11 @@
 	<entry key="button.updateBankDetail">Update</entry>
 	<entry key="button.addNewTrain">Add New Train</entry>
 	<entry key="button.updateTrain">Update Train</entry>
+	<entry key="button.create">Create</entry>
+	<entry key="header.editRoutesPage">Edit Routes Page</entry>
+	<entry key="label.routeName">Route Name</entry>
+	<entry key="label.routeType">Route Type</entry>
+	<entry key="label.priceForKilometer">Price For Kilometer</entry>
 
 	<entry key="emblem.main">Railway Ticket</entry>
 	<entry key="emblem.small">online window</entry>
@@ -37,6 +42,8 @@
 	<entry key="header.registrationPage">Registration Page</entry>
 	<entry key="header.editTrainPage">Edit Train Page</entry>
 	<entry key="header.updateTrainPage">Update Train Page</entry>
+	<entry key="header.editRoutesPage">Edit Routes Page</entry>
+	<entry key="header.updateRouteMapPage">Update Route Map Page</entry>
 
 	<entry key="label.departureStation">Departure Station</entry>
 	<entry key="label.departureDate">Departure Date</entry>
@@ -55,6 +62,7 @@
 	<entry key="label.trainNumber">Train Number</entry>
 	<entry key="label.passengersCapacity">Passengers Capacity</entry>
 	<entry key="label.elementsOnPage">Elements on page: </entry>
+	<entry key="label.stsBlock">Station to Station Block</entry>
 
 	<entry key="link.registerAcc">Register Account</entry>
 	<entry key="link.logIn">Log In</entry>
@@ -64,6 +72,7 @@
 	<entry key="link.editBills">Edit Bills</entry>
 	<entry key="link.editBankD">Edit Bank Details</entry>
 	<entry key="link.editTrains">Edit Trains</entry>
+	<entry key="link.editRoutes">Edit Routes</entry>
 
 	<entry key="locale.ru">Russian</entry>
 	<entry key="locale.en">English</entry>
@@ -107,6 +116,7 @@
 	<entry key="paging.billingNumber">Billing Number</entry>
 	<entry key="paging.byrExchangeRate">BYR Exchange Rate</entry>
 	<entry key="paging.passengersCapacity">Passengers Capacity</entry>
+	<entry key="paging.priceForkilometer">Price For Kilometer in BYR</entry>
 
 	<entry key="title.main">Online Railway Ticket Window</entry>
 
