@@ -15,10 +15,7 @@
 	<entry key="button.addNewTrain">Add New Train</entry>
 	<entry key="button.updateTrain">Update Train</entry>
 	<entry key="button.create">Create</entry>
-	<entry key="header.editRoutesPage">Edit Routes Page</entry>
-	<entry key="label.routeName">Route Name</entry>
-	<entry key="label.routeType">Route Type</entry>
-	<entry key="label.priceForKilometer">Price For Kilometer</entry>
+	<entry key="button.continue">Continue</entry>
 
 	<entry key="emblem.main">Railway Ticket</entry>
 	<entry key="emblem.small">online window</entry>
@@ -28,6 +25,7 @@
 		integrity needs</entry>
 	<entry key="error.trainExists">Train with such number already exists</entry>
 	<entry key="error.trainNumberTaken">This number already used</entry>
+	<entry key="error.chooseBlock">Choose Block To Continue</entry>
 	
 	<entry key="header.loginPage">Log In Page</entry>
 	<entry key="header.searchPage">Search Page</entry>
@@ -44,6 +42,7 @@
 	<entry key="header.updateTrainPage">Update Train Page</entry>
 	<entry key="header.editRoutesPage">Edit Routes Page</entry>
 	<entry key="header.updateRouteMapPage">Update Route Map Page</entry>
+	<entry key="header.editRoutesPage">Edit Routes Page</entry>
 
 	<entry key="label.departureStation">Departure Station</entry>
 	<entry key="label.departureDate">Departure Date</entry>
@@ -62,7 +61,13 @@
 	<entry key="label.trainNumber">Train Number</entry>
 	<entry key="label.passengersCapacity">Passengers Capacity</entry>
 	<entry key="label.elementsOnPage">Elements on page: </entry>
-	<entry key="label.stsBlock">Station to Station Block</entry>
+	<entry key="label.stsBlock">Choose Station to Station Block:</entry>
+	<entry key="label.routeName">Route Name</entry>
+	<entry key="label.routeType">Route Type</entry>
+	<entry key="label.priceForKilometer">Price For Kilometer</entry>
+	<entry key="label.blockEnterTime">Relative block enter time</entry>
+	<entry key="label.blockLeaveTime">Relative block leave time</entry>
+	
 
 	<entry key="link.registerAcc">Register Account</entry>
 	<entry key="link.logIn">Log In</entry>

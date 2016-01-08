@@ -15,11 +15,7 @@
 	<entry key="button.addNewTrain">Добавить поезд</entry>
 	<entry key="button.updateTrain">Применить</entry>
 	<entry key="button.create">Создать</entry>
-	<entry key="header.editRoutesPage">Редактировать маршруты</entry>
-	<entry key="label.routeName">Название</entry>
-	<entry key="label.routeType">Тип вагона</entry>
-	<entry key="label.priceForKilometer">Цена за километр, руб.</entry>
-	<entry key="label.stsBlock">Железнодорожный перегон</entry>
+	<entry key="button.continue">Продолжить</entry>
 
 	<entry key="emblem.main">Железнодорожная Касса</entry>
 	<entry key="emblem.small">онлайн-сервис</entry>
@@ -29,6 +25,7 @@
 		структурной целостности данных</entry>
 	<entry key="error.trainExists">Поезд с таким номером уже есть в базе</entry>
 	<entry key="error.trainNumberTaken">Этот номер поезда уже занят</entry>
+	<entry key="error.chooseBlock">Вы должны выбрать перегон, чтобы продолжить</entry>
 
 	<entry key="header.loginPage">Страница входа</entry>
 	<entry key="header.searchPage">Страница поиска</entry>
@@ -45,6 +42,7 @@
 	<entry key="header.updateTrainPage">Изменение параметров поезда</entry>
 	<entry key="header.editRoutesPage">Редактировать маршруты</entry>
 	<entry key="header.updateRouteMapPage">Редактирование карты маршрута</entry>
+	<entry key="header.editRoutesPage">Редактировать маршруты</entry>
 
 	<entry key="locale.ru">Русский</entry>
 	<entry key="locale.en">Английский</entry>
@@ -66,6 +64,12 @@
 	<entry key="label.trainNumber">Номер поезда</entry>
 	<entry key="label.passengersCapacity">Пассажировместимость</entry>
 	<entry key="label.elementsOnPage">Элементов на странице: </entry>
+	<entry key="label.stsBlock">Выберите железнодорожный перегон:</entry>
+	<entry key="label.routeName">Название</entry>
+	<entry key="label.routeType">Тип вагона</entry>
+	<entry key="label.priceForKilometer">Цена за километр, руб.</entry>
+	<entry key="label.blockEnterTime">Время в пути при отправлении</entry>
+	<entry key="label.blockLeaveTime">Время в пути по прибытию</entry>
 
 
 	<entry key="link.registerAcc">Регистрация</entry>

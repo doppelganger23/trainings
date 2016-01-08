@@ -88,10 +88,11 @@ public class EditRoutesPage extends AbstractPage {
 			public void onSubmit() {
 					newRoute.setRouteName(newRoute.getRouteName().toUpperCase());
 					newRoute.setRouteType(newRoute.getRouteType().toUpperCase());
-					
 					int newRouteId = rService.add(newRoute);
+					newRoute.setId(newRouteId);
+					
 					LOGGER.debug("route created with id = " + newRouteId);
-					setResponsePage(new UpdateRouteMapPage(newRouteId));
+					setResponsePage(new UpdateRouteMapPage(newRoute));
 			}
 		});
 

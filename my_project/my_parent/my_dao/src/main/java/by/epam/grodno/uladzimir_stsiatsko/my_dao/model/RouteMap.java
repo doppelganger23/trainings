@@ -1,7 +1,7 @@
 package by.epam.grodno.uladzimir_stsiatsko.my_dao.model;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.sql.Time;
 
 public class RouteMap implements Serializable {
 	
@@ -9,8 +9,8 @@ public class RouteMap implements Serializable {
 	private int routeId;
 	private int stationToStationBlockId;
 	private int blockNumberInRoute;
-	//разбить на два и поправить формат
-	private Timestamp timeSinceDeparture;
+	private Time blockLeaveTime;
+	private Time blockEnterTime;
 	
 	public int getId() {
 		return id;
@@ -36,11 +36,17 @@ public class RouteMap implements Serializable {
 	public void setStationToStationBlockId(int stationToStationBlockId) {
 		this.stationToStationBlockId = stationToStationBlockId;
 	}
-	public Timestamp getTimeSinceDeparture() {
-		return timeSinceDeparture;
+	public Time getBlockLeaveTime() {
+		return blockLeaveTime;
 	}
-	public void setTimeSinceDeparture(Timestamp timeSinceDeparture) {
-		this.timeSinceDeparture = timeSinceDeparture;
+	public void setBlockLeaveTime(Time blockLeaveTime) {
+		this.blockLeaveTime = blockLeaveTime;
+	}
+	public Time getBlockEnterTime() {
+		return blockEnterTime;
+	}
+	public void setBlockEnterTime(Time blockEnterTime) {
+		this.blockEnterTime = blockEnterTime;
 	}
 	
 }

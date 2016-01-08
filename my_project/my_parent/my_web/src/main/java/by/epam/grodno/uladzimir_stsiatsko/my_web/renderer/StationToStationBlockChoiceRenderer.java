@@ -19,10 +19,8 @@ public class StationToStationBlockChoiceRenderer extends ChoiceRenderer<StationT
 	
 	@Override
 	public Object getDisplayValue(StationToStationBlock block) {
-		int departureStationId = block.getDepartureStationId();
-		String from = stService.getName(departureStationId);
-		int destinationStationId = block.getDestinationStationId();
-		String to = stService.getName(destinationStationId);
+		String from = stService.getName(block.getDepartureStationId());
+		String to = stService.getName(block.getDestinationStationId());
 		return String.format("%s -> %s", from, to);
 	}
 
