@@ -20,8 +20,8 @@ public interface BankDetailService {
 	
 	List<BankDetail> findAll();
 	
-	//заменены на ^, удалить?
 	double getByrExchangeRate(String currencyType);
+	
 	int getBillingNumber(String currencyType);
 	
 }

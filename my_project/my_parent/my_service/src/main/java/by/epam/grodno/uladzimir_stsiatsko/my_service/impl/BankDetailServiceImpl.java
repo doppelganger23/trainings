@@ -60,8 +60,9 @@ public class BankDetailServiceImpl implements BankDetailService {
 		double result = bdDao.getByrExchangeRate(currencyType);
 		if (result == 0) {
 			throw new IllegalArgumentException("currency type not supported");
+		} else {
+			return result;
 		}
-		return result;
 	}
 
 	@Override
@@ -69,8 +70,9 @@ public class BankDetailServiceImpl implements BankDetailService {
 		int result = bdDao.getBillingNumber(currencyType);
 		if (result == 0) {
 			throw new IllegalArgumentException("currency type not supported");
+		} else {
+			return result;
 		}
-		return result;
 	}
 
 }

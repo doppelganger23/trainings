@@ -7,10 +7,14 @@ import org.apache.wicket.markup.html.basic.Label;
 
 import by.epam.grodno.uladzimir_stsiatsko.my_dao.model.Bill;
 import by.epam.grodno.uladzimir_stsiatsko.my_service.BillService;
+import by.epam.grodno.uladzimir_stsiatsko.my_service.TripListService;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.AbstractPage;
 
 @AuthorizeInstantiation(value = { "admin", "passenger" })
 public class BankDetailsPage extends AbstractPage{
+	
+	@Inject
+	TripListService tlService;
 	
 	@Inject
 	private BillService billService;
@@ -29,6 +33,7 @@ public class BankDetailsPage extends AbstractPage{
 		add(new Label("payment-value", bill.getPaymentValue() + " " + bill.getCurrencyOfPayment()));
 		
 		billService.addBill(bill);
+		tlService.incrementTicketsSold(bill.getTripListId());
 		
 		//TODO add service and dao methods etc.
 		//add(new Label(""), tlService.getById(bill.getTripListId()).getName);

@@ -35,6 +35,7 @@ import by.epam.grodno.uladzimir_stsiatsko.my_service.TripListService;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.metadata.ElementsOnPageMetaData;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.AbstractPage;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.admin_actions.update.UpdateRouteMapPage;
+import by.epam.grodno.uladzimir_stsiatsko.my_web.page.admin_actions.update.UpdateRoutePage;
 
 @AuthorizeAction(action=Action.RENDER, roles={"admin"})
 public class EditRoutesPage extends AbstractPage {
@@ -111,7 +112,6 @@ public class EditRoutesPage extends AbstractPage {
 					public void onClick() {
 						//дописать ворнинг месседж
 						rService.delete(route);
-						setResponsePage(new EditRoutesPage());
 					}
 				};
 				item.add(deleteLink);
@@ -119,11 +119,10 @@ public class EditRoutesPage extends AbstractPage {
 					deleteLink.setVisible(false);
 				}
 				
-				item.add(new Link<Void>("edit-link") {
+				item.add(new Link<Void>("modify-link") {
 					@Override
 					public void onClick() {
-						//исправить на UpdateRoutePage (которая сошлет на UpdateRouteMapPage
-						//setResponsePage(new UpdateRouteMapPage(route));
+						setResponsePage(new UpdateRoutePage(route));
 					}
 				});
 

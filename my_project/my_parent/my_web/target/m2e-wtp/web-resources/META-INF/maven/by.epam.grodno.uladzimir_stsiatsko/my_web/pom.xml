@@ -45,6 +45,10 @@
 			<groupId>com.googlecode.wicket-jquery-ui</groupId>
 			<artifactId>wicket-kendo-ui-theme-default</artifactId>
 		</dependency>
+		<dependency>
+				<groupId>com.googlecode.wicket-jquery-ui</groupId>
+				<artifactId>wicket-kendo-ui-culture</artifactId>
+		</dependency>
 	
 
 

@@ -79,4 +79,9 @@ public class TripListDaoImpl implements TripListDao {
 			return false;
 		}
 	}
+
+	@Override
+	public void incrementTicketsSold(int tripListId) {
+		jdbcTemplate.update("UPDATE trip_list SET tickets_sold = tickets_sold + 1 WHERE id = ? ;", tripListId);
+	}
 }

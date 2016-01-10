@@ -16,6 +16,8 @@
 	<entry key="button.updateTrain">Update Train</entry>
 	<entry key="button.create">Create</entry>
 	<entry key="button.continue">Continue</entry>
+	<entry key="button.update">Update</entry>
+	<entry key="button.modify">Modify</entry>
 
 	<entry key="emblem.main">Railway Ticket</entry>
 	<entry key="emblem.small">online window</entry>
@@ -26,6 +28,9 @@
 	<entry key="error.trainExists">Train with such number already exists</entry>
 	<entry key="error.trainNumberTaken">This number already used</entry>
 	<entry key="error.chooseBlock">Choose Block To Continue</entry>
+	<entry key="error.chooseBlockEnterTime">Specify relative block enter time to continue</entry>
+	<entry key="error.chooseBlockLeaveTime">Specify relative block leave time to continue</entry>
+	<entry key="error.chooseDepTime">Specify departure time</entry>
 	
 	<entry key="header.loginPage">Log In Page</entry>
 	<entry key="header.searchPage">Search Page</entry>
@@ -43,9 +48,11 @@
 	<entry key="header.editRoutesPage">Edit Routes Page</entry>
 	<entry key="header.updateRouteMapPage">Update Route Map Page</entry>
 	<entry key="header.editRoutesPage">Edit Routes Page</entry>
+	<entry key="header.updateRoutePage">Update Route Page</entry>
 
 	<entry key="label.departureStation">Departure Station</entry>
 	<entry key="label.departureDate">Departure Date</entry>
+	<entry key="label.departureTime">Departure Time</entry>
 	<entry key="label.destinationStation">Destination Station</entry>
 	<entry key="label.arrivalDate">Arrival Date</entry>
 	<entry key="label.yourBillingNumber">Your billing number is:</entry>

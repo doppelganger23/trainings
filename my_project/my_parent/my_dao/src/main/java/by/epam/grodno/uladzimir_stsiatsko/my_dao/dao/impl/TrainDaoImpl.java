@@ -18,7 +18,7 @@ public class TrainDaoImpl implements TrainDao {
 
 	@Override
 	public List<Train> getAll() {
-		return jdbcTemplate.query("SELECT * FROM train;", new TrainMapper());
+		return jdbcTemplate.query("SELECT * FROM train ORDER BY train_number ;", new TrainMapper());
 	}
 
 	@Override

@@ -17,4 +17,6 @@ public interface TripListDao {
 	
 	boolean containsRoute(int routeId);
 	
+	void incrementTicketsSold(int tripListId);
+	
 }

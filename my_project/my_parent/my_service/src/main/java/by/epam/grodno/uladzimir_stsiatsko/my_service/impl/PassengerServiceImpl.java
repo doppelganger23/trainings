@@ -30,8 +30,9 @@ public class PassengerServiceImpl implements PassengerService {
 		if (sortBy == "sort-by-id") {
 			if (sortType == "ASCENDING") {
 				return pDao.getAll(first, count, "id", "asc");
-			} else
+			} else {
 				return pDao.getAll(first, count, "id", "desc");
+			}
 		}
 		if (sortBy == "sort-by-first-name") {
 			if (sortType == "ASCENDING") {

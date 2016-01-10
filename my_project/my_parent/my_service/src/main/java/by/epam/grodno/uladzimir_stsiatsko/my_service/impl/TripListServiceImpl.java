@@ -37,5 +37,10 @@ public class TripListServiceImpl implements TripListService {
 	public boolean containsRoute(int routeId){
 		return tlDao.containsRoute(routeId);
 	}
+
+	@Override
+	public void incrementTicketsSold(int tripListId) {
+		tlDao.incrementTicketsSold(tripListId);
+	}
 	
 }

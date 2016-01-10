@@ -1,18 +1,25 @@
 package by.epam.grodno.uladzimir_stsiatsko.my_service;
 
+import static org.mockito.Mockito.when;
+
 import java.sql.Timestamp;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.util.ReflectionTestUtils;
 
+import by.epam.grodno.uladzimir_stsiatsko.my_dao.dao.SearchResultDao;
 import by.epam.grodno.uladzimir_stsiatsko.my_dao.model.Request;
 import by.epam.grodno.uladzimir_stsiatsko.my_dao.model.SearchResult;
 
@@ -25,19 +32,57 @@ public class SearchResultServiceTest {
 
 	@Autowired
 	private SearchResultService service;
+	
+	private SearchResultDao searchResultDaoMock;
 
-	//@Test
+	private SearchResult searchResult = new SearchResult();
+
+	@Before
+	public void before() {
+		searchResultDaoMock = Mockito.mock(SearchResultDao.class);
+		
+//		when(searchResultDaoMock.containsBill(1)).thenReturn(true);
+//		when(searchResultDaoMock.containsBill(2)).thenReturn(false);
+//		when(searchResultDaoMock.getPriceElements(searchResult)).thenReturn(Arrays.asList(1.1, 2.2, 3.3));
+//		when(searchResultDaoMock.getBillingNumber("EUR")).thenReturn(1);
+//		when(searchResultDaoMock.getBillingNumber("GBP")).thenReturn(0);
+
+		ReflectionTestUtils.setField(service, "srDao", searchResultDaoMock);
+	}
+	
+	//Mock using tests:
+	
+	@Test
+	public void findTest() {
+		
+	}
+	
+	@Test
+	public void getAllTest() {
+		service.getAll(1, 2);
+		searchResultDaoMock.getAll(1, 2);
+	}
+	
+	@Test
+	public void getCountTest() {
+		
+	}
+	
+	
+	//Database using tests:
+
+	@Test
 	public void quieryWithoutDatesTest() {
-		LOGGER.debug("Starting quieryWithoutDatesTest");
+		LOGGER.info("Starting quieryWithoutDatesTest");
 		Request request = new Request();
 		request.setDepartureStation("МОСТЫ");
 		request.setDestinationStation("ОСИПОВИЧИ");
 		testSearch(request);
 	}
 	
-	//@Test
+	@Test
 	public void quieryWithoutDepartureDateTest(){
-		LOGGER.debug("Starting quieryWithoutDepartureDateTest");
+		LOGGER.info("Starting quieryWithoutDepartureDateTest");
 		Request request = new Request();
 		request.setDepartureStation("МОСТЫ");
 		request.setDestinationStation("ОСИПОВИЧИ");
@@ -45,9 +90,9 @@ public class SearchResultServiceTest {
 		testSearch(request);
 	}
 	
-	//@Test
+	@Test
 	public void quieryWithoutArrivalDateTest(){
-		LOGGER.debug("Starting quieryWithoutArrivalDateTest");
+		LOGGER.info("Starting quieryWithoutArrivalDateTest");
 		Request request = new Request();
 		request.setDepartureStation("МОСТЫ");
 		request.setDestinationStation("ОСИПОВИЧИ");
@@ -57,7 +102,7 @@ public class SearchResultServiceTest {
 	
 	@Test
 	public void quieryWithBothDatesTest() {
-		LOGGER.debug("Starting quieryWithBothDatesTest");
+		LOGGER.info("Starting quieryWithBothDatesTest");
 		Request request = new Request();
 		request.setDepartureStation("МОСТЫ");
 		request.setDestinationStation("ОСИПОВИЧИ");
@@ -66,11 +111,12 @@ public class SearchResultServiceTest {
 		testSearch(request);
 	}
 	
+	//not test method!
 	private void testSearch(Request request){
-		LOGGER.debug("Request created. Sending to SearchResultService find method.");
+		LOGGER.info("Request created. Sending to SearchResultService find method.");
 		List<SearchResult> resList = service.find(request);
 		Assert.assertFalse(resList.isEmpty());
-		LOGGER.debug("Received response from database. Result list not empty.");
+		LOGGER.info("Received response from database. Result list not empty.");
 
 		resList.forEach(new Consumer<SearchResult>() {
 			@Override
@@ -81,7 +127,9 @@ public class SearchResultServiceTest {
 				LOGGER.info("Название маршрута: {}", e.getRouteName());
 				Assert.assertNotNull(e.getTrain());
 				LOGGER.info("Номер поезда: {}", e.getTrain());
+				Assert.assertNotNull(e.getDepartureDate());
 				LOGGER.info("Дата отправления: {}", e.getDepartureDate());
+				Assert.assertNotNull(e.getSold());
 				LOGGER.info("Продано билетов: {}", e.getSold());
 				LOGGER.info("---------------------");
 				cnt++;

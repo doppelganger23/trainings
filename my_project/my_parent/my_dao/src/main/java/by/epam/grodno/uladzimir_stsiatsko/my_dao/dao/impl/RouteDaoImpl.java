@@ -3,7 +3,6 @@ package by.epam.grodno.uladzimir_stsiatsko.my_dao.dao.impl;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +23,7 @@ public class RouteDaoImpl implements RouteDao {
 	JdbcTemplate jdbcTemplate;
 	
 	public List<Route> getAll(){
-		return jdbcTemplate.query("SELECT * FROM route;", new RouteMapper());
+		return jdbcTemplate.query("SELECT * FROM route ORDER BY route_name ;", new RouteMapper());
 	}
 
 	@Override

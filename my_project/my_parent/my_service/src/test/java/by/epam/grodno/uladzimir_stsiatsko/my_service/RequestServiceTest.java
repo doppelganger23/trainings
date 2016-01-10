@@ -1,10 +1,12 @@
 package by.epam.grodno.uladzimir_stsiatsko.my_service;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.function.Consumer;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,16 +44,16 @@ public class RequestServiceTest {
 		request.setArrivalDate(new Timestamp(99999));
 		List<TripList> resList = service.executeQuiery(request);
 		
-		Assert.assertFalse(resList.isEmpty());
+		assertFalse(resList.isEmpty());
 
 		resList.forEach(new Consumer<TripList>() {
 			@Override
 			public void accept(TripList tl) {
-			Assert.assertNotNull(tl.getId());
+			assertNotNull(tl.getId());
 			System.out.println("Id рейса: " + tl.getId());
-			Assert.assertNotNull(tl.getRouteId());
+			assertNotNull(tl.getRouteId());
 			System.out.println("Id маршрута: " + tl.getRouteId());
-			Assert.assertNotNull(tl.getTrainId());
+			assertNotNull(tl.getTrainId());
 			System.out.println("Id поезда: " + tl.getTrainId());
 			System.out.println("Дата отправления: " + tl.getDepartureDate());
 			System.out.println("Продано билетов: " + tl.getTicketsSold());
@@ -65,7 +67,7 @@ public class RequestServiceTest {
 
 	@Test
 	public void getRequestTest() {
-		Assert.assertNotNull(service.getRequest(1));
+		assertNotNull(service.getRequest(1));
 	}
 
 }

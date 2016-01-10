@@ -8,7 +8,7 @@ public class RouteChoiceRenderer extends ChoiceRenderer<Route>{
 
 		@Override
 		public Object getDisplayValue(Route route) {
-			return String.format("%s %s [id = %s]", route.getRouteType(), route.getRouteName(), route.getId());
+			return String.format("%s (%s), id = %s", route.getRouteName(), route.getRouteType(), route.getId());
 			
 		}
 

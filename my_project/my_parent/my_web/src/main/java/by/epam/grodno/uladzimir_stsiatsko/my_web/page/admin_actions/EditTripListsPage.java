@@ -1,11 +1,14 @@
 package by.epam.grodno.uladzimir_stsiatsko.my_web.page.admin_actions;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.Locale;
 
 import javax.inject.Inject;
 
 import org.apache.wicket.MetaDataKey;
+import org.apache.wicket.Session;
 import org.apache.wicket.authorization.Action;
 import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeAction;
 import org.apache.wicket.datetime.StyleDateConverter;
@@ -15,6 +18,8 @@ import org.apache.wicket.extensions.markup.html.repeater.data.sort.OrderByBorder
 import org.apache.wicket.extensions.markup.html.repeater.data.sort.SortOrder;
 import org.apache.wicket.extensions.markup.html.repeater.util.SortParam;
 import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
+import org.apache.wicket.markup.head.IHeaderResponse;
+import org.apache.wicket.markup.head.JavaScriptHeaderItem;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
@@ -28,6 +33,9 @@ import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
+
+import com.googlecode.wicket.kendo.ui.form.datetime.TimePicker;
+import com.googlecode.wicket.kendo.ui.resource.KendoGlobalizeResourceReference;
 
 import by.epam.grodno.uladzimir_stsiatsko.my_dao.model.Route;
 import by.epam.grodno.uladzimir_stsiatsko.my_dao.model.Train;
@@ -44,12 +52,21 @@ import by.epam.grodno.uladzimir_stsiatsko.my_web.page.AbstractPage;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.renderer.RouteChoiceRenderer;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.renderer.TrainChoiceRenderer;
 
-@AuthorizeAction(action=Action.RENDER, roles={"admin"})
+@AuthorizeAction(action = Action.RENDER, roles = { "admin" })
 public class EditTripListsPage extends AbstractPage {
 	
+	@Override
+	public void renderHead(IHeaderResponse response){
+		super.renderHead(response);
+		response.render(JavaScriptHeaderItem.forReference(new KendoGlobalizeResourceReference(Locale.FRANCE)));
+		response.render(JavaScriptHeaderItem.forReference(new KendoGlobalizeResourceReference(Locale.ENGLISH)));
+	}
+	
+	Locale pickerLocale = Locale.ENGLISH;
+
 	@Inject
 	BillService bService;
-	
+
 	@Inject
 	TripListInfoService tlInfoService;
 
@@ -61,14 +78,14 @@ public class EditTripListsPage extends AbstractPage {
 
 	@Inject
 	RouteService routeService;
-	
+
 	public static MetaDataKey<ElementsOnPageMetaData> ELEMENTS_ON_PAGE = new MetaDataKey<ElementsOnPageMetaData>() {
 	};
 	private int elementsOnPage = 5;
-	
-	public EditTripListsPage(){
+
+	public EditTripListsPage() {
 		ElementsOnPageMetaData meta = getSession().getMetaData(ELEMENTS_ON_PAGE);
-		if(meta != null){
+		if (meta != null) {
 			this.elementsOnPage = meta.getElementsOnPage();
 		}
 	}
@@ -98,27 +115,49 @@ public class EditTripListsPage extends AbstractPage {
 		form.add(routeIdChoice);
 
 		// date part, without time yet
-		DateTextField dateField = new DateTextField("departure-date",
+		final DateTextField dateField = new DateTextField("departure-date",
 				new PropertyModel<Date>(newTripList, "departureDate"), new StyleDateConverter("S-", true));
 		dateField.add(new CustomDatePicker());
 		dateField.setRequired(true);
 		form.add(dateField);
 
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(0, 0, 0, 0, 0);
+		
+		if("ru".equals(Session.get().getLocale().toString())){
+			pickerLocale = Locale.FRENCH;
+		}
+
+		final TimePicker departureTimepicker = new TimePicker("departure-time-picker", Model.of(calendar.getTime()), pickerLocale);
+		form.add(departureTimepicker);
+
 		form.add(new SubmitLink("submit-button") {
 			@Override
 			public void onSubmit() {
-				// добавить проверку маршрутов на совпадение
-				newTripList.setTrainId(trainModel.getObject().getId());
-				newTripList.setRouteId(routeModel.getObject().getId());
-				tlService.addTripList(newTripList);
-				setResponsePage(new EditTripListsPage());
+				if (departureTimepicker.getModelObject() == null) {
+					error(getString("error.chooseDepTime"));
+				} else {
+					int hours = departureTimepicker.getModelObject().getHours();
+					int minutes = departureTimepicker.getModelObject().getMinutes();
+					Date date = dateField.getModelObject();
+					date.setHours(hours);
+					date.setMinutes(minutes);
+					newTripList.setDepartureDate(date);
+
+					// добавить проверку маршрутов на совпадение
+					newTripList.setTrainId(trainModel.getObject().getId());
+					newTripList.setRouteId(routeModel.getObject().getId());
+					tlService.addTripList(newTripList);
+					setResponsePage(new EditTripListsPage());
+				}
 			}
 		});
-		
+
 		TripListInfoDataProvider tliDataProvider = new TripListInfoDataProvider();
-		DataView<TripListInfo> dataView = new DataView<TripListInfo>("trip-list-info-list", tliDataProvider, elementsOnPage){
+		DataView<TripListInfo> dataView = new DataView<TripListInfo>("trip-list-info-list", tliDataProvider,
+				elementsOnPage) {
 			@Override
-			protected void populateItem(Item<TripListInfo> item){	
+			protected void populateItem(Item<TripListInfo> item) {
 				final TripListInfo tlInfo = item.getModelObject();
 				item.add(new Label("id"));
 				item.add(new Label("trainNumber"));
@@ -126,52 +165,52 @@ public class EditTripListsPage extends AbstractPage {
 				item.add(new Label("routeName"));
 				item.add(new Label("departureDate"));
 				item.add(new Label("ticketsSold"));
-				
-				Link<Void> deleteLink = new Link<Void>("delete-trip-list-link"){
+
+				Link<Void> deleteLink = new Link<Void>("delete-trip-list-link") {
 					@Override
-					public void onClick(){
-							tlService.deleteTripList(tlInfo.getId());
+					public void onClick() {
+						tlService.deleteTripList(tlInfo.getId());
 					}
 				};
 				item.add(deleteLink);
-				if(bService.containsBill(tlInfo.getId())){
+				if (bService.containsBill(tlInfo.getId())) {
 					deleteLink.setVisible(false);
 				}
 			}
 		};
 		add(dataView);
-		
+
 		add(new OrderByBorder<Object>("sortId", "id", tliDataProvider));
 		add(new OrderByBorder<Object>("sortTrainNumber", "train_number", tliDataProvider));
 		add(new OrderByBorder<Object>("sortRouteType", "route_type", tliDataProvider));
 		add(new OrderByBorder<Object>("sortRouteName", "route_name", tliDataProvider));
 		add(new OrderByBorder<Object>("sortDepartureDate", "departure_date", tliDataProvider));
 		add(new OrderByBorder<Object>("sortTicketsSold", "tickets_sold", tliDataProvider));
-		
+
 		add(new PagingNavigator("paging", dataView));
-		
-		add(new Link<Void>("5-elements-link"){
+
+		add(new Link<Void>("5-elements-link") {
 			@Override
-			public void onClick(){
+			public void onClick() {
 				getSession().setMetaData(ELEMENTS_ON_PAGE, new ElementsOnPageMetaData(5));
 				setResponsePage(new EditTripListsPage());
 			}
 		});
-		add(new Link<Void>("10-elements-link"){
+		add(new Link<Void>("10-elements-link") {
 			@Override
-			public void onClick(){
+			public void onClick() {
 				getSession().setMetaData(ELEMENTS_ON_PAGE, new ElementsOnPageMetaData(10));
 				setResponsePage(new EditTripListsPage());
 			}
 		});
-		add(new Link<Void>("20-elements-link"){
+		add(new Link<Void>("20-elements-link") {
 			@Override
-			public void onClick(){
+			public void onClick() {
 				getSession().setMetaData(ELEMENTS_ON_PAGE, new ElementsOnPageMetaData(20));
 				setResponsePage(new EditTripListsPage());
 			}
 		});
-		
+
 	}
 
 	private class TripListInfoDataProvider extends SortableDataProvider<TripListInfo, Object> {
@@ -188,7 +227,7 @@ public class EditTripListsPage extends AbstractPage {
 			ISortState<Object> sortState = getSortState();
 			SortOrder currentSort = sortState.getPropertySortOrder(sort.getProperty());
 
-			return tlInfoService.getAll(first, count, (String)sort.getProperty(), currentSort.name()).iterator();
+			return tlInfoService.getAll(first, count, (String) sort.getProperty(), currentSort.name()).iterator();
 		}
 
 		@Override
@@ -202,5 +241,5 @@ public class EditTripListsPage extends AbstractPage {
 		}
 
 	}
-	
+
 }

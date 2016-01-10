@@ -22,9 +22,9 @@ public class TrainServiceImpl implements TrainService {
 	@Override
 	public void addTrain(Train train) {
 		if (containsTrain(train.getTrainNumber())) {
-			tDao.addTrain(train);
-		} else {
 			throw new IllegalArgumentException("Train number must be unique");
+		} else {
+			tDao.addTrain(train);
 		}
 	}
 

@@ -11,5 +11,7 @@ public interface TripListService {
 	boolean containsTrain(int trainId);
 	
 	boolean containsRoute(int routeId);
+	
+	void incrementTicketsSold(int tripListId);
 
 }
