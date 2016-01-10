@@ -13,7 +13,7 @@ import by.epam.grodno.uladzimir_stsiatsko.my_service.RouteMapService;
 public class RouteMapServiceImpl implements RouteMapService {
 	
 	@Autowired
-	RouteMapDao rmDao;
+	private RouteMapDao rmDao;
 	
 	public void addRouteMap(List<RouteMap> routeMap){
 		for(RouteMap element : routeMap){

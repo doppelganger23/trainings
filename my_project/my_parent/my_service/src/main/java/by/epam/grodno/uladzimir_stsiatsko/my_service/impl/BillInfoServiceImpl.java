@@ -13,7 +13,7 @@ import by.epam.grodno.uladzimir_stsiatsko.my_service.BillInfoService;
 public class BillInfoServiceImpl implements BillInfoService {
 
 	@Autowired
-	BillInfoDao biDao;
+	private BillInfoDao biDao;
 
 	public List<BillInfo> getAll(long first, long count, String sortBy, String sortType) {
 		if ("ASCENDING".equals(sortType)) {

@@ -30,8 +30,9 @@ import by.epam.grodno.uladzimir_stsiatsko.my_web.page.admin_actions.update.Updat
 public class EditAccountsPage extends AbstractPage {
 
 	@Inject
-	AccountService aService;
+	private AccountService aService;
 	
+	//metadata for paging
 	public static MetaDataKey<ElementsOnPageMetaData> ELEMENTS_ON_PAGE = new MetaDataKey<ElementsOnPageMetaData>() {
 	};
 	private int elementsOnPage = 5;
@@ -47,6 +48,8 @@ public class EditAccountsPage extends AbstractPage {
 	protected void onInitialize() {
 		super.onInitialize();
 
+		//list of accounts:
+		
 		AccountsDataProvider accsDataProvider = new AccountsDataProvider();
 		DataView<Account> dataView = new DataView<Account>("accounts-list", accsDataProvider, elementsOnPage) {
 			@Override
@@ -55,17 +58,21 @@ public class EditAccountsPage extends AbstractPage {
 				item.add(new Label("id"));
 				item.add(new Label("login"));
 				item.add(new Label("firstName"));
-				item.add(new Label("lName", acc.getLastName())); //так без нейминг-конвенции
+				item.add(new Label("lastName"));
 				item.add(new Label("email"));
 				item.add(new Label("accessLevel"));
 
-				item.add(new Link<Void>("delete-link") {
+				Link<Void> deleteLink = new Link<Void>("delete-link") {
 					@Override
 					public void onClick() {
-						//дописать ворнинг месседж
 						aService.delete(acc);
 					}
-				});
+				};
+				item.add(deleteLink);
+				//preventing admin from accidentally deliting himself
+				if("admin".equals(acc.getAccessLevel())){
+					deleteLink.setVisible(false);
+				}
 				
 				item.add(new Link<Void>("edit-link") {
 					@Override
@@ -77,6 +84,8 @@ public class EditAccountsPage extends AbstractPage {
 			}
 		};
 		add(dataView);
+		
+		//paging:
 
 		add(new OrderByBorder<Object>("sortId", "id", accsDataProvider));
 		add(new OrderByBorder<Object>("sortLogin", "login", accsDataProvider));

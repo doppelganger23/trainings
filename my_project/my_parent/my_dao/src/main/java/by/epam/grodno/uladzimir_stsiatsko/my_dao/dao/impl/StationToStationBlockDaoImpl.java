@@ -16,6 +16,7 @@ public class StationToStationBlockDaoImpl implements StationToStationBlockDao {
 	@Autowired
 	private JdbcTemplate jdbcTemplate; 
 	
+	@Override
 	public List<StationToStationBlock> getBlocks(){
 		return jdbcTemplate.query("SELECT * FROM station_to_station_block", new StationToStationBlockMapper());
 	}

@@ -13,7 +13,7 @@ import by.epam.grodno.uladzimir_stsiatsko.my_service.StationService;
 public class StationServiceImpl implements StationService {
 	
 	@Autowired
-	StationDao sDao;
+	private StationDao sDao;
 	
 	public List<Station> getStations(){
 		return sDao.getStations();

@@ -17,6 +17,7 @@ public class BillDaoImpl implements BillDao {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
+	@Override
 	public boolean containsBill(int tripListId){
 		Integer count = jdbcTemplate.queryForObject("SELECT count(1) FROM bill WHERE trip_list_id = ? ;", Integer.class, tripListId);
 		if(count.intValue() > 0){
@@ -53,6 +54,7 @@ public class BillDaoImpl implements BillDao {
 		}
 	}
 	
+	@Override
 	public void setPaid(int id, boolean isPaid){
 		jdbcTemplate.update(String.format("UPDATE bill SET is_paid = %s WHERE id = %s ;", isPaid, id));
 	}

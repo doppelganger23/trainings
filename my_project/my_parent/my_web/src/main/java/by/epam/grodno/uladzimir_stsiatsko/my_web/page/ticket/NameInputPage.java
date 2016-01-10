@@ -15,14 +15,16 @@ import by.epam.grodno.uladzimir_stsiatsko.my_web.app.CustomSession;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.AbstractPage;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.registration.RegistrationPage;
 
+
+/**
+ * Same as LogInPage, but redirects to BankDetailPage after login
+ * (used in process of selling tickets to unlogged user)
+ @author Uladzimir Stsiatsko
+*/
 public class NameInputPage extends AbstractPage {
+	
 	private static final Logger LOGGER = LoggerFactory.getLogger(NameInputPage.class);
-
-	// нужна айдишка
-
-	// нужна проверка валидности логина
-
-	// нужен заполненный счет для передачи дальше
+	
 	private Bill bill;
 
 	public NameInputPage(Bill bill) {
@@ -31,23 +33,28 @@ public class NameInputPage extends AbstractPage {
 
 	protected void onInitialize() {
 		super.onInitialize();
+		
 		add(new FeedbackPanel("feedback"));
 
+		//name input page form components:
+		
 		Form<Void> form = new Form<Void>("login-form");
+
 		final Model<String> loginModel = new Model<>(null);
-		final Model<String> passModel = new Model<>(null);
-		TextField<String> loginTf = new TextField<String>("login", loginModel);
-		TextField<String> passTf = new PasswordTextField("password", passModel);
-		form.add(loginTf);
-		form.add(passTf);
+		TextField<String> loginField = new TextField<String>("login", loginModel);
+		form.add(loginField);
+		
+		final Model<String> passwordModel = new Model<>(null);
+		TextField<String> passwordField = new PasswordTextField("password", passwordModel);
+		form.add(passwordField);
+		
 		add(form);
 
 		form.add(new SubmitLink("submit") {
 			@Override
 			public void onSubmit() {
-				super.onSubmit();
-
-				boolean isSuccess = CustomSession.get().signIn(loginModel.getObject(), passModel.getObject());
+				//checking if user logged in
+				boolean isSuccess = CustomSession.get().signIn(loginModel.getObject(), passwordModel.getObject());
 
 				if (isSuccess) {
 					bill.setAccountId(CustomSession.get().getCurrentuserid());

@@ -12,10 +12,10 @@ import by.epam.grodno.uladzimir_stsiatsko.my_service.TripListService;
 public class TripListServiceImpl implements TripListService {
 		
 	@Autowired
-	TripListDao tlDao;
+	private TripListDao tlDao;
 	
 	@Autowired
-	BillService bService;
+	private BillService bService;
 	
 	@Override
 	public void addTripList(TripList tripList){

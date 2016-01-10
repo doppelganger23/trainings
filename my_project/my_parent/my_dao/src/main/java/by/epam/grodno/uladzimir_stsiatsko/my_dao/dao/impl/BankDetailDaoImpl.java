@@ -18,6 +18,7 @@ public class BankDetailDaoImpl implements BankDetailDao {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
+	@Override
 	public void addBankDetail(BankDetail bankDetail){
 		jdbcTemplate.update(
 				"INSERT INTO bank_detail (currency_of_payment, billing_number, byr_exchange_rate) VALUES (?, ?, ?) ;",
@@ -31,14 +32,17 @@ public class BankDetailDaoImpl implements BankDetailDao {
 				bankDetail.getBillingNumber(), bankDetail.getByrExchangeRate(), bankDetail.getCurrencyOfPayment());
 	}
 	
+	@Override
 	public void deleteBankDetail(String currencyOfPayment){
 		jdbcTemplate.update("DELETE FROM bank_detail WHERE currency_of_payment = ? ;", currencyOfPayment);
 	}
 	
+	@Override
 	public List<String> getAllTypes(){
 		return jdbcTemplate.query("SELECT currency_of_payment FROM bank_detail;", new SingleColumnRowMapper<String>());
 	}
 	
+	@Override
 	public List<BankDetail> getAll(long first, long count, String sortBy, String sortType){
 		return jdbcTemplate.query(String.format("SELECT * FROM bank_detail order by %s %s limit %s offset %s ;", sortBy,
 				sortType, count, first), new BankDetailMapper());
@@ -54,7 +58,6 @@ public class BankDetailDaoImpl implements BankDetailDao {
 		return jdbcTemplate.query("SELECT * FROM bank_detail;", new BankDetailMapper());
 	}
 
-	//заменен на ^, удалить?
 	@Override
 	public double getByrExchangeRate(String currencyType) {
 		Object[] args = { currencyType };
@@ -66,7 +69,6 @@ public class BankDetailDaoImpl implements BankDetailDao {
 		}
 	}
 	
-	//аналогично ^
 	@Override
 	public int getBillingNumber(String currencyType) {
 		try {

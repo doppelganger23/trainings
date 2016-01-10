@@ -13,8 +13,10 @@ public class SearchResultMapper implements RowMapper<SearchResult>{
 
 		@Override
 		public SearchResult mapRow(ResultSet rs, int rowNum) throws SQLException {
+			
 			SearchResult sr = new SearchResult();
-			sr.setTripId(rs.getInt(1));// (column number)
+			
+			sr.setTripId(rs.getInt(1));//column number, used because of 2 columns with the same name is search view
 			sr.setRouteName(rs.getString("route_name"));
 			sr.setRouteType(rs.getString("route_type"));
 			sr.setTrain(rs.getString("train"));
@@ -28,6 +30,7 @@ public class SearchResultMapper implements RowMapper<SearchResult>{
 			sr.setSold(rs.getInt("sold"));
 			sr.setKmPrice(rs.getDouble("km_price"));
 			sr.setKm(rs.getDouble("km"));
+			
 			return sr;
 		}
 	

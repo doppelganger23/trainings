@@ -16,7 +16,7 @@ import by.epam.grodno.uladzimir_stsiatsko.my_web.page.AbstractPage;
 public class BankDetailsPage extends AbstractPage {
 
 	@Inject
-	TripListService tlService;
+	private TripListService tlService;
 
 	@Inject
 	private BillService billService;
@@ -30,11 +30,13 @@ public class BankDetailsPage extends AbstractPage {
 	@Override
 	protected void onInitialize() {
 		super.onInitialize();
-
+		
 		add(new Label("billing-number", bill.getBillingNumber()));
+		
 
 		String currencyOfPayment = bill.getCurrencyOfPayment();
 		double paymentValue = bill.getPaymentValue();
+		//rounding displayed value to integer for BYR
 		if ("BYR".equals(currencyOfPayment)) {
 			paymentValue = roundUpScale0(paymentValue);
 			add(new Label("payment-value", (int)paymentValue + " " + currencyOfPayment));
@@ -44,9 +46,6 @@ public class BankDetailsPage extends AbstractPage {
 
 		billService.addBill(bill);
 		tlService.incrementTicketsSold(bill.getTripListId());
-
-		// TODO add service and dao methods etc.
-		// add(new Label(""), tlService.getById(bill.getTripListId()).getName);
 	}
 
 	private double roundUpScale0(double aValue) {

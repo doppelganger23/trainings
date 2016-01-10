@@ -13,7 +13,7 @@ import by.epam.grodno.uladzimir_stsiatsko.my_service.BillService;
 public class BillServiceImpl implements BillService {
 
 	@Autowired
-	BillDao billDao;
+	private BillDao billDao;
 	
 	@Override
 	public boolean containsBill(int tripListId){

@@ -14,7 +14,7 @@ import by.epam.grodno.uladzimir_stsiatsko.my_dao.model.Train;
 public class TrainDaoImpl implements TrainDao {
 
 	@Autowired
-	JdbcTemplate jdbcTemplate;
+	private JdbcTemplate jdbcTemplate;
 
 	@Override
 	public List<Train> getAll() {

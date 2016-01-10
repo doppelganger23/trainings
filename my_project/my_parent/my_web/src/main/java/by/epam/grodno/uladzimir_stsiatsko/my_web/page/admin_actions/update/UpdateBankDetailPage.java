@@ -23,6 +23,8 @@ import by.epam.grodno.uladzimir_stsiatsko.my_web.page.admin_actions.EditBankDeta
 public class UpdateBankDetailPage extends AbstractPage {
 
 	private BankDetail bDetail;
+
+	// currency types before and after editing
 	private String exCurrency;
 	private String newCurrency;
 
@@ -36,7 +38,10 @@ public class UpdateBankDetailPage extends AbstractPage {
 
 	protected void onInitialize() {
 		super.onInitialize();
+
 		add(new FeedbackPanel("feedback"));
+
+		// new bank detail form components:
 
 		Form<TripList> form = new Form<>("update-form");
 		add(form);
@@ -46,12 +51,15 @@ public class UpdateBankDetailPage extends AbstractPage {
 		currencyOfPayment.setRequired(true);
 		currencyOfPayment.add(StringValidator.exactLength(3));
 		form.add(currencyOfPayment);
-		
+
+		// used instead of textfield for "BYR"
 		Label currencyLabel = new Label("currency-label", exCurrency);
 		currencyLabel.setVisible(false);
 		form.add(currencyLabel);
-		
-		if(exCurrency.equalsIgnoreCase("BYR")){
+
+		// replacing input form with label for "BYR"
+		// ("BYR" currency value must remain in database)
+		if (exCurrency.equalsIgnoreCase("BYR")) {
 			currencyOfPayment.setVisible(false);
 			currencyLabel.setVisible(true);
 		}
@@ -60,16 +68,19 @@ public class UpdateBankDetailPage extends AbstractPage {
 				new PropertyModel<Integer>(bDetail, "billingNumber"));
 		billingNumber.setRequired(true);
 		form.add(billingNumber);
-
+		
+		//used for hiding purpose
 		Label berLabel = new Label("byr-exchange-rate-label", getString("label.byrExchangeRate"));
 		form.add(berLabel);
-		
+
 		NumberTextField<Double> byrExchangeRate = new NumberTextField<Double>("byr-exchange-rate",
 				new PropertyModel<Double>(bDetail, "byrExchangeRate"));
 		byrExchangeRate.setRequired(true);
 		form.add(byrExchangeRate);
-		
-		if(exCurrency.equalsIgnoreCase("BYR")){
+
+		// hiding input form and label for "BYR"
+		// (BYR exchange rate for BYR is always 1)
+		if (exCurrency.equalsIgnoreCase("BYR")) {
 			byrExchangeRate.setVisible(false);
 			berLabel.setVisible(false);
 		}
@@ -79,7 +90,7 @@ public class UpdateBankDetailPage extends AbstractPage {
 			public void onSubmit() {
 				newCurrency = bDetail.getCurrencyOfPayment().toUpperCase();
 				bDetail.setCurrencyOfPayment(newCurrency);
-				
+
 				if (exCurrency.equals(newCurrency)) {
 					bdService.updateBankDetail(bDetail);
 					setResponsePage(new EditBankDetailsPage());

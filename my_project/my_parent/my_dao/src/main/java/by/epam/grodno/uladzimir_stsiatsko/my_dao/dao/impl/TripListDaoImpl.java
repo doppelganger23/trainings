@@ -20,48 +20,24 @@ public class TripListDaoImpl implements TripListDao {
 	@Autowired
 	private TripListMapper tlMapper;
 	
-	
 	@Override
-	public Long insert(TripList tripList) {
-
+	public void insert(TripList tripList) {
 		Object[] args = {tripList.getTrainId(), tripList.getRouteId(), tripList.getDepartureDate(), tripList.getTicketsSold()};
 		jdbcTemplate.update("INSERT INTO trip_list (train_id, route_id, departure_date, tickets_sold) VALUES (?,?,?,?)", args);
 
-		//альтернатива с возвратом
-//		KeyHolder keyHolder = new GeneratedKeyHolder();
-//		jdbcTemplate.update(new PreparedStatementCreator() {
-//			@Override
-//			public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
-//				PreparedStatement ps = connection
-//						.prepareStatement(
-//								"INSERT INTO user_account (email, first_name, last_name,"
-//										+ " creation_date, active, birth_date) VALUES (?,?,?,?,?,?)",
-//								new String[] { "id" });
-//				ps.setString(1, user.getEmail());
-//				ps.setString(2, user.getFirstName());
-//				ps.setString(3, user.getLastName());
-//				ps.setDate(4, new Date(user.getCreationDate().getTime()));
-//				ps.setBoolean(5, user.isActive());
-//				ps.setDate(6, new Date(user.getBirthDate().getTime()));
-//				return ps;
-//			}
-//		}, keyHolder);
-//		return keyHolder.getKey().longValue();
-		
-		//temporal stub for ^^^ to work
-		return new Long(0);
 	}
 	
-	//убрать/заменить
+	@Override
 	public List<TripList> findTrips(Request request) {
-		//	тестовый запрос, вернет весь список	
 		return jdbcTemplate.query("SELECT * FROM trip_list", tlMapper);
 	}
 	
+	@Override
 	public void deleteTripList(int id){
 		jdbcTemplate.update(String.format("DELETE FROM trip_list WHERE id = %s", id));
 	}
 	
+	@Override
 	public boolean containsTrain(int trainId){
 		Integer count = jdbcTemplate.queryForObject("SELECT COUNT(1) FROM trip_list WHERE train_id = ? ;", Integer.class, trainId);
 		if(count.intValue() > 0){
@@ -71,6 +47,7 @@ public class TripListDaoImpl implements TripListDao {
 		}
 	}
 	
+	@Override
 	public boolean containsRoute(int routeId){
 		Integer count = jdbcTemplate.queryForObject("SELECT COUNT(1) FROM trip_list WHERE route_id = ? ;", Integer.class, routeId);
 		if(count.intValue() > 0){

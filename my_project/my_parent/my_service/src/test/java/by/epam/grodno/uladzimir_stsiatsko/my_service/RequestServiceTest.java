@@ -20,7 +20,7 @@ import by.epam.grodno.uladzimir_stsiatsko.my_dao.model.TripList;
 @ContextConfiguration(locations = "classpath:spring-db-context.xml")
 public class RequestServiceTest {
 	
-	int cnt;
+	private int cnt;
 
 	@Autowired
 	private RequestService service;

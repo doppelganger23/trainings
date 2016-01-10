@@ -11,6 +11,7 @@ public class BillInfoMapper implements RowMapper<BillInfo> {
 	
 	@Override
 	public BillInfo mapRow(ResultSet rs, int rowNum) throws SQLException {
+		
 		BillInfo bi = new BillInfo();
 		
 		bi.setBillId(rs.getInt("bill_id"));

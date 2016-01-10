@@ -12,6 +12,13 @@ import by.epam.grodno.uladzimir_stsiatsko.my_dao.model.Request;
 import by.epam.grodno.uladzimir_stsiatsko.my_dao.model.SearchResult;
 import by.epam.grodno.uladzimir_stsiatsko.my_service.SearchResultService;
 
+/**
+ * Search request parsing service.
+ * At first the 'find' method is ran,
+ * then it call one of the other methods
+ * depending on what user have submitted.
+ @author Uladzimir Stsiatsko
+*/
 @Service
 public class SearchResultServiceImpl implements SearchResultService {
 	
@@ -20,7 +27,7 @@ public class SearchResultServiceImpl implements SearchResultService {
 	@Autowired
 	private SearchResultDao srDao;
 
-	// анализ полей аргумента на наличие даты
+	// argument field analysis for date presence
 	public List<SearchResult> find(Request request) {
 		if (request.getDepartureDate() == null) {
 			if (request.getArrivalDate() == null) {
@@ -44,7 +51,7 @@ public class SearchResultServiceImpl implements SearchResultService {
 	}
 
 	public List<SearchResult> findWithoutDepartureDate(Request request) {
-		// анализ на условие сравнения даты
+		// analysis for date compare condition
 		if ("<=".equals(request.getArrCondition())) {
 			LOGGER.debug("Calling SearchResultDao getRusultsArrivalBefore method.");
 			return srDao.getResultsArrivalBefore(request);
@@ -55,7 +62,7 @@ public class SearchResultServiceImpl implements SearchResultService {
 	}
 
 	public List<SearchResult> findWithoutArrivalDate(Request request) {
-		// анализ на условие сравнения даты
+		// analysis for date compare condition
 		if (">=".equals(request.getDepCondition())) {
 			LOGGER.debug("Calling SearchResultDao getRusultsDepartureAfter method.");
 			return srDao.getResultsDepartureAfter(request);
@@ -66,7 +73,7 @@ public class SearchResultServiceImpl implements SearchResultService {
 	}
 
 	public List<SearchResult> findWithBothDates(Request request) {
-		// анализ на условие сравнения даты
+		// analysis for date compare condition
 		if (">=".equals(request.getDepCondition())) {
 			if ("<=".equals(request.getArrCondition())) {
 				LOGGER.debug("Calling SearchResultDao getRusultsBetweenDates method.");
@@ -83,10 +90,12 @@ public class SearchResultServiceImpl implements SearchResultService {
 		return srDao.getResultsNotBetweenDates(request);
 	}
 
+	//will be used in future
 	public List<SearchResult> getAll(long first, long count){
 		return srDao.getAll(first, count);
 	}
 	
+	//will be used in future
 	public Integer getCount() {
 		return srDao.getCount();
 	}

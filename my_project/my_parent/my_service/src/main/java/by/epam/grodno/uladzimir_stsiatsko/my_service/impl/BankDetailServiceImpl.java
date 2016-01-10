@@ -15,6 +15,7 @@ public class BankDetailServiceImpl implements BankDetailService {
 	@Autowired
 	private BankDetailDao bdDao;
 
+	@Override
 	public void addBankDetail(BankDetail bankDetail) {
 		bdDao.addBankDetail(bankDetail);
 	}
@@ -24,6 +25,7 @@ public class BankDetailServiceImpl implements BankDetailService {
 		bdDao.update(bankDetail);
 	}
 
+	@Override
 	public void deleteBankDetail(String currencyOfPayment) {
 		if ("BYR".equals(currencyOfPayment)) {
 			throw new IllegalArgumentException(
@@ -33,6 +35,7 @@ public class BankDetailServiceImpl implements BankDetailService {
 		}
 	}
 
+	@Override
 	public List<BankDetail> getAll(long first, long count, String sortBy, String sortType) {
 		if ("ASCENDING".equals(sortType)) {
 			return bdDao.getAll(first, count, sortBy, "asc");
@@ -41,6 +44,7 @@ public class BankDetailServiceImpl implements BankDetailService {
 		}
 	}
 
+	@Override
 	public int getCount() {
 		return bdDao.getCount();
 	}

@@ -11,7 +11,7 @@ import by.epam.grodno.uladzimir_stsiatsko.my_dao.model.RouteMap;
 public class RouteMapDaoImpl implements RouteMapDao {
 
 	@Autowired
-	JdbcTemplate jdbcTemplate;
+	private JdbcTemplate jdbcTemplate;
 
 	@Override
 	public void insert(RouteMap element) {

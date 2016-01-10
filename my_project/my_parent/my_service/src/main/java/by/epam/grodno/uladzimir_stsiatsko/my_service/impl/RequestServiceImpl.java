@@ -20,14 +20,17 @@ public class RequestServiceImpl implements RequestService {
 	@Autowired
 	private TripListDao tlDao;
 	
+	@Override
 	public void find(Request request){
 		rDao.setQuiery(request);
 	}
 	
+	@Override
 	public List<TripList> executeQuiery(Request request){
 		return tlDao.findTrips(request);
 	}
 	
+	@Override
 	public Request getRequest(int id){
 		 return rDao.getById(id);
 	}

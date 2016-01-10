@@ -23,8 +23,10 @@ import by.epam.grodno.uladzimir_stsiatsko.my_web.metadata.CurrencyMetaData;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.AbstractPage;
 
 public class BuyTicketPage extends AbstractPage {
+	
 	private static final Logger LOGGER = LoggerFactory.getLogger(BuyTicketPage.class);
 
+	//metadata for preferred currency type, to which payment value will be conversed
 	public static MetaDataKey<CurrencyMetaData> CURRENCY = new MetaDataKey<CurrencyMetaData>() {
 	};
 
@@ -51,6 +53,7 @@ public class BuyTicketPage extends AbstractPage {
 		bill.setPaymentValue(billService.countPrice(bill));
 
 		currentuserid = CustomSession.get().getCurrentuserid();
+		//converting null Integers to 0 for using in "int" method
 		if (currentuserid == null) {
 			currentuserid = 0;
 		}
@@ -63,7 +66,8 @@ public class BuyTicketPage extends AbstractPage {
 	@Override
 	protected void onInitialize() {
 		super.onInitialize();
-
+		
+		//chosen trip list information
 		add(new Label("chosen-route-name", sResult.getRouteName()));
 		add(new Label("chosen-route-type", sResult.getRouteType()));
 		add(new Label("chosen-train", sResult.getTrain()));
@@ -71,9 +75,12 @@ public class BuyTicketPage extends AbstractPage {
 		add(new Label("chosen-departure-date", sResult.getDepartureDate()));
 		add(new Label("chosen-to-station", sResult.getToStation()));
 		add(new Label("chosen-arrival-date", sResult.getArrivalDate()));
+		
+		//confirm form components:
 
 		Form<Void> confirmForm = new Form<Void>("confirmation-form");
 
+		//checking metadata and converting payment value to chosen currency
 		CurrencyMetaData meta = getSession().getMetaData(CURRENCY);
 		if (meta == null) {
 			LOGGER.debug("metadata is null");
@@ -90,9 +97,10 @@ public class BuyTicketPage extends AbstractPage {
 
 		final DropDownChoice<String> currencyChoice = new DropDownChoice<String>("currency-type", currencyModel,
 				bdService.findAllTypes()) {
+			//sending chosen currency type to metadata and reloading page
 			@Override
 			protected void onSelectionChanged(final String newCurrency) {
-				LOGGER.info("It's " + newCurrency + " time!");
+				LOGGER.debug("It's " + newCurrency + " time!");
 				getSession().setMetaData(CURRENCY, new CurrencyMetaData(newCurrency));
 				setResponsePage(new BuyTicketPage(sResult));
 			}

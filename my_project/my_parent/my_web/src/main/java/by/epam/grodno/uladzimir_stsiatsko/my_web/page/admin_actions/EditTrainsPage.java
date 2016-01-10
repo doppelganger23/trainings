@@ -38,11 +38,12 @@ import by.epam.grodno.uladzimir_stsiatsko.my_web.page.admin_actions.update.Updat
 public class EditTrainsPage extends AbstractPage {
 
 	@Inject
-	TripListService tlService;
+	private TripListService tlService;
 	
 	@Inject
-	TrainService tService;
+	private TrainService tService;
 	
+	//metadata for paging
 	public static MetaDataKey<ElementsOnPageMetaData> ELEMENTS_ON_PAGE = new MetaDataKey<ElementsOnPageMetaData>() {
 	};
 	private int elementsOnPage = 5;
@@ -57,7 +58,10 @@ public class EditTrainsPage extends AbstractPage {
 	@Override
 	protected void onInitialize() {
 		super.onInitialize();
+		
 		add(new FeedbackPanel("feedback"));
+		
+		//new train form components:
 
 		final Train newTrain = new Train();
 		Form<Train> newTrainForm = new Form<>("new-train-form");
@@ -77,6 +81,7 @@ public class EditTrainsPage extends AbstractPage {
 		newTrainForm.add(new SubmitLink("submit-button") {
 			@Override
 			public void onSubmit() {
+				//train number must be unique
 				if (tService.containsTrain(newTrain.getTrainNumber())) {
 					error(getString("error.trainExists"));
 				} else {
@@ -86,6 +91,8 @@ public class EditTrainsPage extends AbstractPage {
 			}
 		});
 
+		//trains list:
+		
 		TrainsDataProvider tDataProvider = new TrainsDataProvider();
 		DataView<Train> dataView = new DataView<Train>("train-list", tDataProvider, elementsOnPage) {
 			@Override
@@ -103,6 +110,8 @@ public class EditTrainsPage extends AbstractPage {
 						setResponsePage(new EditTrainsPage());
 					}
 				};
+				//visibility check for denying invalid operations
+				//(preventing database constraint violations errors)
 				if(tlService.containsTrain(train.getId())){
 					deleteLink.setVisible(false);
 				}
@@ -119,6 +128,8 @@ public class EditTrainsPage extends AbstractPage {
 		};
 		add(dataView);
 
+		//paging:
+		
 		add(new OrderByBorder<Object>("sortId", "id", tDataProvider));
 		add(new OrderByBorder<Object>("sortTrainNumber", "train_number", tDataProvider));
 		add(new OrderByBorder<Object>("sortPassengersCapacity", "passengers_capacity", tDataProvider));

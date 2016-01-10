@@ -34,7 +34,10 @@ public class UpdateAccountPage extends AbstractPage {
 	
 	protected void onInitialize(){
 		super.onInitialize();
+		
 		add(new FeedbackPanel("feedback"));
+		
+		//update account form components:
 		
 		Form<TripList> form = new Form<>("update-form");
 		add(form);
@@ -62,7 +65,6 @@ public class UpdateAccountPage extends AbstractPage {
 		form.add(emailField);
 		
 		form.add(new DropDownChoice<String>("new-access-level", new PropertyModel<String>(acc, "accessLevel"), Arrays.asList("passenger", "admin")));
-		
 		
 		form.add(new SubmitLink("submit-update") {
 			@Override

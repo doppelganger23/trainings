@@ -17,27 +17,24 @@ public class LogInPage extends AbstractPage {
 	protected void onInitialize() {
 		super.onInitialize();
 
-		add(new FeedbackPanel("f"));
+		add(new FeedbackPanel("feedback"));
 		Form<Void> form = new Form<Void>("login-form");
 
 		final Model<String> loginModel = new Model<>(null);
-		final Model<String> passModel = new Model<>(null);
+		TextField<String> loginField = new TextField<String>("login", loginModel);
+		form.add(loginField);
 
-		TextField<String> loginTf = new TextField<String>("login", loginModel);
-		form.add(loginTf);
-
-		TextField<String> passTf = new PasswordTextField("pass", passModel);
-		form.add(passTf);
+		final Model<String> passwordModel = new Model<>(null);
+		TextField<String> passwordField = new PasswordTextField("password", passwordModel);
+		form.add(passwordField);
 
 		add(form);
 
 		form.add(new SubmitLink("submit") {
 			@Override
 			public void onSubmit() {
-				super.onSubmit();
-
 				boolean isSuccess = CustomSession.get().signIn(loginModel.getObject(),
-						passModel.getObject());
+						passwordModel.getObject());
 
 				if (isSuccess) {
 					setResponsePage(new HomePage());
@@ -45,7 +42,6 @@ public class LogInPage extends AbstractPage {
 					error("login error");
 					setResponsePage(getPage());
 				}
-
 			}
 		});
 		
@@ -57,6 +53,4 @@ public class LogInPage extends AbstractPage {
 			
 		});
 	}
-
-	
 }

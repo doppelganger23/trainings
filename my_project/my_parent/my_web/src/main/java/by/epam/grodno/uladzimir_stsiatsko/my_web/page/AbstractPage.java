@@ -15,13 +15,21 @@ import by.epam.grodno.uladzimir_stsiatsko.my_web.page.admin_actions.EditTripList
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.registration.RegistrationPage;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.search.SearchPage;
 
+
+/**
+ * Parent of all project pages
+ @author Uladzimir Stsiatsko
+*/
 public class AbstractPage extends WebPage {
 
 	protected void onInitialize() {
 		super.onInitialize();
 		
+		//localization
 		add(new LangSelectionLink("ru"));
 		add(new LangSelectionLink("en"));
+		
+		//main menu:
 		
 		add(new Link<Void>("home-page-link") {
 			@Override
@@ -48,6 +56,8 @@ public class AbstractPage extends WebPage {
 			}
 		});
 		
+		//user side panel:
+		
 		Link<Void> regLink = new Link<Void>("registration-page-link") {
 			@Override
 			public void onClick() {
@@ -71,9 +81,12 @@ public class AbstractPage extends WebPage {
 		};
 		add(logOutLink);
 
+		//admin side panel:
+		
 		WebMarkupContainer container = new WebMarkupContainer("container");
 		add(container);
 		
+		//visibility settings for admin panel
 		if (CustomSession.get().getRoles() == null) {
 			logOutLink.setVisible(false);
 			container.setVisible(false);

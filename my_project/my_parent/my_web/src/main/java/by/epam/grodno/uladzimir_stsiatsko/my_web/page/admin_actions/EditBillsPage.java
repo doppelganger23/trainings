@@ -30,11 +30,12 @@ import by.epam.grodno.uladzimir_stsiatsko.my_web.page.AbstractPage;
 public class EditBillsPage extends AbstractPage {
 	
 	@Inject
-	BillInfoService bInfoService;
+	private BillInfoService bInfoService;
 	
 	@Inject
-	BillService billService;
+	private BillService billService;
 	
+	//matadata for paging
 	public static MetaDataKey<ElementsOnPageMetaData> ELEMENTS_ON_PAGE = new MetaDataKey<ElementsOnPageMetaData>() {
 	};
 	private int elementsOnPage = 5;
@@ -50,13 +51,15 @@ public class EditBillsPage extends AbstractPage {
 	protected void onInitialize() {
 		super.onInitialize();
 		
+		//bill info list:
+		
 		BillInfoDataProvider biDataProvider = new BillInfoDataProvider();
 		DataView<BillInfo> dataView = new DataView<BillInfo>("bill-info-list", biDataProvider, elementsOnPage) {
 			@Override
 			protected void populateItem(Item<BillInfo> item) {
 				final BillInfo bInfo = item.getModelObject();
-				item.add(new Label("billId", bInfo.getBillId()));//without using naming conv.
-				item.add(new Label("paymentValue"));//and with
+				item.add(new Label("billId"));
+				item.add(new Label("paymentValue"));
 				item.add(new Label("currencyOfPayment"));
 				item.add(new Label("billingNumber"));
 				item.add(new Label("creationDate"));
@@ -68,7 +71,6 @@ public class EditBillsPage extends AbstractPage {
 				item.add(new Link<Void>("set-paid-link"){
 					@Override
 					public void onClick() {
-						//TODO warning window
 						billService.setPaid(bInfo.getBillId(), true);
 					}
 				});
@@ -77,6 +79,8 @@ public class EditBillsPage extends AbstractPage {
 			
 		};
 		add(dataView);
+		
+		//paging:
 				
 		add(new OrderByBorder<Object>("sortBillId", "bill_id", biDataProvider));
 		add(new OrderByBorder<Object>("sortPaymentValue", "payment_value", biDataProvider));

@@ -14,7 +14,7 @@ public class RequestDaoImpl implements RequestDao {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-	//ВОЗМОЖНО, НЕ НУЖЕН (НЕ ХРАНИТЬ РЕКВЕСТЫ В БАЗЕ)
+	//currently not used (for now requests isn't stored in database)
 	@Override
 	public void setQuiery(Request request) {
 		jdbcTemplate.update(
@@ -23,7 +23,7 @@ public class RequestDaoImpl implements RequestDao {
 				request.getArrivalDate());
 	}
 
-	//СООТВЕТСТВЕННО, ТОЖЕ ОТПАДАЕТ
+	//currently not used (for now requests isn't stored in database)
 	@Override
 	public Request getById(int id) {
 		return jdbcTemplate.queryForObject("select * from request where id = ?", new Object[] { id },

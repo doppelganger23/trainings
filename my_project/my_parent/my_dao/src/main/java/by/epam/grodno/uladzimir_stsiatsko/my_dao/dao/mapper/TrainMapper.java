@@ -11,10 +11,13 @@ public class TrainMapper implements RowMapper<Train>{
 	
 	@Override
 	public Train mapRow(ResultSet rs, int rowNum) throws SQLException{
+		
 		Train tr = new Train();
+		
 		tr.setId(rs.getInt("id"));
 		tr.setTrainNumber(rs.getString("train_number"));
 		tr.setPassengersCapacity(rs.getInt("passengers_capacity"));
+		
 		return tr;
 	}
 

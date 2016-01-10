@@ -24,7 +24,7 @@ public class UpdateTrainPage extends AbstractPage {
 	private Train train;
 
 	@Inject
-	TrainService tService;
+	private TrainService tService;
 
 	public UpdateTrainPage(Train train) {
 		this.train = train;
@@ -32,7 +32,10 @@ public class UpdateTrainPage extends AbstractPage {
 
 	protected void onInitialize() {
 		super.onInitialize();
+		
 		add(new FeedbackPanel("feedback"));
+		
+		//update train form components:
 
 		Form<TripList> form = new Form<>("update-form");
 		add(form);

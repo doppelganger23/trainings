@@ -14,10 +14,10 @@ import by.epam.grodno.uladzimir_stsiatsko.my_service.TripListService;
 public class TrainServiceImpl implements TrainService {
 
 	@Autowired
-	TripListService tlService;
+	private TripListService tlService;
 
 	@Autowired
-	TrainDao tDao;
+	private TrainDao tDao;
 
 	@Override
 	public void addTrain(Train train) {

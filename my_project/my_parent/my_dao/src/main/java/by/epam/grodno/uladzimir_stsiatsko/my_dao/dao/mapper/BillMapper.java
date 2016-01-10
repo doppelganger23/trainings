@@ -12,6 +12,7 @@ public class BillMapper implements RowMapper<Bill> {
 
 	@Override
 	public Bill mapRow(ResultSet rs, int rowNum) throws SQLException {
+		
 		int id = rs.getInt("id");
 		int accountId = rs.getInt("account_id");
 		int tripListId = rs.getInt("trip_list_id");
@@ -22,7 +23,9 @@ public class BillMapper implements RowMapper<Bill> {
 		int toBlock = rs.getInt("to_block");
 		Date creationDate = rs.getDate("creation_date");
 		String currencyOfPayment = rs.getString("currency_of_payment");
+		
 		Bill bill = new Bill();
+		
 		bill.setId(id);
 		bill.setAccountId(accountId);
 		bill.setTripListId(tripListId);
@@ -33,6 +36,7 @@ public class BillMapper implements RowMapper<Bill> {
 		bill.setToBlock(toBlock);
 		bill.setCreationDate(creationDate);
 		bill.setCurrencyOfPayment(currencyOfPayment);
+		
 		return bill;
 	}
 	

@@ -37,8 +37,9 @@ import by.epam.grodno.uladzimir_stsiatsko.my_web.page.admin_actions.update.Updat
 public class EditBankDetailsPage extends AbstractPage {
 
 	@Inject
-	BankDetailService bdService;
+	private BankDetailService bdService;
 	
+	//matadata for paging
 	public static MetaDataKey<ElementsOnPageMetaData> ELEMENTS_ON_PAGE = new MetaDataKey<ElementsOnPageMetaData>() {
 	};
 	private int elementsOnPage = 5;
@@ -54,6 +55,8 @@ public class EditBankDetailsPage extends AbstractPage {
 	protected void onInitialize() {
 		super.onInitialize();
 		add(new FeedbackPanel("feedback"));
+		
+		//new bank detail form components:
 
 		final BankDetail newBankDetail = new BankDetail();
 		Form<BankDetail> addBDForm = new Form<BankDetail>("add-bank-detail-form");
@@ -80,6 +83,7 @@ public class EditBankDetailsPage extends AbstractPage {
 			public void onSubmit() {
 				String upperCaseCurrencyType = newBankDetail.getCurrencyOfPayment().toUpperCase();
 				newBankDetail.setCurrencyOfPayment(upperCaseCurrencyType);
+				
 				if(bdService.findAllTypes().contains(upperCaseCurrencyType)){
 					error(getString("error.currencyExists"));
 				} else {
@@ -88,6 +92,8 @@ public class EditBankDetailsPage extends AbstractPage {
 				}
 			}
 		});
+		
+		//bank details list:
 
 		BankDetailsDataProvider bdDataProvider = new BankDetailsDataProvider();
 		DataView<BankDetail> dataView = new DataView<BankDetail>("bill-info-list", bdDataProvider, elementsOnPage) {
@@ -106,6 +112,8 @@ public class EditBankDetailsPage extends AbstractPage {
 					}
 				};
 				item.add(deleteLink);
+				//visibility check for denying invalid operations
+				//("BYR" database field is part of program logic and can not be removed!)
 				if ("BYR".equals(bDetail.getCurrencyOfPayment())) {
 					deleteLink.setVisible(false);
 				}
@@ -120,6 +128,8 @@ public class EditBankDetailsPage extends AbstractPage {
 
 		};
 		add(dataView);
+		
+		//paging:
 
 		add(new OrderByBorder<Object>("sortCurrencyOfPayment", "currency_of_payment", bdDataProvider));
 		add(new OrderByBorder<Object>("sortBillingNumber", "billing_number", bdDataProvider));

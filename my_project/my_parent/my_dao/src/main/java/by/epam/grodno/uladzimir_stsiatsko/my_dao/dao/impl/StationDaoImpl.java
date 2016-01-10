@@ -17,14 +17,17 @@ public class StationDaoImpl implements StationDao {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
+	@Override
 	public List<String> getStationNames(){
 		return jdbcTemplate.query("SELECT name FROM station;", new SingleColumnRowMapper<String>());
 	}
 
+	@Override
 	public List<Station> getStations(){
 		return jdbcTemplate.query("SELECT * FROM station;", new StationMapper());
 	}
 	
+	@Override
 	public String getName(int stationId){
 		Object[] args = {stationId};
 		return jdbcTemplate.queryForObject("SELECT name FROM station WHERE id = ? ;", String.class, args);

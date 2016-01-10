@@ -17,16 +17,17 @@ import by.epam.grodno.uladzimir_stsiatsko.my_web.page.HomePage;
 
 public class RegistrationPage extends AbstractPage {
 
-	// TODO обработать ситуацию, когда логин уже есть в базе
-
 	@Inject
-	AccountService aService;
+	private AccountService aService;
 
 	@Override
 	protected void onInitialize() {
 		super.onInitialize();
+		
 		add(new FeedbackPanel("feedback"));
 
+		//new accout form components:
+		
 		final Account newAcc = new Account();
 		newAcc.setAccessLevel("passenger");
 
@@ -37,7 +38,6 @@ public class RegistrationPage extends AbstractPage {
 		loginField.add(StringValidator.maximumLength(50));
 		form.add(loginField);
 
-		// можно добавить второе поле для проверки корректности ввода
 		PasswordTextField passwordField = new PasswordTextField("password",
 				new PropertyModel<String>(newAcc, "password"));
 		passwordField.setRequired(true);
@@ -64,20 +64,15 @@ public class RegistrationPage extends AbstractPage {
 		form.add(new SubmitLink("submit-button") {
 			@Override
 			public void onSubmit() {
-
-				//TODO - correct 
-//				if (aService.getByLogin(newAcc.getLogin()) != null) {
-//					warn("such login already exists");
-//				}
-//				if (aService.getByLogin(newAcc.getLogin()) != null) {
-//					warn("user with such email already exists");
-//				}
-//
-//				if (aService.getByLogin(newAcc.getLogin()) == null
-//						&& aService.getByLogin(newAcc.getLogin()) == null) {
+				//checking login and email for duplications
+				if (aService.getByLogin(newAcc.getLogin()) != null) {
+					error(getString("error.loginTaken"));
+				} else if (aService.getByEmail(newAcc.getEmail()) != null) {
+					error(getString("error.emailTaken"));
+				} else {
 					aService.register(newAcc);
 					setResponsePage(new HomePage());
-				//}
+				}
 			}
 		});
 

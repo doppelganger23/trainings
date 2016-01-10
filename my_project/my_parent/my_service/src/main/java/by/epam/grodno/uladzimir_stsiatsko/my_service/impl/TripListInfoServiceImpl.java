@@ -13,8 +13,9 @@ import by.epam.grodno.uladzimir_stsiatsko.my_service.TripListInfoService;
 public class TripListInfoServiceImpl implements TripListInfoService {
 
 	@Autowired
-	TripListInfoDao tliDao;
+	private TripListInfoDao tliDao;
 
+	@Override
 	public List<TripListInfo> getAll(long first, long count, String sortBy, String sortType) {
 			if ("ASCENDING".equals(sortType)) {
 				return tliDao.getAll(first, count, sortBy, "asc");
@@ -23,6 +24,7 @@ public class TripListInfoServiceImpl implements TripListInfoService {
 			}
 	}
 
+	@Override
 	public int getCount() {
 		return tliDao.getCount();
 	}

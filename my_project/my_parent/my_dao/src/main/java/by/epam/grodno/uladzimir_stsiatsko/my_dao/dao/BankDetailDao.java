@@ -14,15 +14,14 @@ public interface BankDetailDao {
 	
 	List<String> getAllTypes();
 	
-	//убрать?
 	List<BankDetail> getAll();
 	
 	List<BankDetail> getAll(long first, long count, String sortBy, String sortType);
 	
 	int getCount();
 	
-	//заменены на ^, удалить?
 	double getByrExchangeRate(String currencyType);
+	
 	int getBillingNumber(String currencyType);
 
 }

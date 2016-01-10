@@ -6,7 +6,6 @@ import by.epam.grodno.uladzimir_stsiatsko.my_dao.model.BillInfo;
 
 public interface BillInfoDao {
 	
-	//not needed
 	List<BillInfo> getAll();
 	
 	//TODO

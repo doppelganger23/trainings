@@ -15,7 +15,7 @@ public class StationToStationBlockChoiceRenderer extends ChoiceRenderer<StationT
 	}
 	
 	@Inject	
-	StationService stService;
+	private StationService stService;
 	
 	@Override
 	public Object getDisplayValue(StationToStationBlock block) {

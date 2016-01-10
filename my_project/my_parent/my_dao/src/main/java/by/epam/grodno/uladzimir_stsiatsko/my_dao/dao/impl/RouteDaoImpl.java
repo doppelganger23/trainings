@@ -20,8 +20,9 @@ import by.epam.grodno.uladzimir_stsiatsko.my_dao.model.Route;
 public class RouteDaoImpl implements RouteDao {
 
 	@Autowired
-	JdbcTemplate jdbcTemplate;
+	private JdbcTemplate jdbcTemplate;
 	
+	@Override
 	public List<Route> getAll(){
 		return jdbcTemplate.query("SELECT * FROM route ORDER BY route_name ;", new RouteMapper());
 	}
@@ -42,6 +43,8 @@ public class RouteDaoImpl implements RouteDao {
 		return jdbcTemplate.queryForObject("select count(1) from route ;", Integer.class);
 	}
 	
+	//returns id after DB insertion
+	@Override
 	public int add(Route route) {
 		final Route r = route;
 		KeyHolder keyHolder = new GeneratedKeyHolder();
@@ -61,6 +64,7 @@ public class RouteDaoImpl implements RouteDao {
 		return keyHolder.getKey().intValue();
 	}
 	
+	@Override
 	public Route getById(int id){
 		Object[] args = {id};
 		return jdbcTemplate.queryForObject("SELECT * FROM route WHERE id = ? ;", args, new RouteMapper());

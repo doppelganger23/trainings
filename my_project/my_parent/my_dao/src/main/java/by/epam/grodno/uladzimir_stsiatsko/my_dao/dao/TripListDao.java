@@ -7,7 +7,7 @@ import by.epam.grodno.uladzimir_stsiatsko.my_dao.model.TripList;
 
 public interface TripListDao {
 	
-	Long insert(TripList tripList);
+	void insert(TripList tripList);
 	
 	List<TripList> findTrips(Request request);
 	

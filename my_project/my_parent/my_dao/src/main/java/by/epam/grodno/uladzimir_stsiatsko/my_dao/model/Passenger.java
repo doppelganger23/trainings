@@ -2,7 +2,7 @@ package by.epam.grodno.uladzimir_stsiatsko.my_dao.model;
 
 import java.io.Serializable;
 
-public class Passenger implements Serializable{
+public class Passenger implements Serializable {
 
 	private int id;
 	private String lastName;

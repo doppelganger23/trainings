@@ -29,6 +29,7 @@ public class SearchPage extends AbstractPage {
 	@Inject
 	private StationService stService;
 	
+	//choices for autocomplete field
 	private final List<String> CHOICES = stService.getStationNames();
 
 	@Inject
@@ -37,7 +38,10 @@ public class SearchPage extends AbstractPage {
 	@Override
 	protected void onInitialize() {
 		super.onInitialize();
+		
 		add(new FeedbackPanel("feedback"));
+		
+		//request form components:
 		
 		final Request newRequest = new Request();
 		Form<Request> form = new Form<>("request-form", new CompoundPropertyModel<>(newRequest));

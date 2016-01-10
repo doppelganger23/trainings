@@ -55,30 +55,24 @@ import by.epam.grodno.uladzimir_stsiatsko.my_web.renderer.TrainChoiceRenderer;
 @AuthorizeAction(action = Action.RENDER, roles = { "admin" })
 public class EditTripListsPage extends AbstractPage {
 	
-	@Override
-	public void renderHead(IHeaderResponse response){
-		super.renderHead(response);
-		response.render(JavaScriptHeaderItem.forReference(new KendoGlobalizeResourceReference(Locale.FRANCE)));
-		response.render(JavaScriptHeaderItem.forReference(new KendoGlobalizeResourceReference(Locale.ENGLISH)));
-	}
+	private Locale pickerLocale = Locale.ENGLISH;
+
+	@Inject
+	private BillService bService;
+
+	@Inject
+	private TripListInfoService tlInfoService;
+
+	@Inject
+	private TripListService tlService;
+
+	@Inject
+	private TrainService trainService;
+
+	@Inject
+	private RouteService routeService;
 	
-	Locale pickerLocale = Locale.ENGLISH;
-
-	@Inject
-	BillService bService;
-
-	@Inject
-	TripListInfoService tlInfoService;
-
-	@Inject
-	TripListService tlService;
-
-	@Inject
-	TrainService trainService;
-
-	@Inject
-	RouteService routeService;
-
+	//metadata for paging
 	public static MetaDataKey<ElementsOnPageMetaData> ELEMENTS_ON_PAGE = new MetaDataKey<ElementsOnPageMetaData>() {
 	};
 	private int elementsOnPage = 5;
@@ -89,16 +83,24 @@ public class EditTripListsPage extends AbstractPage {
 			this.elementsOnPage = meta.getElementsOnPage();
 		}
 	}
+	
+	//kendo locales for timepicker
+	@Override
+	public void renderHead(IHeaderResponse response){
+		super.renderHead(response);
+		response.render(JavaScriptHeaderItem.forReference(new KendoGlobalizeResourceReference(Locale.FRANCE)));
+		response.render(JavaScriptHeaderItem.forReference(new KendoGlobalizeResourceReference(Locale.ENGLISH)));
+	}
 
 	@Override
 	protected void onInitialize() {
 		super.onInitialize();
+		
 		add(new FeedbackPanel("feedback"));
-
+		
+		//new trip list form components:
+		
 		final TripList newTripList = new TripList();
-
-		// добавить возможность задавать время, не только дату (поэтому
-		// раздельные модели)
 		Form<TripList> form = new Form<>("add-trip-list-form");
 		add(form);
 
@@ -114,16 +116,17 @@ public class EditTripListsPage extends AbstractPage {
 		routeIdChoice.setRequired(true);
 		form.add(routeIdChoice);
 
-		// date part, without time yet
+		// date part, without time
 		final DateTextField dateField = new DateTextField("departure-date",
 				new PropertyModel<Date>(newTripList, "departureDate"), new StyleDateConverter("S-", true));
 		dateField.add(new CustomDatePicker());
 		dateField.setRequired(true);
 		form.add(dateField);
 
+		//timepicker components:
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(0, 0, 0, 0, 0);
-		
+		//french locale is used instead of russian, wich is not supported by default
 		if("ru".equals(Session.get().getLocale().toString())){
 			pickerLocale = Locale.FRENCH;
 		}
@@ -132,11 +135,13 @@ public class EditTripListsPage extends AbstractPage {
 		form.add(departureTimepicker);
 
 		form.add(new SubmitLink("submit-button") {
+			@SuppressWarnings("deprecation")
 			@Override
 			public void onSubmit() {
 				if (departureTimepicker.getModelObject() == null) {
 					error(getString("error.chooseDepTime"));
 				} else {
+					//uniting date and time values from different pickers
 					int hours = departureTimepicker.getModelObject().getHours();
 					int minutes = departureTimepicker.getModelObject().getMinutes();
 					Date date = dateField.getModelObject();
@@ -144,15 +149,17 @@ public class EditTripListsPage extends AbstractPage {
 					date.setMinutes(minutes);
 					newTripList.setDepartureDate(date);
 
-					// добавить проверку маршрутов на совпадение
 					newTripList.setTrainId(trainModel.getObject().getId());
 					newTripList.setRouteId(routeModel.getObject().getId());
+					
 					tlService.addTripList(newTripList);
 					setResponsePage(new EditTripListsPage());
 				}
 			}
 		});
 
+		//"trip lists info-s" list:
+		
 		TripListInfoDataProvider tliDataProvider = new TripListInfoDataProvider();
 		DataView<TripListInfo> dataView = new DataView<TripListInfo>("trip-list-info-list", tliDataProvider,
 				elementsOnPage) {
@@ -173,6 +180,8 @@ public class EditTripListsPage extends AbstractPage {
 					}
 				};
 				item.add(deleteLink);
+				//visibility check for denying invalid operations
+				//(preventing database constraint violations errors)
 				if (bService.containsBill(tlInfo.getId())) {
 					deleteLink.setVisible(false);
 				}
@@ -180,6 +189,8 @@ public class EditTripListsPage extends AbstractPage {
 		};
 		add(dataView);
 
+		//paging:
+		
 		add(new OrderByBorder<Object>("sortId", "id", tliDataProvider));
 		add(new OrderByBorder<Object>("sortTrainNumber", "train_number", tliDataProvider));
 		add(new OrderByBorder<Object>("sortRouteType", "route_type", tliDataProvider));

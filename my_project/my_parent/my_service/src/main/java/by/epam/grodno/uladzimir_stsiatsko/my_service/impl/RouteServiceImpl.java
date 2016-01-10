@@ -14,11 +14,12 @@ import by.epam.grodno.uladzimir_stsiatsko.my_service.TripListService;
 public class RouteServiceImpl implements RouteService {
 
 	@Autowired
-	RouteDao rDao;
+	private RouteDao rDao;
 	
 	@Autowired
-	TripListService tlService;
+	private TripListService tlService;
 
+	@Override
 	public List<Route> findAll() {
 		return rDao.getAll();
 	}

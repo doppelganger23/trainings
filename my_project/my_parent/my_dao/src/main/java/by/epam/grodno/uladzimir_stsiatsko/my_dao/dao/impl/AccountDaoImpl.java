@@ -55,7 +55,6 @@ public class AccountDaoImpl implements AccountDao {
 				acc.getAccessLevel());
 	}
 
-	// сделать нормальный метод
 	@Override
 	public void update(Account acc) {
 		jdbcTemplate.update(

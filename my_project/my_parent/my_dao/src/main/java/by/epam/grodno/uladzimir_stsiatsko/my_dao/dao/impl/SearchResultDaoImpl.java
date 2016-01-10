@@ -80,6 +80,7 @@ public class SearchResultDaoImpl implements SearchResultDao {
 				+ "; ", args, srMapper);	
 	}
 	
+	@Override
 	public List<SearchResult> getResultsBeforeDates(Request request) {
 		Object[] args = {request.getDepartureStation().toUpperCase(), request.getDestinationStation().toUpperCase(), request.getDepartureDate(), request.getArrivalDate()};
 		LOGGER.debug("4 request properties extracted. Sending request to database via Spring jdbcTemplate.");
@@ -89,6 +90,7 @@ public class SearchResultDaoImpl implements SearchResultDao {
 				+ "; ", args, srMapper);	
 	}
 	
+	@Override
 	public List<SearchResult> getResultsAfterDates(Request request) {
 		Object[] args = {request.getDepartureStation().toUpperCase(), request.getDestinationStation().toUpperCase(), request.getDepartureDate(), request.getArrivalDate()};
 		LOGGER.debug("4 request properties extracted. Sending request to database via Spring jdbcTemplate.");
@@ -98,6 +100,7 @@ public class SearchResultDaoImpl implements SearchResultDao {
 				+ "; ", args, srMapper);	
 	}
 	
+	@Override
 	public List<SearchResult> getResultsNotBetweenDates(Request request) {
 		Object[] args = {request.getDepartureStation().toUpperCase(), request.getDestinationStation().toUpperCase(), request.getDepartureDate(), request.getArrivalDate()};
 		LOGGER.debug("4 request properties extracted. Sending request to database via Spring jdbcTemplate.");

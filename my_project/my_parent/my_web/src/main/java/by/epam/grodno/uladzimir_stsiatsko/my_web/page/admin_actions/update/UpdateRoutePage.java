@@ -14,7 +14,6 @@ import org.apache.wicket.validation.validator.StringValidator;
 
 import by.epam.grodno.uladzimir_stsiatsko.my_dao.model.Route;
 import by.epam.grodno.uladzimir_stsiatsko.my_service.RouteService;
-import by.epam.grodno.uladzimir_stsiatsko.my_service.TripListService;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.AbstractPage;
 
 @AuthorizeAction(action=Action.RENDER, roles={"admin"})
@@ -23,9 +22,7 @@ public class UpdateRoutePage extends AbstractPage {
 	private Route route;
 	
 	@Inject
-	RouteService rService;
-	@Inject
-	TripListService tlService;
+	private RouteService rService;
 	
 	public UpdateRoutePage(Route route){
 		this.route = route;
@@ -34,7 +31,10 @@ public class UpdateRoutePage extends AbstractPage {
 	@Override
 	protected void onInitialize() {
 		super.onInitialize();
+		
 		add(new FeedbackPanel("feedback"));
+		
+		//update route form components:
 		
 		Form<Route> routeUpdateForm = new Form<>("route-update-form");
 		add(routeUpdateForm);
@@ -61,6 +61,7 @@ public class UpdateRoutePage extends AbstractPage {
 			public void onSubmit() {
 					route.setRouteName(route.getRouteName().toUpperCase());
 					route.setRouteType(route.getRouteType().toUpperCase());
+					//getting route id from database to complete model object
 					int newRouteId = rService.add(route);
 					route.setId(newRouteId);
 					

@@ -39,14 +39,16 @@ import by.epam.grodno.uladzimir_stsiatsko.my_web.page.admin_actions.update.Updat
 
 @AuthorizeAction(action=Action.RENDER, roles={"admin"})
 public class EditRoutesPage extends AbstractPage {
+	
 	private static final Logger LOGGER = LoggerFactory.getLogger(EditRoutesPage.class);
 	
 	@Inject
-	RouteService rService;
+	private RouteService rService;
 	
 	@Inject
-	TripListService tlService;
+	private TripListService tlService;
 	
+	//metadata for paging
 	public static MetaDataKey<ElementsOnPageMetaData> ELEMENTS_ON_PAGE = new MetaDataKey<ElementsOnPageMetaData>() {
 	};
 	private int elementsOnPage = 5;
@@ -61,7 +63,10 @@ public class EditRoutesPage extends AbstractPage {
 	@Override
 	protected void onInitialize() {
 		super.onInitialize();
+		
 		add(new FeedbackPanel("feedback"));
+		
+		//new route form components:
 		
 		final Route newRoute = new Route();
 		Form<Route> newRouteForm = new Form<>("new-route-form");
@@ -89,6 +94,7 @@ public class EditRoutesPage extends AbstractPage {
 			public void onSubmit() {
 					newRoute.setRouteName(newRoute.getRouteName().toUpperCase());
 					newRoute.setRouteType(newRoute.getRouteType().toUpperCase());
+					//getting id from database to complete model object
 					int newRouteId = rService.add(newRoute);
 					newRoute.setId(newRouteId);
 					
@@ -96,6 +102,8 @@ public class EditRoutesPage extends AbstractPage {
 					setResponsePage(new UpdateRouteMapPage(newRoute));
 			}
 		});
+		
+		//routes list:
 
 		RoutesDataProvider routesDataProvider = new RoutesDataProvider();
 		DataView<Route> dataView = new DataView<Route>("routes-list", routesDataProvider, elementsOnPage) {
@@ -110,11 +118,12 @@ public class EditRoutesPage extends AbstractPage {
 				Link<Void> deleteLink = new Link<Void>("delete-link") {
 					@Override
 					public void onClick() {
-						//дописать ворнинг месседж
 						rService.delete(route);
 					}
 				};
 				item.add(deleteLink);
+				//visibility check for denying invalid operations
+				//(used trip lists must stay in database for billing operations history)
 				if(tlService.containsRoute(route.getId())){
 					deleteLink.setVisible(false);
 				}
@@ -129,6 +138,8 @@ public class EditRoutesPage extends AbstractPage {
 			}
 		};
 		add(dataView);
+		
+		//paging:
 
 		add(new OrderByBorder<Object>("sortId", "id", routesDataProvider));
 		add(new OrderByBorder<Object>("sortRouteName", "route_name", routesDataProvider));

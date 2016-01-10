@@ -2,6 +2,19 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 
+	<entry key="accordion.usedTech">Used Technologies</entry>
+	<entry key="accordion.searchAlg">Search Algorythm</entry>
+	<entry key="accordion.routeMap">Route Map</entry>
+	<entry key="accordion.visalAlg">Search Algorythm Visualization</entry>
+	<entry key="accordion.searchDescr">Search Algorythm Description</entry>
+	<entry key="accordion.dbStruct">Database Structure</entry>
+	<entry key="accordion.finance">Financial Part</entry>
+	<entry key="accordion.path">Pathway Part</entry>
+	<entry key="accordion.sql">SQL Queries</entry>
+	<entry key="accordion.viewScr">Search View Creation Script</entry>
+	<entry key="accordion.searchScr">Main Search Script (example)</entry>
+	<entry key="accordion.priceScr">Price Calculation Script (example)</entry>
+	
 	<entry key="button.register">REGISTER</entry>
 	<entry key="button.search">SEARCH</entry>
 	<entry key="button.submit">SUBMIT</entry>
@@ -18,6 +31,8 @@
 	<entry key="button.continue">Continue</entry>
 	<entry key="button.update">Update</entry>
 	<entry key="button.modify">Modify</entry>
+	<entry key="button.addTripList">Add Trip List</entry>
+	<entry key="button.updateAcc">Update Account</entry>
 
 	<entry key="emblem.main">Railway Ticket</entry>
 	<entry key="emblem.small">online window</entry>
@@ -31,7 +46,9 @@
 	<entry key="error.chooseBlockEnterTime">Specify relative block enter time to continue</entry>
 	<entry key="error.chooseBlockLeaveTime">Specify relative block leave time to continue</entry>
 	<entry key="error.chooseDepTime">Specify departure time</entry>
-	
+	<entry key="error.loginTaken">This login is taken by another user</entry>
+	<entry key="error.emailTaken">This email is taken by another user</entry>
+
 	<entry key="header.loginPage">Log In Page</entry>
 	<entry key="header.searchPage">Search Page</entry>
 	<entry key="header.actions">ACTIONS</entry>
@@ -51,6 +68,11 @@
 	<entry key="header.updateRoutePage">Update Route Page</entry>
 	<entry key="header.homePage">Home Page</entry>
 	<entry key="header.contactPage">Contact Page</entry>
+	<entry key="header.updateAccPage">Update Account Page</entry>
+	<entry key="header.editBillsPage">Edit Bills Page</entry>
+	<entry key="header.editBankDPage">Edit Bank Details Page</entry>
+	<entry key="header.editTLPage">Edit Trip Lists Page</entry>
+	<entry key="header.aboutPage">About Project</entry>
 
 	<entry key="label.departureStation">Departure Station</entry>
 	<entry key="label.departureDate">Departure Date</entry>
@@ -76,7 +98,14 @@
 	<entry key="label.priceForKilometer">Price For Kilometer</entry>
 	<entry key="label.blockEnterTime">Relative block enter time</entry>
 	<entry key="label.blockLeaveTime">Relative block leave time</entry>
-	
+	<entry key="label.login">Login</entry>
+	<entry key="label.firstName">First Name</entry>
+	<entry key="label.lastName">Last Name</entry>
+	<entry key="label.email">Email</entry>
+	<entry key="label.accessLevel">Access Level</entry>
+	<entry key="label.trainNumber">Train Number</entry>
+	<entry key="label.routeName">Route Name</entry>
+	<entry key="label.departureDate">Departure Date</entry>
 
 	<entry key="link.registerAcc">Register Account</entry>
 	<entry key="link.logIn">Log In</entry>
@@ -109,6 +138,10 @@
 	<entry key="menu.contact">CONTACT</entry>
 
 	<entry key="msg.haveAcc">Do not have an account?</entry>
+	<entry key="msg.warnAboutModify">Warning! Modifying this route will create new one
+		based on current properties (with changes you input). You can delete
+		old one manually afterwards, if it would not violate database
+		restricts.</entry>
 
 	<entry key="paging.id">Id</entry>
 	<entry key="paging.login">Login</entry>
@@ -135,20 +168,8 @@
 	<entry key="title.main">Online Railway Ticket Window</entry>
 
 	<entry key="header.updateAccPage">Update Account Page</entry>
-	<entry key="label.login">Login</entry>
-	<entry key="label.firstName">First Name</entry>
-	<entry key="label.lastName">Last Name</entry>
-	<entry key="label.email">Email</entry>
-	<entry key="label.accessLevel">Access Level</entry>
-	<entry key="button.updateAcc">Update Account</entry>
-
-	<entry key="header.editTLPage">Edit Trip Lists Page</entry>
-	<entry key="label.trainNumber">Train Number</entry>
-	<entry key="label.routeName">Route Name</entry>
-	<entry key="label.departureDate">Departure Date</entry>
-	<entry key="button.addTripList">Add Trip List</entry>
-
 	<entry key="header.editBillsPage">Edit Bills Page</entry>
 	<entry key="header.editBankDPage">Edit Bank Details Page</entry>
+	<entry key="header.editTLPage">Edit Trip Lists Page</entry>
 
 </properties>

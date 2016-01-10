@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
+	
+	<entry key="accordion.usedTech">Использованные технологии</entry>
+	<entry key="accordion.searchAlg">Алгоритм поиска</entry>
+	<entry key="accordion.routeMap">Карта маршрутов</entry>
+	<entry key="accordion.visalAlg">Визуализация поискового алгоритма</entry>
+	<entry key="accordion.searchDescr">Описание алгоритма поиска</entry>
+	<entry key="accordion.dbStruct">Структура базы данных</entry>
+	<entry key="accordion.finance">Финансовая часть</entry>
+	<entry key="accordion.path">Путевая часть</entry>
+	<entry key="accordion.sql">SQL-запросы</entry>
+	<entry key="accordion.viewScr">Запрос создания поисковой таблицы-отображения</entry>
+	<entry key="accordion.searchScr">Главный поисковый запрос (пример)</entry>
+	<entry key="accordion.priceScr">Запрос подсчета стоимости (пример)</entry>
 
 	<entry key="button.register">РЕГИСТРАЦИЯ</entry>
 	<entry key="button.search">ПОИСК</entry>
@@ -18,6 +31,8 @@
 	<entry key="button.continue">Продолжить</entry>
 	<entry key="button.update">Применить изменения</entry>
 	<entry key="button.modify">Модифицировать</entry>
+	<entry key="button.updateAcc">Применить обновления</entry>
+	<entry key="button.addTripList">Добавить</entry>
 
 	<entry key="emblem.main">Железнодорожная Касса</entry>
 	<entry key="emblem.small">онлайн-сервис</entry>
@@ -31,6 +46,9 @@
 	<entry key="error.chooseBlockEnterTime">Укажите время в пути при отправлении</entry>
 	<entry key="error.chooseBlockLeaveTime">Укажите время в пути по прибытию</entry>
 	<entry key="error.chooseDepTime">Укажите время отправления</entry>
+	<entry key="error.loginTaken">Данный логин уже существует в системе</entry>
+	<entry key="error.emailTaken">Данный адрес электронной почты уже зарегистрирован в
+		системе</entry>
 
 	<entry key="header.loginPage">Страница входа</entry>
 	<entry key="header.searchPage">Страница поиска</entry>
@@ -51,6 +69,11 @@
 	<entry key="header.updateRoutePage">Редактировать маршрут</entry>
 	<entry key="header.homePage">Домашняя страница</entry>
 	<entry key="header.contactPage">Контакты:</entry>
+	<entry key="header.updateAccPage">Изменение учетной записи</entry>
+	<entry key="header.editBillsPage">Выданные счета</entry>
+	<entry key="header.editBankDPage">Банковская информация</entry>
+	<entry key="header.editTLPage">Добавить рейс в списки</entry>
+	<entry key="header.aboutPage">О проекте</entry>
 
 	<entry key="locale.ru">Русский</entry>
 	<entry key="locale.en">Английский</entry>
@@ -79,7 +102,14 @@
 	<entry key="label.priceForKilometer">Цена за километр, руб.</entry>
 	<entry key="label.blockEnterTime">Время в пути при отправлении</entry>
 	<entry key="label.blockLeaveTime">Время в пути по прибытию</entry>
-
+	<entry key="label.login">Логин</entry>
+	<entry key="label.firstName">Имя</entry>
+	<entry key="label.lastName">Фамилия</entry>
+	<entry key="label.email">Электронная почта</entry>
+	<entry key="label.accessLevel">Уровень доступа</entry>
+	<entry key="label.trainNumber">Номер поезда</entry>
+	<entry key="label.routeName">Название маршрута</entry>
+	<entry key="label.departureDate">Дата отправления</entry>
 
 	<entry key="link.registerAcc">Регистрация</entry>
 	<entry key="link.logIn">Войти</entry>
@@ -109,6 +139,11 @@
 	<entry key="menu.contact">КОНТАКТЫ</entry>
 
 	<entry key="msg.haveAcc">Не зарегистрированы?</entry>
+	<entry key="msg.warnAboutModify">Внимание! Модифицирование этого маршрута создаст новый
+		на основе текущих параметров (учитывая внесенные изменения). Вы
+		cможете вручную удалить старый маршрут позднее, если это не будет
+		нарушать
+		органичений, налагаемых базой данных.</entry>
 
 	<entry key="paging.id">ID</entry>
 	<entry key="paging.login">Логин</entry>
@@ -133,22 +168,5 @@
 	<entry key="paging.priceForkilometer">Цена за километр, руб.</entry>
 
 	<entry key="title.main">Онлайн-сервис Железнодорожная Касса</entry>
-
-	<entry key="header.updateAccPage">Изменение учетной записи</entry>
-	<entry key="label.login">Логин</entry>
-	<entry key="label.firstName">Имя</entry>
-	<entry key="label.lastName">Фамилия</entry>
-	<entry key="label.email">Электронная почта</entry>
-	<entry key="label.accessLevel">Уровень доступа</entry>
-	<entry key="button.updateAcc">Применить обновления</entry>
-
-	<entry key="header.editTLPage">Добавить рейс в списки</entry>
-	<entry key="label.trainNumber">Номер поезда</entry>
-	<entry key="label.routeName">Название маршрута</entry>
-	<entry key="label.departureDate">Дата отправления</entry>
-	<entry key="button.addTripList">Добавить</entry>
-
-	<entry key="header.editBillsPage">Выданные счета</entry>
-	<entry key="header.editBankDPage">Банковская информация</entry>
 
 </properties>
