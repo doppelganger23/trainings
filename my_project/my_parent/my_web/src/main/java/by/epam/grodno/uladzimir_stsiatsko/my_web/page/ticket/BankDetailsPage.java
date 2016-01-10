@@ -1,5 +1,7 @@
 package by.epam.grodno.uladzimir_stsiatsko.my_web.page.ticket;
 
+import java.math.BigDecimal;
+
 import javax.inject.Inject;
 
 import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeInstantiation;
@@ -11,32 +13,47 @@ import by.epam.grodno.uladzimir_stsiatsko.my_service.TripListService;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.AbstractPage;
 
 @AuthorizeInstantiation(value = { "admin", "passenger" })
-public class BankDetailsPage extends AbstractPage{
-	
+public class BankDetailsPage extends AbstractPage {
+
 	@Inject
 	TripListService tlService;
-	
+
 	@Inject
 	private BillService billService;
-	
+
 	private Bill bill;
-	
-	public BankDetailsPage(Bill bill){
+
+	public BankDetailsPage(Bill bill) {
 		this.bill = bill;
 	}
-	
+
 	@Override
-	protected void onInitialize(){
+	protected void onInitialize() {
 		super.onInitialize();
-		
+
 		add(new Label("billing-number", bill.getBillingNumber()));
-		add(new Label("payment-value", bill.getPaymentValue() + " " + bill.getCurrencyOfPayment()));
-		
+
+		String currencyOfPayment = bill.getCurrencyOfPayment();
+		double paymentValue = bill.getPaymentValue();
+		if ("BYR".equals(currencyOfPayment)) {
+			paymentValue = roundUpScale0(paymentValue);
+			add(new Label("payment-value", (int)paymentValue + " " + currencyOfPayment));
+		} else {
+			add(new Label("payment-value", paymentValue + " " + currencyOfPayment));
+		}
+
 		billService.addBill(bill);
 		tlService.incrementTicketsSold(bill.getTripListId());
-		
-		//TODO add service and dao methods etc.
-		//add(new Label(""), tlService.getById(bill.getTripListId()).getName);
+
+		// TODO add service and dao methods etc.
+		// add(new Label(""), tlService.getById(bill.getTripListId()).getName);
+	}
+
+	private double roundUpScale0(double aValue) {
+		BigDecimal decimal = new BigDecimal(aValue);
+		decimal = decimal.setScale(0, BigDecimal.ROUND_HALF_UP);
+		double result = decimal.doubleValue();
+		return result;
 	}
 
 }

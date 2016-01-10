@@ -49,6 +49,8 @@
 	<entry key="header.updateRouteMapPage">Редактирование карты маршрута</entry>
 	<entry key="header.editRoutesPage">Редактировать маршруты</entry>
 	<entry key="header.updateRoutePage">Редактировать маршрут</entry>
+	<entry key="header.homePage">Домашняя страница</entry>
+	<entry key="header.contactPage">Контакты:</entry>
 
 	<entry key="locale.ru">Русский</entry>
 	<entry key="locale.en">Английский</entry>

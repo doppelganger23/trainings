@@ -49,6 +49,8 @@
 	<entry key="header.updateRouteMapPage">Update Route Map Page</entry>
 	<entry key="header.editRoutesPage">Edit Routes Page</entry>
 	<entry key="header.updateRoutePage">Update Route Page</entry>
+	<entry key="header.homePage">Home Page</entry>
+	<entry key="header.contactPage">Contact Page</entry>
 
 	<entry key="label.departureStation">Departure Station</entry>
 	<entry key="label.departureDate">Departure Date</entry>
