@@ -54,6 +54,7 @@ public class UpdateTrainPage extends AbstractPage {
 		form.add(new SubmitLink("submit-update") {
 			@Override
 			public void onSubmit() {
+				train.setTrainNumber(train.getTrainNumber().toUpperCase());
 				if (tService.containsTrain(train.getTrainNumber())) {
 					error(getString("error.trainNumberTaken"));
 				} else {

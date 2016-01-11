@@ -9,7 +9,9 @@ import by.epam.grodno.uladzimir_stsiatsko.my_web.app.LangSelectionLink;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.admin_actions.EditAccountsPage;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.admin_actions.EditBankDetailsPage;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.admin_actions.EditBillsPage;
+import by.epam.grodno.uladzimir_stsiatsko.my_web.page.admin_actions.EditBlocksPage;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.admin_actions.EditRoutesPage;
+import by.epam.grodno.uladzimir_stsiatsko.my_web.page.admin_actions.EditStationsPage;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.admin_actions.EditTrainsPage;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.admin_actions.EditTripListsPage;
 import by.epam.grodno.uladzimir_stsiatsko.my_web.page.registration.RegistrationPage;
@@ -132,6 +134,18 @@ public class AbstractPage extends WebPage {
 			@Override
 			public void onClick() {
 				setResponsePage(new EditBankDetailsPage());
+			}
+		});
+		container.add(new Link<Void>("edit-blocks-page-link") {
+			@Override
+			public void onClick() {
+				setResponsePage(new EditBlocksPage());
+			}
+		});
+		container.add(new Link<Void>("edit-stations-page-link") {
+			@Override
+			public void onClick() {
+				setResponsePage(new EditStationsPage());
 			}
 		});
 		

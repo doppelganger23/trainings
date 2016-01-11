@@ -14,6 +14,9 @@
 	<entry key="accordion.viewScr">Запрос создания поисковой таблицы-отображения</entry>
 	<entry key="accordion.searchScr">Главный поисковый запрос (пример)</entry>
 	<entry key="accordion.priceScr">Запрос подсчета стоимости (пример)</entry>
+	
+	<entry key="author.name">Автор - Владимир Стецко</entry>
+	<entry key="author.email">e-mail: gr_23@mail.ru</entry>
 
 	<entry key="button.register">РЕГИСТРАЦИЯ</entry>
 	<entry key="button.search">ПОИСК</entry>
@@ -33,6 +36,9 @@
 	<entry key="button.modify">Модифицировать</entry>
 	<entry key="button.updateAcc">Применить обновления</entry>
 	<entry key="button.addTripList">Добавить</entry>
+	<entry key="button.addBlock">Добавить</entry>
+	<entry key="button.addNewStation">Добавить</entry>
+	<entry key="button.updateStation">Применить</entry>
 
 	<entry key="emblem.main">Железнодорожная Касса</entry>
 	<entry key="emblem.small">онлайн-сервис</entry>
@@ -49,6 +55,10 @@
 	<entry key="error.loginTaken">Данный логин уже существует в системе</entry>
 	<entry key="error.emailTaken">Данный адрес электронной почты уже зарегистрирован в
 		системе</entry>
+	<entry key="error.chooseDistance">Расстояние должно быть больше нуля</entry>
+	<entry key="error.chooseDepStation">Выберите станцию отправления</entry>
+	<entry key="error.chooseDestStation">Выберите станцию назначения</entry>
+	<entry key="error.stationExists">Станция с таким названием уже существует</entry>
 
 	<entry key="header.loginPage">Страница входа</entry>
 	<entry key="header.searchPage">Страница поиска</entry>
@@ -74,6 +84,9 @@
 	<entry key="header.editBankDPage">Банковская информация</entry>
 	<entry key="header.editTLPage">Добавить рейс в списки</entry>
 	<entry key="header.aboutPage">О проекте</entry>
+	<entry key="header.editBlocksPage">Редактировать железнодорожные перегоны</entry>
+	<entry key="header.editStationsPage">Редактировать станции</entry>
+	<entry key="header.updateStationPage">Редактировать станцию</entry>
 
 	<entry key="locale.ru">Русский</entry>
 	<entry key="locale.en">Английский</entry>
@@ -110,6 +123,8 @@
 	<entry key="label.trainNumber">Номер поезда</entry>
 	<entry key="label.routeName">Название маршрута</entry>
 	<entry key="label.departureDate">Дата отправления</entry>
+	<entry key="label.distanceInKm">Расстояние, км</entry>
+	<entry key="label.stationName">Название станции</entry>
 
 	<entry key="link.registerAcc">Регистрация</entry>
 	<entry key="link.logIn">Войти</entry>
@@ -120,6 +135,8 @@
 	<entry key="link.editBankD">Банковская информация</entry>
 	<entry key="link.editTrains">Поезда</entry>
 	<entry key="link.editRoutes">Маршруты</entry>
+	<entry key="link.editBlocks">Перегоны</entry>
+	<entry key="link.editStations">Станции</entry>
 
 	<entry key="mark.login">Логин:</entry>
 	<entry key="mark.password">Пароль:</entry>
@@ -166,6 +183,10 @@
 	<entry key="paging.byrExchangeRate">Курс белорусского рубля</entry>
 	<entry key="paging.passengersCapacity">Пассажировместимость</entry>
 	<entry key="paging.priceForkilometer">Цена за километр, руб.</entry>
+	<entry key="paging.departureStationName">Название станции отправления</entry>
+	<entry key="paging.destinationStationName">Название станции назначения</entry>
+	<entry key="paging.distanceInKilometres">Расстояние, км</entry>
+	<entry key="paging.name">Название станции</entry>
 
 	<entry key="title.main">Онлайн-сервис Железнодорожная Касса</entry>
 

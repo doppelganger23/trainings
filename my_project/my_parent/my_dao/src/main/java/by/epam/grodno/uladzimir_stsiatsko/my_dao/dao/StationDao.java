@@ -12,4 +12,16 @@ public interface StationDao {
 	
 	String getName(int stationId);
 	
+	void remove(Station station);
+	
+	List<Station> getAll(long first, long count, String sortBy, String sortType);
+	
+	int getCount();
+	
+	boolean stationExists(String stationName);
+	
+	void addStation(Station station);
+	
+	void update(Station station);
+	
 }

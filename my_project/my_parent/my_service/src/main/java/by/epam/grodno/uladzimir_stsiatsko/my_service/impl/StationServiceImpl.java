@@ -26,4 +26,38 @@ public class StationServiceImpl implements StationService {
 	public String getName(int stationId){
 		return sDao.getName(stationId);
 	}
+	
+	@Override
+	public void delete(Station station) {
+		sDao.remove(station);	
+	}
+
+	@Override
+	public List<Station> getAll(long first, long count, String sortBy, String sortType) {
+			if ("ASCENDING".equals(sortType)) {
+				return sDao.getAll(first, count, sortBy, "asc");
+			} else {
+				return sDao.getAll(first, count, sortBy, "desc");
+			} 
+	}
+
+	@Override
+	public int getCount() {
+		return sDao.getCount();
+	}
+
+	@Override
+	public boolean stationExists(String name) {
+		return sDao.stationExists(name);
+	}
+
+	@Override
+	public void addStation(Station station) {
+		sDao.addStation(station);
+	}
+
+	@Override
+	public void update(Station station) {
+		sDao.update(station);
+	}
 }

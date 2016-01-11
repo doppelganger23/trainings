@@ -12,4 +12,15 @@ public interface StationService {
 	
 	String getName(int stationId);
 	
+	void delete(Station station);
+	
+	List<Station> getAll(long first, long count, String sortBy, String sortType);
+	
+	int getCount();
+	
+	boolean stationExists(String name);
+	
+	void addStation(Station station);
+	
+	void update(Station station);
 }

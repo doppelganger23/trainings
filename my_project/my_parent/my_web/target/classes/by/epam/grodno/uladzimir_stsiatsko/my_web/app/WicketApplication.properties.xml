@@ -15,6 +15,9 @@
 	<entry key="accordion.searchScr">Main Search Script (example)</entry>
 	<entry key="accordion.priceScr">Price Calculation Script (example)</entry>
 	
+	<entry key="author.name">Author - Uladzimir Stsiatsko</entry>
+	<entry key="author.email">e-mail: gr_23@mail.ru</entry>
+
 	<entry key="button.register">REGISTER</entry>
 	<entry key="button.search">SEARCH</entry>
 	<entry key="button.submit">SUBMIT</entry>
@@ -33,6 +36,9 @@
 	<entry key="button.modify">Modify</entry>
 	<entry key="button.addTripList">Add Trip List</entry>
 	<entry key="button.updateAcc">Update Account</entry>
+	<entry key="button.addBlock">Add Block</entry>
+	<entry key="button.addNewStation">Add Station</entry>
+	<entry key="button.updateStation">Update Station</entry>
 
 	<entry key="emblem.main">Railway Ticket</entry>
 	<entry key="emblem.small">online window</entry>
@@ -48,7 +54,11 @@
 	<entry key="error.chooseDepTime">Specify departure time</entry>
 	<entry key="error.loginTaken">This login is taken by another user</entry>
 	<entry key="error.emailTaken">This email is taken by another user</entry>
-
+	<entry key="error.chooseDistance">Distance must be greater then 0</entry>
+	<entry key="error.chooseDepStation">Choose Departure Station</entry>
+	<entry key="error.chooseDestStation">Choose Destination Station</entry>
+	<entry key="error.stationExists">Station with that name already exists</entry>
+	
 	<entry key="header.loginPage">Log In Page</entry>
 	<entry key="header.searchPage">Search Page</entry>
 	<entry key="header.actions">ACTIONS</entry>
@@ -73,6 +83,9 @@
 	<entry key="header.editBankDPage">Edit Bank Details Page</entry>
 	<entry key="header.editTLPage">Edit Trip Lists Page</entry>
 	<entry key="header.aboutPage">About Project</entry>
+	<entry key="header.editBlocksPage">Edit Blocks Page</entry>
+	<entry key="header.editStationsPage">Edit Stations Page</entry>
+	<entry key="header.updateStationPage">Update Station Page</entry>
 
 	<entry key="label.departureStation">Departure Station</entry>
 	<entry key="label.departureDate">Departure Date</entry>
@@ -106,6 +119,8 @@
 	<entry key="label.trainNumber">Train Number</entry>
 	<entry key="label.routeName">Route Name</entry>
 	<entry key="label.departureDate">Departure Date</entry>
+	<entry key="label.distanceInKm">Distance, km</entry>
+	<entry key="label.stationName">Station Name</entry>
 
 	<entry key="link.registerAcc">Register Account</entry>
 	<entry key="link.logIn">Log In</entry>
@@ -116,6 +131,8 @@
 	<entry key="link.editBankD">Edit Bank Details</entry>
 	<entry key="link.editTrains">Edit Trains</entry>
 	<entry key="link.editRoutes">Edit Routes</entry>
+	<entry key="link.editBlocks">Edit Blocks</entry>
+	<entry key="link.editStations">Edit Stations</entry>
 
 	<entry key="locale.ru">Russian</entry>
 	<entry key="locale.en">English</entry>
@@ -164,6 +181,10 @@
 	<entry key="paging.byrExchangeRate">BYR Exchange Rate</entry>
 	<entry key="paging.passengersCapacity">Passengers Capacity</entry>
 	<entry key="paging.priceForkilometer">Price For Kilometer in BYR</entry>
+	<entry key="paging.departureStationName">Departure Station Name</entry>
+	<entry key="paging.destinationStationName">Destination Station Name</entry>
+	<entry key="paging.distanceInKilometres">Distance, km</entry>
+	<entry key="paging.name">Station Name</entry>
 
 	<entry key="title.main">Online Railway Ticket Window</entry>
 

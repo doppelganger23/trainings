@@ -33,4 +33,43 @@ public class StationDaoImpl implements StationDao {
 		return jdbcTemplate.queryForObject("SELECT name FROM station WHERE id = ? ;", String.class, args);
 	}
 	
+	@Override
+	public void remove(Station station) {
+		Object[] args = { station.getId() };
+		jdbcTemplate.update("DELETE FROM station WHERE id = ? ;", args);
+	}
+
+	@Override
+	public List<Station> getAll(long first, long count, String sortBy, String sortType) {
+		return jdbcTemplate.query(String.format("select * from station order by %s %s limit %s offset %s ;", sortBy,
+				sortType, count, first), new StationMapper());
+	}
+
+	@Override
+	public int getCount() {
+		return jdbcTemplate.queryForObject("select count(1) from station ;", Integer.class);
+	}
+	
+	@Override
+	public boolean stationExists(String stationName) {
+		Integer count = jdbcTemplate.queryForObject("SELECT count(1) FROM station WHERE name = ? ;",
+				Integer.class, stationName);
+		if (count.intValue() > 0) {
+			return true;
+		}
+		return false;
+	}
+	
+	@Override
+	public void addStation(Station station) {
+			jdbcTemplate.update("INSERT INTO station (name) VALUES (?) ;",
+					station.getName());
+	}
+	
+	@Override
+	public void update(Station station) {
+			jdbcTemplate.update("UPDATE station SET name = ? WHERE id = ? ;",
+					station.getName(), station.getId());
+	}
+	
 }

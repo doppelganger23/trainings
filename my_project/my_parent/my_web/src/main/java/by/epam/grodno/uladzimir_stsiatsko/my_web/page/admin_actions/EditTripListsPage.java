@@ -105,16 +105,16 @@ public class EditTripListsPage extends AbstractPage {
 		add(form);
 
 		final Model<Train> trainModel = new Model<Train>();
-		DropDownChoice<Train> trainIdChoice = new DropDownChoice<Train>("train-id-choice", trainModel,
+		DropDownChoice<Train> trainChoice = new DropDownChoice<Train>("train-choice", trainModel,
 				trainService.findAll(), new TrainChoiceRenderer());
-		trainIdChoice.setRequired(true);
-		form.add(trainIdChoice);
+		trainChoice.setRequired(true);
+		form.add(trainChoice);
 
 		final Model<Route> routeModel = new Model<Route>();
-		DropDownChoice<Route> routeIdChoice = new DropDownChoice<Route>("route-id-choice", routeModel,
+		DropDownChoice<Route> routeChoice = new DropDownChoice<Route>("route-choice", routeModel,
 				routeService.findAll(), new RouteChoiceRenderer());
-		routeIdChoice.setRequired(true);
-		form.add(routeIdChoice);
+		routeChoice.setRequired(true);
+		form.add(routeChoice);
 
 		// date part, without time
 		final DateTextField dateField = new DateTextField("departure-date",

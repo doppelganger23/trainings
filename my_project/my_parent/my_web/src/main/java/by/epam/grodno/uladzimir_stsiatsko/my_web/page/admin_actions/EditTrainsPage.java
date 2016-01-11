@@ -81,6 +81,7 @@ public class EditTrainsPage extends AbstractPage {
 		newTrainForm.add(new SubmitLink("submit-button") {
 			@Override
 			public void onSubmit() {
+				newTrain.setTrainNumber(newTrain.getTrainNumber().toUpperCase());
 				//train number must be unique
 				if (tService.containsTrain(newTrain.getTrainNumber())) {
 					error(getString("error.trainExists"));

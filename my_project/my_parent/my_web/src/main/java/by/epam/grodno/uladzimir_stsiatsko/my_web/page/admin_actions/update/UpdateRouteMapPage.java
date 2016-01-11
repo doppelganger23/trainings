@@ -91,9 +91,9 @@ public class UpdateRouteMapPage extends AbstractPage {
 		add(form);
 
 		final Model<StationToStationBlock> blockModel = new Model<StationToStationBlock>();
-		DropDownChoice<StationToStationBlock> blockIdChoice = new DropDownChoice<StationToStationBlock>(
-				"block-id-choice", blockModel, blockService.getBlocks(), new StationToStationBlockChoiceRenderer());
-		form.add(blockIdChoice);
+		DropDownChoice<StationToStationBlock> blockChoice = new DropDownChoice<StationToStationBlock>(
+				"block-choice", blockModel, blockService.getBlocks(), new StationToStationBlockChoiceRenderer());
+		form.add(blockChoice);
 
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(0, 0, 0, 0, 0);
